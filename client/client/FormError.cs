@@ -9,11 +9,18 @@ using System.Windows.Forms;
 
 namespace client
 {
-    public partial class Form1 : Form
+    public partial class FormError : Form
     {
-        public Form1()
+        public FormError(string errorText)
         {
             InitializeComponent();
+            label1.Text = errorText;
+            this.ShowDialog();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
