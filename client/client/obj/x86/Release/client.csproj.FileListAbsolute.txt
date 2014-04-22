@@ -1,0 +1,10 @@
+C:\Users\user\Documents\Visual Studio 2010\Projects\oopWork14\client\client\bin\Release\client.exe
+C:\Users\user\Documents\Visual Studio 2010\Projects\oopWork14\client\client\bin\Release\client.pdb
+C:\Users\user\Documents\Visual Studio 2010\Projects\oopWork14\client\client\bin\Release\security.dll
+C:\Users\user\Documents\Visual Studio 2010\Projects\oopWork14\client\client\obj\x86\Release\client.csprojResolveAssemblyReference.cache
+C:\Users\user\Documents\Visual Studio 2010\Projects\oopWork14\client\client\obj\x86\Release\client.FormAutorisation.resources
+C:\Users\user\Documents\Visual Studio 2010\Projects\oopWork14\client\client\obj\x86\Release\client.FormError.resources
+C:\Users\user\Documents\Visual Studio 2010\Projects\oopWork14\client\client\obj\x86\Release\client.Properties.Resources.resources
+C:\Users\user\Documents\Visual Studio 2010\Projects\oopWork14\client\client\obj\x86\Release\client.csproj.GenerateResource.Cache
+C:\Users\user\Documents\Visual Studio 2010\Projects\oopWork14\client\client\obj\x86\Release\client.exe
+C:\Users\user\Documents\Visual Studio 2010\Projects\oopWork14\client\client\obj\x86\Release\client.pdb
