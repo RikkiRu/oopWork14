@@ -10,12 +10,18 @@ namespace server
         /// <summary>
         /// Главная точка входа для приложения.
         /// </summary>
-        [STAThread]
+       
+
+        static public Form1 MainForm;
+         [STAThread]
         static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            classConsole.AllocConsole();
+            MainForm = new Form1();
+            
+            Application.Run(MainForm);
         }
     }
 }

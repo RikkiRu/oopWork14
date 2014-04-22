@@ -1,0 +1,5 @@
+c:\users\www.mobilkom.ru\documents\visual studio 2013\Projects\ConnectLib\ConnectLib\bin\Debug\ConnectLib.dll
+c:\users\www.mobilkom.ru\documents\visual studio 2013\Projects\ConnectLib\ConnectLib\bin\Debug\ConnectLib.pdb
+c:\users\www.mobilkom.ru\documents\visual studio 2013\Projects\ConnectLib\ConnectLib\obj\Debug\ConnectLib.csprojResolveAssemblyReference.cache
+c:\users\www.mobilkom.ru\documents\visual studio 2013\Projects\ConnectLib\ConnectLib\obj\Debug\ConnectLib.dll
+c:\users\www.mobilkom.ru\documents\visual studio 2013\Projects\ConnectLib\ConnectLib\obj\Debug\ConnectLib.pdb

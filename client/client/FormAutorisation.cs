@@ -3,6 +3,8 @@ using System.Windows.Forms;
 using System.IO;
 using security;
 using System.Security.Cryptography;
+using System.ServiceModel;
+using ConnectLib;
 
 namespace client
 {
@@ -37,6 +39,7 @@ namespace client
                 }
             }
 
+            send();
             //тут пойдет подключение
         }
 
@@ -54,6 +57,13 @@ namespace client
             catch
             {
             }
+        }
+
+        void send()
+        {
+            pingInterClient svc = new pingInterClient ();
+            string result = svc.say("Testing");
+            MessageBox.Show(result);
         }
     }
 }
