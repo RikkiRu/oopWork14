@@ -1,0 +1,7 @@
+C:\Users\www.mobilkom.ru\documents\visual studio 2010\Projects\sociology\sociology\bin\Debug\sociology.exe
+C:\Users\www.mobilkom.ru\documents\visual studio 2010\Projects\sociology\sociology\bin\Debug\sociology.pdb
+C:\Users\www.mobilkom.ru\documents\visual studio 2010\Projects\sociology\sociology\obj\x86\Debug\sociology.Form1.resources
+C:\Users\www.mobilkom.ru\documents\visual studio 2010\Projects\sociology\sociology\obj\x86\Debug\sociology.Properties.Resources.resources
+C:\Users\www.mobilkom.ru\documents\visual studio 2010\Projects\sociology\sociology\obj\x86\Debug\sociology.csproj.GenerateResource.Cache
+C:\Users\www.mobilkom.ru\documents\visual studio 2010\Projects\sociology\sociology\obj\x86\Debug\sociology.exe
+C:\Users\www.mobilkom.ru\documents\visual studio 2010\Projects\sociology\sociology\obj\x86\Debug\sociology.pdb
