@@ -18,7 +18,7 @@ namespace server
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            classConsole.AllocConsole();
+            //classConsole.AllocConsole();
             MainForm = new Form1();
             
             Application.Run(MainForm);

@@ -9,21 +9,21 @@ namespace server
 {
     class connectionControl
     {
-        public connectionControl()
+        public connectionControl(string adress)
         {
             Connection.action = process;
-            ServiceHost host = new ServiceHost(typeof(Connection), new Uri("http://localhost:8081/"));
+            ServiceHost host = new ServiceHost(typeof(Connection), new Uri(adress));
             host.Open();
-            Console.WriteLine("Сервер запущен");
+            log("Сервер запущен");
 
             #region Output dispatchers listening
             foreach (Uri uri in host.BaseAddresses)
-            { Console.WriteLine("\t{0}", uri.ToString()); }
-            Console.WriteLine();
-            Console.WriteLine("Count and list of listening : {0}", host.ChannelDispatchers.Count);
+            { log(uri.ToString()); }
+            log("");
+            log("Count and list of listening : "+host.ChannelDispatchers.Count.ToString());
             foreach (System.ServiceModel.Dispatcher.ChannelDispatcher dispatcher in host.ChannelDispatchers)
             {
-                Console.WriteLine("\t{0}, {1}", dispatcher.Listener.Uri.ToString(), dispatcher.BindingName);
+                log("\t"+dispatcher.Listener.Uri.ToString()+" "+dispatcher.BindingName);
             }
             #endregion
         }

@@ -1,0 +1,5 @@
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\server\postman\bin\Debug\postman.dll
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\server\postman\bin\Debug\postman.pdb
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\server\postman\obj\Debug\postman.csprojResolveAssemblyReference.cache
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\server\postman\obj\Debug\postman.dll
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\server\postman\obj\Debug\postman.pdb

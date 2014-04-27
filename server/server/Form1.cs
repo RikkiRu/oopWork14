@@ -11,6 +11,7 @@ namespace server
 {
     public partial class Form1 : Form
     {
+        dbBinding db;
         connectionControl Connecton;
 
         public Form1()
@@ -25,7 +26,24 @@ namespace server
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            Connecton = new connectionControl();
+            
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            db=new dbBinding(@"Data Source=(LocalDB)\v11.0;AttachDbFilename="+textBox2.Text+";Integrated Security=True;Connect Timeout=30");
+            Connecton = new connectionControl(textBox1.Text);
+
+            foreach(var a in db.tConsulters)
+            {
+                log(a.Id.ToString());
+                log(a.firstname);
+            }
+
+            foreach (var a in db.tConsultersSalary)
+            {
+                log(a.consulter_Id.ToString());
+            }
         }
     }
 }
