@@ -21,3 +21,15 @@ C:\Users\www.mobilkom.ru\documents\Visual Studio 2010\Projects\OopWork14\oopWork
 C:\Users\www.mobilkom.ru\documents\Visual Studio 2010\Projects\OopWork14\oopWork14-my_branch-my_whores\client\client\bin\Debug\security.dll
 C:\Users\www.mobilkom.ru\documents\Visual Studio 2010\Projects\OopWork14\oopWork14-my_branch-my_whores\client\client\bin\Debug\ConnectLib.dll
 C:\Users\www.mobilkom.ru\documents\Visual Studio 2010\Projects\OopWork14\oopWork14-my_branch-my_whores\client\client\bin\Debug\ConnectLib.pdb
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\client\client\bin\Debug\client.exe.config
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\client\client\obj\x86\Debug\client.exe
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\client\client\obj\x86\Debug\client.pdb
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\client\client\bin\Debug\client.exe
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\client\client\bin\Debug\client.pdb
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\client\client\bin\Debug\security.dll
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\client\client\bin\Debug\ConnectLib.pdb
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\client\client\obj\x86\Debug\client.csprojResolveAssemblyReference.cache
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\client\client\obj\x86\Debug\client.FormAutorisation.resources
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\client\client\obj\x86\Debug\client.FormError.resources
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\client\client\obj\x86\Debug\client.Properties.Resources.resources
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\client\client\obj\x86\Debug\client.csproj.GenerateResource.Cache

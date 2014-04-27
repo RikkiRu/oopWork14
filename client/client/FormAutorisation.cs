@@ -61,8 +61,10 @@ namespace client
 
         void send()
         {
-            pingInterClient svc = new pingInterClient ();
+            //"http://localhost:8080/" binding="basicHttpBinding"
+            pingInterClient svc = new pingInterClient("BasicHttpBinding_pingInter", "http://localhost:8081/");
             string result = svc.say("Testing");
+            result = svc.oSend("vasia").ToString();
             MessageBox.Show(result);
         }
     }

@@ -11,7 +11,8 @@ namespace server
     {
         public connectionControl()
         {
-            ServiceHost host = new ServiceHost(typeof(Connection), new Uri("http://localhost:8080/"));
+            Connection.action = process;
+            ServiceHost host = new ServiceHost(typeof(Connection), new Uri("http://localhost:8081/"));
             host.Open();
             Console.WriteLine("Сервер запущен");
 
@@ -30,6 +31,15 @@ namespace server
         void log(string x)
         {
             Program.MainForm.log(x);
+        }
+
+        public object process(object o)
+        {
+            if(o is string)
+            {
+                return "string recived";
+            }
+            return "error";
         }
     }
 }

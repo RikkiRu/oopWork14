@@ -37,6 +37,10 @@
     <ApplicationIcon>logo.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ConnectLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\ConnectLib.dll</HintPath>
+    </Reference>
     <Reference Include="security, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\dll\security.dll</HintPath>
@@ -99,12 +103,6 @@
   <ItemGroup>
     <Content Include="logo.ico" />
     <None Include="Resources\error.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\..\visual studio 2013\Projects\ConnectLib\ConnectLib\ConnectLib.csproj">
-      <Project>{3e9a0c82-2bd0-4a6e-a562-d8173e012073}</Project>
-      <Name>ConnectLib</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
