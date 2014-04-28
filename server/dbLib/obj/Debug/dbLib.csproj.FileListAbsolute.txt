@@ -1,0 +1,4 @@
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\server\dbLib\bin\Debug\dbLib.dll
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\server\dbLib\bin\Debug\dbLib.pdb
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\server\dbLib\obj\Debug\dbLib.dll
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\server\dbLib\obj\Debug\dbLib.pdb

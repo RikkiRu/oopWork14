@@ -9,23 +9,32 @@ namespace server
 {
     class connectionControl
     {
+        static ServiceHost host;
+
         public connectionControl(string adress)
         {
-            Connection.action = process;
-            ServiceHost host = new ServiceHost(typeof(Connection), new Uri(adress));
-            host.Open();
-            log("Сервер запущен");
-
-            #region Output dispatchers listening
-            foreach (Uri uri in host.BaseAddresses)
-            { log(uri.ToString()); }
-            log("");
-            log("Count and list of listening : "+host.ChannelDispatchers.Count.ToString());
-            foreach (System.ServiceModel.Dispatcher.ChannelDispatcher dispatcher in host.ChannelDispatchers)
+            try
             {
-                log("\t"+dispatcher.Listener.Uri.ToString()+" "+dispatcher.BindingName);
+                Connection.action = process;
+                host = new ServiceHost(typeof(Connection), new Uri(adress));
+                host.Open();
+                log("Сервер запущен");
+
+                #region Output dispatchers listening
+                foreach (Uri uri in host.BaseAddresses)
+                { log(uri.ToString()); }
+                log("");
+                log("Count and list of listening : " + host.ChannelDispatchers.Count.ToString());
+                foreach (System.ServiceModel.Dispatcher.ChannelDispatcher dispatcher in host.ChannelDispatchers)
+                {
+                    log("\t" + dispatcher.Listener.Uri.ToString() + " " + dispatcher.BindingName);
+                }
+                #endregion
             }
-            #endregion
+            catch (Exception ex)
+            {
+                log(ex.Message);
+            }
         }
 
         void log(string x)

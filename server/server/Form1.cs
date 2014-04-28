@@ -7,11 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
+using dbLib;
+using analizator;
+
 namespace server
 {
     public partial class Form1 : Form
     {
-        dbBinding db;
+        dbBind db;
         connectionControl Connecton;
 
         public Form1()
@@ -31,7 +34,7 @@ namespace server
 
         private void button1_Click(object sender, EventArgs e)
         {
-            db=new dbBinding(@"Data Source=(LocalDB)\v11.0;AttachDbFilename="+textBox2.Text+";Integrated Security=True;Connect Timeout=30");
+            db=new dbBind(@"Data Source=(LocalDB)\v11.0;AttachDbFilename="+textBox2.Text+";Integrated Security=True;Connect Timeout=30");
             Connecton = new connectionControl(textBox1.Text);
 
             foreach(var a in db.tConsulters)
@@ -40,10 +43,18 @@ namespace server
                 log(a.firstname);
             }
 
+            int id = 0;
+            //Consulters con = db.tConsulters.Where(a => a.Id == id).FirstOrDefault();
+            //consulters_salary cs = new consulters_salary(con, new DateTime(1900, 10, 10), 10);
+            //db.tConsultersSalary.InsertOnSubmit(cs);
+            //db.SubmitChanges();
+
             foreach (var a in db.tConsultersSalary)
             {
-                log(a.consulter_Id.ToString());
+                log(a.overal_salary.ToString());
             }
+
+            button1.Enabled = false;
         }
     }
 }

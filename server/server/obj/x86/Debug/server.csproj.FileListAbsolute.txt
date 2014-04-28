@@ -19,3 +19,7 @@ C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\server\
 C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\server\server\obj\x86\Debug\server.Form1.resources
 C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\server\server\obj\x86\Debug\server.Properties.Resources.resources
 C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\server\server\obj\x86\Debug\server.csproj.GenerateResource.Cache
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\server\server\bin\Debug\analizator.dll
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\server\server\bin\Debug\dbLib.dll
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\server\server\bin\Debug\analizator.pdb
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\server\server\bin\Debug\dbLib.pdb

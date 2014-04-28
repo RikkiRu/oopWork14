@@ -3,3 +3,7 @@ C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\server\
 C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\server\postman\obj\Debug\postman.csprojResolveAssemblyReference.cache
 C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\server\postman\obj\Debug\postman.dll
 C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\server\postman\obj\Debug\postman.pdb
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\server\postman\bin\Debug\analizator.dll
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\server\postman\bin\Debug\dbLib.dll
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\server\postman\bin\Debug\analizator.pdb
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\server\postman\bin\Debug\dbLib.pdb

@@ -5,6 +5,8 @@ using System.Net.Mail;
 using OpenPop.Pop3;
 using OpenPop.Mime.Header;
 using System.Timers;
+using analizator;
+using dbLib;
 
 namespace postman
 {
@@ -34,9 +36,11 @@ namespace postman
         string DB;
         public event RecievedEventHandler newMessagesRecieved;
         public event ProcessMessageDel ProcessMessage;
+        public dbBind db;
 
-        public Postman(string username, string host, string password, string popAdress, int port, string smtpAdress, int smtpPort, string DBconnection)
+        public Postman(dbBind db, string username, string host, string password, string popAdress, int port, string smtpAdress, int smtpPort, string DBconnection)
         {
+            this.db = db;
             hostUsername = username;
             hostAddress = hostUsername + host;
             hostPassword = password;
@@ -89,7 +93,12 @@ namespace postman
                     MailMessage x = client.GetMessage(i + 1).ToMailMessage();
                     unreadMessages.Add(x);
                     readUIDs.Add(UIDs[i]);
-                    if (ProcessMessage != null) ProcessMessage(x.Subject, x.Body);
+                    //if (ProcessMessage != null) ProcessMessage(x.Subject, x.Body);
+
+                    Analizator an = new Analizator(db);
+                    QA res = an.proccessMessage(x.Subject, x.Body, x.Sender.Address);
+                    db.tFQA.InsertOnSubmit(res);
+                    db.SubmitChanges();
                 }
             }
             return unreadMessages;
