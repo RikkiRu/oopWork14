@@ -5,11 +5,11 @@ VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "server", "server\server.csproj", "{9F9F9431-7876-4847-9792-618C93FCBBB7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "postman", "postman\postman.csproj", "{A8673ADC-E5A8-4216-AEA0-5E137CE0F592}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "analizator", "analizator\analizator.csproj", "{F425DFF5-3F70-403E-A7FC-DBBF26DC16B6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dbLib", "dbLib\dbLib.csproj", "{C0CD0370-7F5B-4998-BAF5-CBCB34E7BE9F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PostmanLib", "PostmanLib\PostmanLib.csproj", "{5A0E9F6E-1AC7-46A7-8498-0D081604B978}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,16 +31,6 @@ Global
 		{9F9F9431-7876-4847-9792-618C93FCBBB7}.Release|Mixed Platforms.Build.0 = Release|x86
 		{9F9F9431-7876-4847-9792-618C93FCBBB7}.Release|x86.ActiveCfg = Release|x86
 		{9F9F9431-7876-4847-9792-618C93FCBBB7}.Release|x86.Build.0 = Release|x86
-		{A8673ADC-E5A8-4216-AEA0-5E137CE0F592}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A8673ADC-E5A8-4216-AEA0-5E137CE0F592}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A8673ADC-E5A8-4216-AEA0-5E137CE0F592}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{A8673ADC-E5A8-4216-AEA0-5E137CE0F592}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{A8673ADC-E5A8-4216-AEA0-5E137CE0F592}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{A8673ADC-E5A8-4216-AEA0-5E137CE0F592}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A8673ADC-E5A8-4216-AEA0-5E137CE0F592}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A8673ADC-E5A8-4216-AEA0-5E137CE0F592}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{A8673ADC-E5A8-4216-AEA0-5E137CE0F592}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{A8673ADC-E5A8-4216-AEA0-5E137CE0F592}.Release|x86.ActiveCfg = Release|Any CPU
 		{F425DFF5-3F70-403E-A7FC-DBBF26DC16B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F425DFF5-3F70-403E-A7FC-DBBF26DC16B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F425DFF5-3F70-403E-A7FC-DBBF26DC16B6}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -61,6 +51,16 @@ Global
 		{C0CD0370-7F5B-4998-BAF5-CBCB34E7BE9F}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{C0CD0370-7F5B-4998-BAF5-CBCB34E7BE9F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{C0CD0370-7F5B-4998-BAF5-CBCB34E7BE9F}.Release|x86.ActiveCfg = Release|Any CPU
+		{5A0E9F6E-1AC7-46A7-8498-0D081604B978}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A0E9F6E-1AC7-46A7-8498-0D081604B978}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A0E9F6E-1AC7-46A7-8498-0D081604B978}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{5A0E9F6E-1AC7-46A7-8498-0D081604B978}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{5A0E9F6E-1AC7-46A7-8498-0D081604B978}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5A0E9F6E-1AC7-46A7-8498-0D081604B978}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A0E9F6E-1AC7-46A7-8498-0D081604B978}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A0E9F6E-1AC7-46A7-8498-0D081604B978}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{5A0E9F6E-1AC7-46A7-8498-0D081604B978}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{5A0E9F6E-1AC7-46A7-8498-0D081604B978}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

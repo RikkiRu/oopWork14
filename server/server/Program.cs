@@ -12,14 +12,14 @@ namespace server
         /// </summary>
        
 
-        static public Form1 MainForm;
+        static public Form_main MainForm;
          [STAThread]
         static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //classConsole.AllocConsole();
-            MainForm = new Form1();
+            MainForm = new Form_main();
             
             Application.Run(MainForm);
         }

@@ -34,6 +34,9 @@
     <Reference Include="dbLib">
       <HintPath>..\dbLib\bin\Debug\dbLib.dll</HintPath>
     </Reference>
+    <Reference Include="postman">
+      <HintPath>..\postman\bin\Debug\postman.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
@@ -44,7 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="analizator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

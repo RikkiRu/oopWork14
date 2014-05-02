@@ -37,18 +37,20 @@ namespace server
             }
         }
 
-        void log(string x)
+        void log(object x)
         {
-            Program.MainForm.log(x);
+            Program.MainForm.log(x.ToString());
         }
 
         public object process(object o)
         {
             if(o is string)
             {
-                return "string recived";
+                
             }
-            return "error";
+
+            log(o);
+            return 0;
         }
     }
 }
