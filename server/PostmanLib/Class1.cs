@@ -9,7 +9,7 @@ using dbLib;
 
 namespace PostmanLib
 {
-    public delegate QA ProcessMessageDel(string title, string message, string email);
+    public delegate void ProcessMessageDel(string title, string message, string email);
     public delegate void sayDel(object x);
 
     public class Postman
@@ -85,12 +85,8 @@ namespace PostmanLib
                         readed.Add(UIDs[i]);
                         MailMessage x;
                         x = client.GetMessage(i+1).ToMailMessage();
-                        log(x.Subject);
-
-                        QA res = ProcessMessage(x.Subject, x.Body, x.From.Address);
-                        res.Id = 2;
-                        db.tFQA.InsertOnSubmit(res);
-                        db.SubmitChanges();
+                        log(x.Subject); 
+                        ProcessMessage(x.Subject, x.Body, x.From.Address);
                     }
                 }
                 //log("forEnd");

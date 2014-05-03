@@ -10,7 +10,9 @@ namespace client
         /// <summary>
         /// Главная точка входа для приложения.
         /// </summary>
-        [STAThread]
+       
+        public static FormMain fm;
+
         static void Main()
         {
             Application.EnableVisualStyles();

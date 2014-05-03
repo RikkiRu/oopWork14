@@ -5,12 +5,14 @@ using security;
 using System.Security.Cryptography;
 using System.ServiceModel;
 using ConnectLib;
+using System.Collections.Generic;
 
 namespace client
 {
     public partial class FormAutorisation : Form
     {
         TripleDESCryptoServiceProvider myTripleDES = new TripleDESCryptoServiceProvider();
+        pingInterClient svc;
 
         public FormAutorisation()
         {
@@ -36,11 +38,25 @@ namespace client
                 {
                     sw.WriteLine(Crypt.EncryptStringToBytes(textBoxLogin.Text, myTripleDES.Key, myTripleDES.IV));
                     sw.WriteLine(Crypt.EncryptStringToBytes(textBoxPassw.Text, myTripleDES.Key, myTripleDES.IV));
+                    sw.WriteLine(Crypt.EncryptStringToBytes(textBox1server.Text, myTripleDES.Key, myTripleDES.IV));
                 }
             }
 
-            send();
-            //тут пойдет подключение
+            try
+            {
+                //тут пойдет подключение
+                svc = new pingInterClient("BasicHttpBinding_pingInter", textBox1server.Text);
+                int res = login();
+                if (res == -1) throw new Exception("Авторизация не удалась");
+                Program.fm = new FormMain(res, svc);
+                this.Hide();
+                Program.fm.ShowDialog();
+                this.Close();
+            }
+            catch(Exception ex)
+            {
+                new FormError(ex.Message);
+            }
         }
 
         private void FormAutorisation_Load(object sender, EventArgs e)
@@ -52,20 +68,21 @@ namespace client
                 {
                     textBoxLogin.Text = Crypt.DecryptStringFromBytes(sr.ReadLine(), myTripleDES.Key, myTripleDES.IV);
                     textBoxPassw.Text = Crypt.DecryptStringFromBytes(sr.ReadLine(), myTripleDES.Key, myTripleDES.IV);
+                    textBox1server.Text = Crypt.DecryptStringFromBytes(sr.ReadLine(), myTripleDES.Key, myTripleDES.IV);
                 }
             }
-            catch
+
+            catch (Exception ex)
             {
+                new FormError(ex.Message);
             }
         }
 
-        void send()
+        int login()
         {
-            //"http://localhost:8080/" binding="basicHttpBinding"
-            pingInterClient svc = new pingInterClient("BasicHttpBinding_pingInter", "http://localhost:8081/");
-            string result = svc.say("Testing");
-            result = svc.oSend("vasia").ToString();
-            MessageBox.Show(result);
+            string a = "login" + "\n" + textBoxLogin.Text + "\n" + textBoxPassw.Text;
+            int x = Convert.ToInt32(svc.oSend(a));
+            return x;
         }
     }
 }

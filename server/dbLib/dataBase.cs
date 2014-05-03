@@ -69,11 +69,13 @@ namespace dbLib
         public string lastname;
         [Column(DbType = "INT")]
         public int salary;
+        [Column(DbType = "INT")]
+        public int isBoss;
 
         public Consulters()
         { }
 
-        public Consulters(int id, string login, string password, string firstname, string lastname, int salary)
+        public Consulters(int id, string login, string password, string firstname, string lastname, int salary,int IsBoss)
         {
             this.Id = id;
             this.login = login;
@@ -81,6 +83,7 @@ namespace dbLib
             this.firstname = firstname;
             this.lastname = lastname;
             this.salary = salary;
+            this.isBoss = IsBoss;
         }
     }
 
@@ -100,7 +103,7 @@ namespace dbLib
     [Table]
     public class QA
     {
-        [Column(IsPrimaryKey = true, DbType = "INT")]
+        [Column(IsPrimaryKey = true, IsDbGenerated = true, DbType = "INT")]
         public int Id;
         [Column(DbType = "NVARCHAR(MAX)")]
         public string question;

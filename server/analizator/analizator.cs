@@ -7,8 +7,12 @@ using dbLib;
 
 namespace analizator
 {
+    public delegate void sayDel (object o);
+
     public class Analizator
     {
+        public event sayDel log; 
+
         //Определение типа вопроса
         //Поиск схожих вопросов
         //Оценка сложности вопроса
@@ -25,7 +29,20 @@ namespace analizator
         {
             QA res = new QA();
             res.theme_id = ThemeQ(title);
-            res.question = message;
+
+            bool teg = false;
+            for (int i = 0; i < message.Length; i++ )
+            {
+                if (message[i] == '<') teg = true;
+                
+                if(!teg)
+                {
+                    res.question += message[i];
+                }
+
+                if (message[i] == '>') teg = false;
+            }
+
             res.email = email;
             res.start_time = DateTime.Now;
 
@@ -34,19 +51,19 @@ namespace analizator
 
             string[] tx = sot.standart_time.Split('.');
             DateTime dtx = new DateTime(res.start_time.Year, res.start_time.Month, res.start_time.Day, Convert.ToInt32(tx[0]), Convert.ToInt32(tx[1]), Convert.ToInt32(tx[2]));
-
+            //log(tx[0] + " " + tx[1] + " " + tx[2]);
             int hour = dtx.Hour;
             int minute = dtx.Minute;
             int sec = dtx.Second;
-
+            //log(hour.ToString() + " " + minute.ToString() + " " + sec.ToString());
             DateTime dt = new DateTime(res.start_time.Year, res.start_time.Month, res.start_time.Day, res.start_time.Hour, res.start_time.Minute, res.start_time.Second);
-            dt.AddSeconds(sec);
-            dt.AddMinutes(minute);
-            dt.AddHours(hour);
+            dt=dt.AddSeconds(sec);
+            dt=dt.AddMinutes(minute);
+            dt=dt.AddHours(hour);
 
             res.end_time = dt;
 
-            res.Id = 2;
+            //res.Id = db.tFQA.Count();
 
             return res;
         }
@@ -56,7 +73,7 @@ namespace analizator
             Themes sot = db.tThemes.Where(c => c.Theme == title).FirstOrDefault();
             if(sot!=null)
             return sot.Id;
-            return -1;
+            return 1;
         }
 
         public List<int> someQ()

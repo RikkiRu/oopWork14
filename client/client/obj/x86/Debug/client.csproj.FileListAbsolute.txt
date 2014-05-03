@@ -33,3 +33,5 @@ C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\client\
 C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\client\client\obj\x86\Debug\client.FormError.resources
 C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\client\client\obj\x86\Debug\client.Properties.Resources.resources
 C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\client\client\obj\x86\Debug\client.csproj.GenerateResource.Cache
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\client\client\bin\Debug\ConnectLib.dll
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\client\client\obj\x86\Debug\client.FormMain.resources

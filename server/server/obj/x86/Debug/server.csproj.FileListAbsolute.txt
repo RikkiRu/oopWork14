@@ -27,3 +27,4 @@ C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\server\
 C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\server\server\bin\Debug\PostmanLib.pdb
 C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\server\server\obj\x86\Debug\server.Form_main.resources
 C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\server\server\obj\x86\Debug\server.FormEmailSettings.resources
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\server\server\bin\Debug\ConnectLib.dll

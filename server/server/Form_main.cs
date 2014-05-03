@@ -40,9 +40,10 @@ namespace server
         private void button1_Click(object sender, EventArgs e)
         {
             button1.Enabled = false;
+            button2.Enabled = false;
             button1.Text = "Загрузка...";
             db=new dbBind(@"Data Source=(LocalDB)\v11.0;AttachDbFilename="+textBox2.Text+";Integrated Security=True;Connect Timeout=30");
-            Connecton = new connectionControl(textBox1.Text);
+            Connecton = new connectionControl(textBox1.Text, db);
             control = new Control(db, fEmail.name.Text, fEmail.host.Text, fEmail.pass.Text, fEmail.popadr.Text, fEmail.popport.Text, fEmail.smtpadr.Text, fEmail.smtpprot.Text);
             timer_checkMail.Enabled = true;
             button1.Text = "Сервер запущен";

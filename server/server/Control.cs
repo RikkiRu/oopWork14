@@ -12,16 +12,26 @@ namespace server
     {
         Postman postman;
         Analizator analiz;
+        dbBind db;
 
         public Control (dbBind db, string username, string host, string password, string popAdress, string port, string smtpAdress, string smtpPort)
         {
+            this.db = db;
             analiz = new Analizator(db);
-            this.postman = new Postman(db, username, host, password, popAdress, Convert.ToInt32(port), smtpAdress, Convert.ToInt32(smtpPort), analiz.proccessMessage, Program.MainForm.log);
+            analiz.log += Program.MainForm.log;
+            this.postman = new Postman(db, username, host, password, popAdress, Convert.ToInt32(port), smtpAdress, Convert.ToInt32(smtpPort), messageControl, Program.MainForm.log);
         }
 
         public void checkMail()
         {
             postman.CheckMailBox();
+        }
+
+        public void messageControl(string title, string message, string email)
+        {
+            QA res = analiz.proccessMessage(title, message, email);
+            db.tFQA.InsertOnSubmit(res);
+            db.SubmitChanges();
         }
     }
 }

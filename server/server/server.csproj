@@ -37,8 +37,9 @@
     <Reference Include="analizator">
       <HintPath>..\analizator\bin\Debug\analizator.dll</HintPath>
     </Reference>
-    <Reference Include="ConnectLib">
-      <HintPath>..\..\..\..\..\..\Visual Studio 2013\Projects\ConnectLib\ConnectLib\bin\Debug\ConnectLib.dll</HintPath>
+    <Reference Include="ConnectLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ConnectLib\ConnectLib\bin\Debug\ConnectLib.dll</HintPath>
     </Reference>
     <Reference Include="dbLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
