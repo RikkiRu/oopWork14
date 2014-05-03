@@ -114,11 +114,62 @@ namespace server
                         con.question = s[2];
                         con.answer = s[3];
                         con.theme_id = Convert.ToInt32(s[4]);
+                        var test = db.tThemes.Where(c => c.Id == con.theme_id).FirstOrDefault();
+                        if (test == null) throw new Exception("Нет такой темы");
                         if (add) db.tFAQ.InsertOnSubmit(con);
                         db.SubmitChanges();
                         return "Добавлено";
                     }
                     catch (Exception ex) { return ex.Message; }
+
+                case "addTheme":
+                    try
+                    {
+                        var con = db.tThemes.Where(c => c.Id == Convert.ToInt32(s[1])).FirstOrDefault();
+                        add = false;
+                        if (con == null)
+                        {
+                            con = new Themes();
+                            add = true;
+                        }
+                        con.Id = Convert.ToInt32(s[1]);
+                        con.Theme = s[2];
+                        con.difficulity = Convert.ToInt32(s[3]);
+                        if (con.difficulity < 0) throw new Exception("Сложность должна быть >0");
+                        con.standart_time = s[4];
+                        string[] testN = s[4].Split('.');
+                        if (testN.GetLength(0) != 3) throw new Exception("Формат срока не верен");
+                        con.tarif_id = Convert.ToInt32(s[5]);
+                        var test = db.tThemes.Where(c => c.Id == con.tarif_id).FirstOrDefault();
+                        if (test == null) throw new Exception("Нет такого тарифа");
+                        if (add) db.tThemes.InsertOnSubmit(con);
+                        db.SubmitChanges();
+                        return "Добавлено";
+                    }
+                    catch (Exception ex) { return ex.Message; }
+
+                case "addTarif":
+                    try
+                    {
+                        var con = db.tTarif.Where(c => c.Id == Convert.ToInt32(s[1])).FirstOrDefault();
+                        add = false;
+                        if (con == null)
+                        {
+                            con = new Tarif();
+                            add = true;
+                        }
+
+                        con.Id = Convert.ToInt32(s[1]);
+                        con.cost = Convert.ToInt32(s[2]);
+                        con.multipiller = Convert.ToInt32(s[3]);
+
+                        if (add) db.tTarif.InsertOnSubmit(con);
+                        db.SubmitChanges();
+                        return "Добавлено";
+                    }
+                    catch (Exception ex) { return ex.Message; }
+
+
             }
             return "Не обработано";
         }
@@ -129,6 +180,7 @@ namespace server
             switch (x)
             {
                 case 0: //FAQ rquest
+                    res = "";
                     foreach (var a in db.tFAQ)
                     {
                         res += a.Id.ToString() + "\t" + a.question + "\t" + a.answer + "\t" + a.theme_id.ToString();
@@ -137,12 +189,31 @@ namespace server
                     return res;
 
                 case 1: //personal reqest
+                    res = "";
                     foreach (var a in db.tConsulters)
                     {
                         res += a.Id.ToString() + "\t" + a.firstname + "\t" + a.lastname + "\t" + a.login + "\t" + a.password + "\t" + a.isBoss + "\t" + a.salary;
                         res += "\n";
                     }
                     return res; 
+
+                case 2: //themes request
+                    res = "";
+                    foreach (var a in db.tThemes)
+                    {
+                        res += a.Id.ToString() + "\t" + a.Theme + "\t" + a.difficulity.ToString() + "\t" + a.standart_time.ToString() + "\t" + a.tarif_id.ToString();
+                        res += "\n";
+                    }
+                    return res;
+
+                case 3: //tarif request
+                    res = "";
+                    foreach(var a in db.tTarif)
+                    {
+                        res += a.Id.ToString() + "\t" + a.cost.ToString() + "\t" + a.multipiller.ToString();
+                        res += "\n";
+                    }
+                    return res;
             }
 
             return null;

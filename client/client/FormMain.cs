@@ -38,5 +38,17 @@ namespace client
             new FormDataGrid(a, "Работники", 1, "addCons", svc).Show();
         }
 
+        private void button10_Click(object sender, EventArgs e)
+        {
+            string[] a = { "Id", "Тема", "Сложность", "Стандартное время (час.мин.сек)", "Id тарифа" };
+            new FormDataGrid(a, "Темы", 2, "addTheme", svc).Show();
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            string[] a = { "Id", "Цена", "Модификатор?" };
+            new FormDataGrid(a, "Тарифы", 3, "addTarif", svc).Show();
+        }
+
     }
 }
