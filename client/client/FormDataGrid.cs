@@ -6,14 +6,80 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using ConnectLib;
 
 namespace client
 {
     public partial class FormDataGrid : Form
     {
-        public FormDataGrid()
+        string addHeader;
+        pingInterClient svc;
+        string rows = "";
+        int request;
+
+        public FormDataGrid(string[]columns, string header, int request, string addHeader, pingInterClient svc)
         {
             InitializeComponent();
+            this.request = request;
+            this.svc = svc;
+            this.addHeader = addHeader;
+            label1.Text = header;
+
+            dataGridView2.ColumnCount = dataGridView1.ColumnCount = columns.GetLength(0);
+            for (int i = 0; i < columns.GetLength(0); i++)
+            {
+                dataGridView1.Columns[i].HeaderText = columns[i];
+            }
+            dataGridView2.RowCount = 1;
+            load();
+        }
+
+        void load()
+        {
+            rows = svc.oSend(request).ToString();
+            string[] cell = rows.Split('\n');
+            dataGridView1.RowCount = cell.GetLength(0);
+            
+
+            for (int i = 0; i < cell.GetLength(0); i++)
+            {
+                string[] temp = cell[i].Split('\t');
+                for (int j = 0; j < temp.GetLength(0); j++)
+                {
+                    dataGridView1[j, i].Value = temp[j];
+                }
+            }
+
+            clear();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string res = addHeader + "\n";
+                for (int i = 0; i < dataGridView2.ColumnCount; i++)
+                {
+                    res += dataGridView2[i, 0].Value.ToString() + "\n";
+                }
+                MessageBox.Show(svc.oSend(res).ToString());
+                load();
+            }
+            catch
+            { }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            clear();
+        }
+
+        void clear()
+        {
+            for (int i = 0; i < dataGridView2.ColumnCount; i++)
+            {
+                dataGridView2[i, 0].Value = "";
+            }
         }
     }
 }

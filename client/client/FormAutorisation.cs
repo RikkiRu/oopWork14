@@ -25,6 +25,7 @@ namespace client
 
         private void buttonConnect_Click(object sender, EventArgs e)
         {
+
             if (textBoxLogin.Text == "" || textBoxPassw.Text == "")
             {
                 new FormError("Заполните поля");
@@ -42,7 +43,7 @@ namespace client
                 }
             }
 
-            try
+           // try
             {
                 //тут пойдет подключение
                 svc = new pingInterClient("BasicHttpBinding_pingInter", textBox1server.Text);
@@ -51,12 +52,12 @@ namespace client
                 Program.fm = new FormMain(res, svc);
                 this.Hide();
                 Program.fm.ShowDialog();
-                this.Close();
             }
-            catch(Exception ex)
+            //catch(Exception ex)
             {
-                new FormError(ex.Message);
+            //    new FormError(ex.Message);
             }
+            this.Close();
         }
 
         private void FormAutorisation_Load(object sender, EventArgs e)

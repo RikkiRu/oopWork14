@@ -28,12 +28,14 @@ namespace client
 
         private void button3FAQ_Click(object sender, EventArgs e)
         {
-
+            string[] a = { "Id", "Вопрос", "Ответ", "Id темы" };
+            new FormDataGrid(a, "Часто задаваемые вопросы", 0, "addFAQ", svc).Show();
         }
 
         private void button11personal_Click(object sender, EventArgs e)
         {
-
+            string[] a = { "Id", "First name", "Last name", "логин", "пароль", "права", "зарплата" };
+            new FormDataGrid(a, "Работники", 1, "addCons", svc).Show();
         }
 
     }

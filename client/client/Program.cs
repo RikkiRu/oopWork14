@@ -12,7 +12,7 @@ namespace client
         /// </summary>
        
         public static FormMain fm;
-
+        [STAThreadAttribute]
         static void Main()
         {
             Application.EnableVisualStyles();
