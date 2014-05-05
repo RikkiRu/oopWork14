@@ -37,6 +37,7 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.timer_checkMail = new System.Windows.Forms.Timer(this.components);
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.SuspendLayout();
             // 
             // button1
@@ -104,8 +105,12 @@
             // 
             // timer_checkMail
             // 
-            this.timer_checkMail.Interval = 10000;
+            this.timer_checkMail.Interval = 30000;
             this.timer_checkMail.Tick += new System.EventHandler(this.timer_checkMail_Tick);
+            // 
+            // backgroundWorker1
+            // 
+            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             // 
             // Form_main
             // 
@@ -137,6 +142,7 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Timer timer_checkMail;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
 

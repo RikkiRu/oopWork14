@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "analizator", "analizator\an
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dbLib", "dbLib\dbLib.csproj", "{C0CD0370-7F5B-4998-BAF5-CBCB34E7BE9F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PostmanLib", "PostmanLib\PostmanLib.csproj", "{5A0E9F6E-1AC7-46A7-8498-0D081604B978}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frankenstein", "PostmanLib\Frankenstein.csproj", "{5A0E9F6E-1AC7-46A7-8498-0D081604B978}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

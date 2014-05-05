@@ -70,12 +70,13 @@ namespace PostmanLib
         public void CheckMailBox()
         {
             //log("check");
-            //try
-            //{
+            try
+            {
+                //client.Reset();
                 Connect();
                 //log("connected");
                 List<string> UIDs = client.GetMessageUids();
-                log(UIDs.Count);
+                log(DateTime.Now.ToString()+") писем - "+UIDs.Count);
                 for (int i = 0; i < UIDs.Count; i++)
                 {
                    
@@ -90,12 +91,12 @@ namespace PostmanLib
                     }
                 }
                 //log("forEnd");
-            //}
+            }
 
-            //catch (Exception ex)
-            //{
-            //    log(ex.Message);
-            //}
+            catch (Exception ex)
+            {
+                log(ex.Message);
+            }
 
             Disconnect();
         }

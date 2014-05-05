@@ -19,6 +19,7 @@ namespace server
         connectionControl Connecton;
         FormEmailSettings fEmail;
         Control control;
+        bool canNextCheck = true;
 
         public Form_main()
         {
@@ -56,7 +57,14 @@ namespace server
 
         private void timer_checkMail_Tick(object sender, EventArgs e)
         {
+            canNextCheck = false;
             control.checkMail();
+            canNextCheck = true;
+        }
+
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+            
         }
     }
 }

@@ -5,12 +5,18 @@ using System.Text;
 using System.Threading.Tasks;
 using dbLib;
 
+
+
 namespace analizator
 {
     public delegate void sayDel (object o);
 
     public class Analizator
     {
+        const int delPercent = 100;
+        int PercentSome; //процент для определения идентичности (схожих слов)
+        int nullDifficulityOfQA; //какое количество ответов уберет 100 сложности
+
         public event sayDel log; 
 
         //Определение типа вопроса
@@ -20,17 +26,20 @@ namespace analizator
 
         dbBind db;
 
-        public Analizator(dbBind db)
+        public Analizator(dbBind db, int PercentOfIdentity, int nDifficulityQuestion)
         {
             this.db = db;
+            this.nullDifficulityOfQA = nDifficulityQuestion;
+            this.PercentSome = PercentOfIdentity;
         }
 
+        //обработка сообщений (теги удаляет)
         public QA proccessMessage(string title, string message, string email)
         {
             QA res = new QA();
             res.theme_id = ThemeQ(title);
 
-            bool teg = false;
+            bool teg = false; //это убирает лишние теги из письма <div></div>
             for (int i = 0; i < message.Length; i++ )
             {
                 if (message[i] == '<') teg = true;
@@ -44,28 +53,25 @@ namespace analizator
             }
 
             res.email = email;
-            res.start_time = DateTime.Now;
-
-            Themes sot = db.tThemes.Where(c => c.Id == res.theme_id).FirstOrDefault();
-            if (sot == null) sot = db.tThemes.Where(c => c.Id == 1).FirstOrDefault();
-
-            string[] tx = sot.standart_time.Split('.');
-            DateTime dtx = new DateTime(res.start_time.Year, res.start_time.Month, res.start_time.Day, Convert.ToInt32(tx[0]), Convert.ToInt32(tx[1]), Convert.ToInt32(tx[2]));
-            //log(tx[0] + " " + tx[1] + " " + tx[2]);
-            int hour = dtx.Hour;
-            int minute = dtx.Minute;
-            int sec = dtx.Second;
-            //log(hour.ToString() + " " + minute.ToString() + " " + sec.ToString());
-            DateTime dt = new DateTime(res.start_time.Year, res.start_time.Month, res.start_time.Day, res.start_time.Hour, res.start_time.Minute, res.start_time.Second);
-            dt=dt.AddSeconds(sec);
-            dt=dt.AddMinutes(minute);
-            dt=dt.AddHours(hour);
-
-            res.end_time = dt;
-
-            //res.Id = db.tFQA.Count();
 
             return res;
+        }
+
+        //если в FAQ вернет айди FAQ иначе -1
+        public int inFAQ(QA x)
+        {
+            FAQ f;// = db.tFAQ.Where(c => c.theme_id == x.theme_id).FirstOrDefault();
+            foreach (var a in db.tFAQ)
+            {
+                if(a.theme_id==x.theme_id)
+                {
+                    if(x.question == a.question)
+                    {
+                        return a.Id;
+                    }
+                }
+            }
+            return -1;
         }
 
         public int ThemeQ(string title)
@@ -73,23 +79,76 @@ namespace analizator
             Themes sot = db.tThemes.Where(c => c.Theme == title).FirstOrDefault();
             if(sot!=null)
             return sot.Id;
-            return 1;
+            return 1; //если тема не найдена будет первая тема
         }
 
-        public List<int> someQ()
+        bool match(string source, string temp) //метод определения совпадения вопроса
+        {
+            string[] sourceS = source.Split(' ');
+            string[] tempS = temp.Split(' ');
+
+            int k = 0; //количество тех же слов
+            for (int i = 0; i < tempS.GetLength(0); i++ )
+            {
+                for(int j=0; j<sourceS.GetLength(0); j++)
+                {
+                    if (tempS[i] == sourceS[j]) k++;
+                }
+            }
+
+            int kPerc = k * 100 / sourceS.GetLength(0);
+            if (kPerc >= this.PercentSome) return true;
+
+            return false;
+        }
+
+        //вернет айдишники похожих QA по вопросу
+        public List<int> someQ(QA x)
         {
             List<int> res = new List<int>();
-            return res;
+
+            foreach (var a in db.tFQA)
+            {
+                if(a.theme_id==x.theme_id)
+                {
+                    if (match(x.question, a.question)) res.Add(a.Id);
+                }
+            }
+
+           return res;
         }
 
-        public int DifficulityQ()
-        { 
-            return 0; 
+        //вернет сложность вопроса 
+        public int DifficulityQ(QA x)
+        {
+            Themes t = db.tThemes.Where(c => c.Id == x.theme_id).FirstOrDefault();
+            int kAnsweredQa=0;
+            foreach (var a in db.tFQA)
+            {
+                if (a.theme_id == t.Id)
+                {
+                    if (a.answer != null && a.answer != "") kAnsweredQa++;
+                }
+            }
+            int res = t.difficulity;
+            res -= delPercent * (kAnsweredQa / this.nullDifficulityOfQA);
+            if (res < 0) res = 0;
+            return res; 
         }
 
-        public List<int> someAnswers()
+        //вернет айдишники похожих QA по ответу
+        public List<int> someAnswers(QA x)
         {
             List<int> res = new List<int>();
+
+            foreach (var a in db.tFQA)
+            {
+                if (a.theme_id == x.theme_id)
+                {
+                    if (match(x.answer, a.answer)) res.Add(a.Id);
+                }
+            }
+
             return res;
         }
     }
