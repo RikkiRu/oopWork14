@@ -36,7 +36,7 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.openFileDiaLog1 = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
             // 
             // button1
@@ -112,10 +112,10 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // openFileDialog1
+            // openFileDiaLog1
             // 
-            this.openFileDialog1.Title = "Выберите файл базы данных";
-            this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
+            this.openFileDiaLog1.Title = "Выберите файл базы данных";
+            this.openFileDiaLog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDiaLog1_FileOk);
             // 
             // Form_main
             // 
@@ -148,7 +148,7 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.OpenFileDialog openFileDiaLog1;
     }
 }
 

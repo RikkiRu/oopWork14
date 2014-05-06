@@ -6,37 +6,42 @@ using OpenPop.Pop3;
 using OpenPop.Mime.Header;
 using System.Timers;
 using dbLib;
+using Helpers;
 
 namespace PostmanLib
 {
-    public delegate void MessageDelegate(MailMessage message);
-    public delegate void sayDel(string text);
+	public delegate void MessageDelegate(List<MailMessage> newMessages);
 
+<<<<<<< 5b850ca39504ff3caddb1198d31b663afd4c5ad4
 
     //класс почтовик. Бывший класс Франкенштейн.
     public class Postman
+=======
+    public class Postman : Logger
+>>>>>>> 14b9130d6ce4af07ce4c0985a9a028c8513b7ce9
     {
         private string hostUsername;
         private string hostAddress;
         private string hostPassword;
         private Pop3Client client;
-		private Timer mailTimer;
-        string popAddress;
-        int popPort;
-        string smtpAdress;
+		private string popAddress;
+		private int popPort;
+		private string smtpAdress;
         int smtpPort;
         public event MessageDelegate MessageRecievedEvent;
-        public event sayDel log;
         public dbBind db;
         string teg;
 
         List<string> readed;
 
+<<<<<<< 5b850ca39504ff3caddb1198d31b663afd4c5ad4
         public Postman(string tegForMessages, dbBind db, string username, string host, string password, string popAdress, int port, string smtpAdress, int smtpPort, MessageDelegate process, sayDel log, Timer mailTimer)
+=======
+        public Postman(dbBind db, string username, string host, string password, string popAdress, int port, string smtpAdress, int smtpPort, MessageDelegate process, StringDelegate log, Timer mailTimer)
+>>>>>>> 14b9130d6ce4af07ce4c0985a9a028c8513b7ce9
         {
             this.teg = tegForMessages;
             this.readed = new List<string>();
-            this.log = log;
             this.MessageRecievedEvent = process;
             this.db = db;
             this.hostUsername = username;
@@ -46,7 +51,6 @@ namespace PostmanLib
             this.popPort = port;
             this.smtpAdress = smtpAdress;
             this.smtpPort = smtpPort;
-			this.mailTimer = mailTimer;
 
             client = new Pop3Client();
 
@@ -59,29 +63,44 @@ namespace PostmanLib
             client.Connect(popAddress, popPort, true);
             client.Authenticate(hostUsername, hostPassword);
 			if (client.Connected)
-				log("Успешно подключено к " + popAddress + " :: username : " + hostUsername + ", hostPassword : " + hostPassword);
+				Log("Успешно подключено к " + popAddress + " :: username : " + hostUsername + ", hostPassword : " + hostPassword);
         }
 
         public void Disconnect()
         {
             client.Disconnect();
 			if (!client.Connected)
-				log("Успешно отключено от " + popAddress);
+				Log("Успешно отключено от " + popAddress);
         }
 
         public void CheckMailBox(object sender, ElapsedEventArgs e)
         {
+<<<<<<< 5b850ca39504ff3caddb1198d31b663afd4c5ad4
             //log("check");
             try
             {
                 Connect();
+=======
+            //Log("check");
+            try {
+                //client.Reset();
+				
+                Connect();
+                //Log("connected");
+>>>>>>> 14b9130d6ce4af07ce4c0985a9a028c8513b7ce9
                 List<string> UIDs = client.GetMessageUids();
 				if (UIDs.Count != 0) {
-					log(DateTime.Now.ToString() + ") писем - " + UIDs.Count);
+					Log(DateTime.Now.ToString() + ") писем - " + UIDs.Count);
+					List<MailMessage> newMessages = new List<MailMessage>();
 					for (int i = 0; i < UIDs.Count; i++) {
+<<<<<<< 5b850ca39504ff3caddb1198d31b663afd4c5ad4
+=======
+						//Log("test " + UIDs[i]);
+>>>>>>> 14b9130d6ce4af07ce4c0985a9a028c8513b7ce9
 						if (!readed.Contains(UIDs[i])) {
 
 							readed.Add(UIDs[i]);
+<<<<<<< 5b850ca39504ff3caddb1198d31b663afd4c5ad4
 							MailMessage message;
 							message = client.GetMessage(i + 1).ToMailMessage();
 							log(message.Subject);
@@ -106,14 +125,31 @@ namespace PostmanLib
                             {
                                 log("spam detected");
                             }
+=======
+							newMessages.Add(client.GetMessage(i + 1).ToMailMessage());
+							Log(newMessages[newMessages.Count-1].Subject);
+>>>>>>> 14b9130d6ce4af07ce4c0985a9a028c8513b7ce9
 						}
+					}
+					if (newMessages.Count != 0) {
+						MessageRecievedEvent(newMessages);
 					}
                 
 				}
+<<<<<<< 5b850ca39504ff3caddb1198d31b663afd4c5ad4
             } catch (Exception ex) {
                 log(ex.Message);
+=======
+                //Log("forEnd");
+            } catch (Exception exc) {
+				Log(exc.Message);
+>>>>>>> 14b9130d6ce4af07ce4c0985a9a028c8513b7ce9
 			} finally {
-				Disconnect();
+				try {
+					Disconnect();
+				} catch (Exception exc) {
+					Log(exc.Message);
+				}
 			}
         }
 

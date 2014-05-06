@@ -34,20 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="analizator">
-      <HintPath>..\analizator\bin\Debug\analizator.dll</HintPath>
-    </Reference>
     <Reference Include="ConnectLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\ConnectLib\ConnectLib\bin\Debug\ConnectLib.dll</HintPath>
-    </Reference>
-    <Reference Include="dbLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\dbLib\bin\Debug\dbLib.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="PostmanLib">
-      <HintPath>..\PostmanLib\bin\Debug\PostmanLib.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -122,6 +111,24 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\analizator\Analyzer.csproj">
+      <Project>{f425dff5-3f70-403e-a7fc-dbbf26dc16b6}</Project>
+      <Name>Analyzer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\dbLib\dbLib.csproj">
+      <Project>{c0cd0370-7f5b-4998-baf5-cbcb34e7be9f}</Project>
+      <Name>dbLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Helper\Helpers.csproj">
+      <Project>{ae1f0f3d-da01-4c0e-8771-06178b8f2d66}</Project>
+      <Name>Helpers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PostmanLib\Postman.csproj">
+      <Project>{5a0e9f6e-1ac7-46a7-8498-0d081604b978}</Project>
+      <Name>Postman</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

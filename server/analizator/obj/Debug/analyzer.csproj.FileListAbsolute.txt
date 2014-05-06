@@ -1,11 +1,13 @@
 D:\Users\DenMax\git\oopWork14\server\analizator\bin\Debug\analizator.dll
 D:\Users\DenMax\git\oopWork14\server\analizator\bin\Debug\analizator.pdb
 D:\Users\DenMax\git\oopWork14\server\analizator\bin\Debug\dbLib.dll
+D:\Users\DenMax\git\oopWork14\server\analizator\bin\Debug\Helper.dll
 D:\Users\DenMax\git\oopWork14\server\analizator\bin\Debug\postman.dll
 D:\Users\DenMax\git\oopWork14\server\analizator\bin\Debug\OpenPop.dll
+D:\Users\DenMax\git\oopWork14\server\analizator\bin\Debug\Helper.pdb
 D:\Users\DenMax\git\oopWork14\server\analizator\bin\Debug\dbLib.pdb
 D:\Users\DenMax\git\oopWork14\server\analizator\bin\Debug\postman.pdb
-D:\Users\DenMax\git\oopWork14\server\analizator\obj\Debug\analyzer.csprojResolveAssemblyReference.cache
+D:\Users\DenMax\git\oopWork14\server\analizator\obj\Debug\Analyzer.csprojResolveAssemblyReference.cache
 D:\Users\DenMax\git\oopWork14\server\analizator\obj\Debug\analizator.dll
 D:\Users\DenMax\git\oopWork14\server\analizator\obj\Debug\analizator.pdb
 C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14_2\oopWork14\server\analizator\bin\Debug\analizator.dll

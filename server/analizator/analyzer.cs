@@ -3,23 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using dbLib;
 using System.Net.Mail;
+using Helpers;
+using dbLib;
 
-
-
-namespace analizator
+namespace AnalyzerLib
 {
-    public delegate void sayDel (string text);
+	public delegate void QADelegate(List<QA> newQA);
 
-    public class Analyzer
+    public class Analyzer : Logger
     {
         const int delPercent = 100;
         int PercentSome; //процент для определения идентичности (схожих слов)
         int nullDifficulityOfQA; //какое количество ответов уберет 100 сложности
-
-        public event sayDel log; 
-
+		
         //Определение типа вопроса
         //Поиск схожих вопросов
         //Оценка сложности вопроса
@@ -27,7 +24,7 @@ namespace analizator
 
         dbBind db;
 
-        public Analyzer(dbBind db, int PercentOfIdentity, int nDifficulityQuestion)
+        public Analyzer(dbBind db, int PercentOfIdentity, int nDifficulityQuestion, StringDelegate Log)
         {
             this.db = db;
             this.nullDifficulityOfQA = nDifficulityQuestion;
@@ -35,20 +32,20 @@ namespace analizator
         }
 
         //обработка сообщений (теги удаляет)
-        public QA proccessMessage(MailMessage message)
+        public void proccessMessages(List<MailMessage> newMessages)
         {
-            QA res = new QA();
-            res.theme_id = ThemeQ(message.Subject);
+			List<QA> newQuestions = new List<QA>();
+			foreach (MailMessage message in newMessages) {
+				QA res = new QA();
+				res.theme_id = ThemeQ(message.Subject);
 
-            bool tag = false; //это убирает лишние теги из письма <div></div>
-            for (int i = 0; i < message.Body.Length; i++ )
-            {
-				if (message.Body[i] == '<') tag = true;
-                
-                if(!tag)
-                {
-					res.question += message.Body[i];
-                }
+				bool tag = false; //это убирает лишние теги из письма <div></div>
+				for (int i = 0; i < message.Body.Length; i++) {
+					if (message.Body[i] == '<') tag = true;
+
+					if (!tag) {
+						res.question += message.Body[i];
+					}
 
 				if (message.Body[i] == '>') tag = false;
             }
@@ -57,7 +54,10 @@ namespace analizator
             res.start_time = DateTime.Now;
             res.end_time = DateTime.Now;
 
-            return res;
+				res.email = message.Sender.Address;
+				newQuestions.Add(res);
+
+			}
         }
 
         //если в FAQ вернет айди FAQ иначе -1

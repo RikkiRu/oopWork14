@@ -60,7 +60,7 @@ namespace dbLib
         [Column(IsPrimaryKey = true, IsDbGenerated = true, DbType = "INT")]
         public int Id;
         [Column(DbType = "NVARCHAR(50)")]
-        public string login;
+        public string Login;
         [Column(DbType = "NVARCHAR(50)")]
         public string password;
         [Column(DbType = "NVARCHAR(50)")]
@@ -75,10 +75,10 @@ namespace dbLib
         public Consulters()
         { }
 
-        public Consulters(int id, string login, string password, string firstname, string lastname, int salary,int IsBoss)
+        public Consulters(int id, string Login, string password, string firstname, string lastname, int salary,int IsBoss)
         {
             this.Id = id;
-            this.login = login;
+            this.Login = Login;
             this.password = password;
             this.firstname = firstname;
             this.lastname = lastname;
@@ -119,6 +119,10 @@ namespace dbLib
         public DateTime end_time;
         [Column(DbType = "NVARCHAR(MAX)")]
         public string email;
+
+		public QA() {
+
+		}
     }
 
     [Table]

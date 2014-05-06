@@ -21,33 +21,33 @@ namespace server
                 Connection.action = process;
                 host = new ServiceHost(typeof(Connection), new Uri(adress));
                 host.Open();
-                log("Сервер запущен");
+                Log("Сервер запущен");
 
                 #region Output dispatchers listening
                 foreach (Uri uri in host.BaseAddresses)
-                { log(uri.ToString()); }
-                log("");
-                log("Count and list of listening : " + host.ChannelDispatchers.Count.ToString());
+                { Log(uri.ToString()); }
+                Log("");
+                Log("Count and list of listening : " + host.ChannelDispatchers.Count.ToString());
                 foreach (System.ServiceModel.Dispatcher.ChannelDispatcher dispatcher in host.ChannelDispatchers)
                 {
-                    log("\t" + dispatcher.Listener.Uri.ToString() + " " + dispatcher.BindingName);
+                    Log("\t" + dispatcher.Listener.Uri.ToString() + " " + dispatcher.BindingName);
                 }
                 #endregion
             }
             catch (Exception ex)
             {
-                log(ex.Message);
+                Log(ex.Message);
             }
         }
 
-        void log(object x)
+        void Log(object x)
         {
-            Program.MainForm.log(x.ToString());
+            Program.MainForm.Log(x.ToString());
         }
 
         public object process(object o)
         {
-            log(o);
+            Log(o);
 
             if(o is string)
             {
@@ -70,8 +70,8 @@ namespace server
 
             switch(s[0])
             {
-                case "login":
-                    var a = db.tConsulters.Where(c => c.login == s[1]).FirstOrDefault();
+                case "Login":
+                    var a = db.tConsulters.Where(c => c.Login == s[1]).FirstOrDefault();
                     if (a != null && a.password == s[2]) return a.isBoss;
                     return -1;
 
@@ -89,7 +89,7 @@ namespace server
                         con.Id = Convert.ToInt32(s[1]);
                         con.firstname = s[2];
                         con.lastname = s[3];
-                        con.login = s[4];
+                        con.Login = s[4];
                         con.password = s[5];
                         con.isBoss = Convert.ToInt32(s[6]); 
                         con.salary = Convert.ToInt32(s[7]);
@@ -192,7 +192,7 @@ namespace server
                     res = "";
                     foreach (var a in db.tConsulters)
                     {
-                        res += a.Id.ToString() + "\t" + a.firstname + "\t" + a.lastname + "\t" + a.login + "\t" + a.password + "\t" + a.isBoss + "\t" + a.salary;
+                        res += a.Id.ToString() + "\t" + a.firstname + "\t" + a.lastname + "\t" + a.Login + "\t" + a.password + "\t" + a.isBoss + "\t" + a.salary;
                         res += "\n";
                     }
                     return res; 
