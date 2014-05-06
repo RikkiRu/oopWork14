@@ -5,105 +5,133 @@ using System.Net.Mail;
 using OpenPop.Pop3;
 using OpenPop.Mime.Header;
 using System.Timers;
-using analizator;
 using dbLib;
+using Helpers;
 
-namespace postman
+namespace PostmanLib
 {
-    class ProcessedMessage
-    {
-        public int Id;
-        public string title;
-        public DateTime start;
-        public DateTime end;
-    }
+	public delegate void MessageDelegate(List<MailMessage> newMessages);
 
-    class Postman
-    {
-        public delegate void RecievedEventHandler(object sender, RecivedEventArgs e);
-        public delegate ProcessedMessage ProcessMessageDel(string title, string message);
+    //класс почтовик. Бывший класс Франкенштейн.
 
-        private List<string> readUIDs = new List<string>();
+    public class Postman : Logger
+    {
         private string hostUsername;
         private string hostAddress;
         private string hostPassword;
         private Pop3Client client;
-        private Timer timer;
-        string popAdress;
-        int popPort;
-        string smtpAdress;
+		private string popAddress;
+		private int popPort;
+		private string smtpAdress;
         int smtpPort;
-        string DB;
-        public event RecievedEventHandler newMessagesRecieved;
-        public event ProcessMessageDel ProcessMessage;
+        public event MessageDelegate MessageRecievedEvent;
         public dbBind db;
+		string questionTag;
 
-        public Postman(dbBind db, string username, string host, string password, string popAdress, int port, string smtpAdress, int smtpPort, string DBconnection)
+        List<string> readed;
+
+        public Postman(string questionTag,dbBind db, string username, string host, string password, string popAdress, int port, string smtpAdress, int smtpPort, MessageDelegate messagesHandler, StringDelegate log, Timer mailTimer)
         {
+			this.questionTag = questionTag;
+            this.readed = new List<string>();
+            this.MessageRecievedEvent = messagesHandler;
             this.db = db;
-            hostUsername = username;
-            hostAddress = hostUsername + host;
-            hostPassword = password;
-            this.popAdress = popAdress;
+            this.hostUsername = username;
+            this.hostAddress = hostUsername + host;
+            this.hostPassword = password;
+            this.popAddress = popAdress;
             this.popPort = port;
             this.smtpAdress = smtpAdress;
             this.smtpPort = smtpPort;
-            this.DB = DBconnection;
+			this.log += log;
 
             client = new Pop3Client();
-            Connect();
 
-            if (client.Connected)
-            {
-                timer = new Timer(600000.0);
-                timer.Elapsed += new ElapsedEventHandler(CheckMailBox);
-                timer.Start();
-            }
+			mailTimer.Elapsed += new ElapsedEventHandler(CheckMailBox);
+			mailTimer.Start();
         }
 
         public void Connect()
         {
-            client.Connect(popAdress, popPort, true);
-            client.Authenticate(hostUsername, hostPassword);
+			try {
+				client.Connect(popAddress, popPort, true);
+				client.Authenticate(hostUsername, hostPassword);
+				if (client.Connected)
+					Log("Успешно подключено к " + popAddress + " :: username : " + hostUsername + ", hostPassword : " + hostPassword);
+			} catch (Exception exc) {
+				Log(exc.Message);
+			}
         }
 
         public void Disconnect()
         {
-            client.Disconnect();
+			try {
+				client.Disconnect();
+				if (!client.Connected)
+					Log("Успешно отключено от " + popAddress);
+			} catch (Exception exc) {
+				Log(exc.Message);
+			}
         }
 
-        public void CheckMailBox(object sender = null, ElapsedEventArgs e = null)
+        public void CheckMailBox(object sender, ElapsedEventArgs e)
         {
-            List<MailMessage> newMessages = GetNewMessages();
-            if (newMessages.Count != 0)
-            {
-                newMessagesRecieved(this, new RecivedEventArgs(newMessages));
-            }
+            try {
+                //client.Reset();
+                Connect();
+                //Log("connected");
+                List<string> UIDs = client.GetMessageUids();
+				if (UIDs.Count != 0) {
+					Log(DateTime.Now.ToString() + ") новых писем - " + UIDs.Count);
+					List<MailMessage> newMessages = new List<MailMessage>();
+					for (int i = 0; i < UIDs.Count; i++) {
+						//Log("test " + UIDs[i]);
+						if (!readed.Contains(UIDs[i])) {
+
+							readed.Add(UIDs[i]);
+							MailMessage message;
+							message = client.GetMessage(i + 1).ToMailMessage();
+							
+							int questionTagPos = message.Subject.IndexOf(questionTag);
+							if (questionTagPos >= 0) {
+								message.Subject = message.Subject.Remove(questionTagPos, questionTag.Length);
+							}
+                            /*string test = "";
+                          
+                            for (int e1 = 0; e1 < tag.Length; e1++ )
+                            {
+                                test += message.Subject[e1];
+                            }
+                            if (test == tag)
+                            {
+                                test = "";
+                                for (int e1 = tag.Length; e1 < message.Subject.Length; e1++)
+                                {
+                                    test += message.Subject[e1];
+                                }
+                                message.Subject = test;
+                            }*/
+                            else
+                            {
+                                Log("Письмо является спамом(dat spam alert!!!)");
+                            }
+
+							newMessages.Add(message);
+							Log(message.Subject);
+						}
+					}
+					if (newMessages.Count != 0 && MessageRecievedEvent != null) {
+						Log("Посылаем письма на обработку...");
+						// Если обработка идет дольше, чем следущее исключение, то клиент не закроется, добавить в отдельный поток (сделано)
+						new System.Threading.Thread(() => MessageRecievedEvent(newMessages)).Start();
+					}
+				}
+            } catch (Exception exc) {
+				Log(exc.Message);
+			} finally {
+				Disconnect();
+			}
         }
-
-        public List<MailMessage> GetNewMessages()
-        {
-            List<MailMessage> unreadMessages = new List<MailMessage>();
-            List<string> UIDs = client.GetMessageUids();
-            for (int i = 0; i < UIDs.Count; ++i)
-            {
-                if (!readUIDs.Contains(UIDs[i]))
-                {
-                    MessageHeader header = client.GetMessageHeaders(i + 1);
-                    MailMessage x = client.GetMessage(i + 1).ToMailMessage();
-                    unreadMessages.Add(x);
-                    readUIDs.Add(UIDs[i]);
-                    //if (ProcessMessage != null) ProcessMessage(x.Subject, x.Body);
-
-                    Analizator an = new Analizator(db);
-                    QA res = an.proccessMessage(x.Subject, x.Body, x.Sender.Address);
-                    db.tFQA.InsertOnSubmit(res);
-                    db.SubmitChanges();
-                }
-            }
-            return unreadMessages;
-        }
-
         public void SendAnswer(string address, string answer, string title)
         {
             MailMessage answerMail = new MailMessage(hostAddress, address, title, answer);
@@ -112,28 +140,5 @@ namespace postman
             mailer.EnableSsl = true;
             mailer.Send(answerMail);
         }
-
-        public class RecivedEventArgs : EventArgs
-        {
-            private int count;
-            private List<MailMessage> newMessages;
-
-            public int Count
-            {
-                get { return count; }
-            }
-            public List<MailMessage> NewMessages
-            {
-                get { return newMessages; }
-            }
-
-            public RecivedEventArgs(List<MailMessage> newMessages)
-            {
-                this.newMessages = newMessages;
-                this.count = newMessages.Count;
-            }
-        }
-
-
     }
 }

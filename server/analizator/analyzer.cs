@@ -16,7 +16,9 @@ namespace AnalyzerLib
         const int delPercent = 100;
         int PercentSome; //процент для определения идентичности (схожих слов)
         int nullDifficulityOfQA; //какое количество ответов уберет 100 сложности
-		
+
+		public event QADelegate QAGenerated;
+
         //Определение типа вопроса
         //Поиск схожих вопросов
         //Оценка сложности вопроса
@@ -32,32 +34,32 @@ namespace AnalyzerLib
         }
 
         //обработка сообщений (теги удаляет)
-        public void proccessMessages(List<MailMessage> newMessages)
+        public void HandleNewMessages(List<MailMessage> newMessages)
         {
 			List<QA> newQuestions = new List<QA>();
 			foreach (MailMessage message in newMessages) {
-				QA res = new QA();
-				res.theme_id = ThemeQ(message.Subject);
+				QA qa = new QA(getBody(message.Body), null, getTheme(message.Subject), -1, DateTime.Now, DateTime.Now, message.From.Address);
+				qa.theme_id = getTheme(message.Subject);
 
-				bool tag = false; //это убирает лишние теги из письма <div></div>
+				/*bool tag = false; //это убирает лишние теги из письма <div></div>
 				for (int i = 0; i < message.Body.Length; i++) {
 					if (message.Body[i] == '<') tag = true;
 
 					if (!tag) {
-						res.question += message.Body[i];
+						question.question += message.Body[i];
 					}
 
 				if (message.Body[i] == '>') tag = false;
             }
 
-            res.email = message.From.Address;
-            res.start_time = DateTime.Now;
-            res.end_time = DateTime.Now;
-
-				res.email = message.Sender.Address;
-				newQuestions.Add(res);
-
+				question.email = message.From.Address;
+				question.start_time = DateTime.Now;
+				question.end_time = DateTime.Now;*/
+				Log(qa.question);
+				newQuestions.Add(qa);
 			}
+			if (newQuestions.Count != 0 && QAGenerated != null)
+				QAGenerated(newQuestions);
         }
 
         //если в FAQ вернет айди FAQ иначе -1
@@ -76,14 +78,24 @@ namespace AnalyzerLib
             }
             return -1;
         }
-
-        public int ThemeQ(string title)
+		//получает тему сообщения
+        public int getTheme(string title)
         {
             Themes sot = db.tThemes.Where(c => c.Theme == title).FirstOrDefault();
             if(sot!=null)
-            return sot.Id;
+				return sot.Id;
             return 1; //если тема не найдена будет первая тема
         }
+
+		//убирает все теги из письма (или всё, что заключено в '< >'
+		public string getBody(string body) {
+			body = body.Replace("<br>", Environment.NewLine);
+			int tagPos = body.IndexOf('<');
+			while (tagPos >= 0) {
+				body = body.Remove(tagPos, body.IndexOf('>') - tagPos + 1);
+			}
+			return body;
+		}
 
         bool match(string source, string temp) //метод определения совпадения вопроса
         {
@@ -91,9 +103,9 @@ namespace AnalyzerLib
             string[] tempS = temp.Split(' ');
 
             int k = 0; //количество тех же слов
-            for (int i = 0; i < tempS.GetLength(0); i++ )
+            for (int i = 0; i < tempS.GetLength(0); i++)
             {
-                for(int j=0; j<sourceS.GetLength(0); j++)
+                for(int j = 0; j < sourceS.GetLength(0); j++)
                 {
                     if (tempS[i] == sourceS[j]) k++;
                 }
@@ -142,17 +154,18 @@ namespace AnalyzerLib
         //вернет айдишники похожих QA по ответу
         public List<int> someAnswers(QA x)
         {
-            List<int> res = new List<int>();
+			List<int> similarQuestionIds = new List<int>();
 
             foreach (var a in db.tFQA)
             {
                 if (a.theme_id == x.theme_id)
                 {
-                    if (match(x.answer, a.answer)) res.Add(a.Id);
+					if (match(x.answer, a.answer)) similarQuestionIds.Add(a.Id);
                 }
             }
 
-            return res;
+			return similarQuestionIds;
         }
+
     }
 }

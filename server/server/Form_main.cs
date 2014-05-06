@@ -41,7 +41,8 @@ namespace server
         private void Form1_Load(object sender, EventArgs e)
         {
             fEmail = new FormEmailSettings();
-            textBox2.Text=Environment.CurrentDirectory+@"\db\oopDB.mdf";
+            textBox2.Text=Environment.CurrentDirectory+@"\db\oopDB.mdf"; // втф ?!
+			//textBox2.Text = @"\db\oopDB.mdf";
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -52,7 +53,11 @@ namespace server
             button1.Text = "Загрузка...";
             db=new dbBind(@"Data Source=(LocalDB)\v11.0;AttachDbFilename="+textBox2.Text+";Integrated Security=True;Connect Timeout=30");
             Connecton = new connectionControl(textBox1.Text, db);
-            control = new Control(db, fEmail.name.Text, fEmail.host.Text, fEmail.pass.Text, fEmail.popadr.Text, fEmail.popport.Text, fEmail.smtpadr.Text, fEmail.smtpprot.Text);
+			double timerInterval = 10.0;
+			try {
+				timerInterval = Convert.ToDouble(tbTimerInterval);
+			} catch { } finally { tbTimerInterval.Text = timerInterval.ToString() + " сек."; }
+			control = new Control(db, fEmail.name.Text, fEmail.host.Text, fEmail.pass.Text, fEmail.popadr.Text, fEmail.popport.Text, fEmail.smtpadr.Text, fEmail.smtpprot.Text, timerInterval);
 			button1.Text = "Сервер запущен";
         }
 
@@ -63,12 +68,24 @@ namespace server
 
         private void button3_Click(object sender, EventArgs e)
         {
-            openFileDialog1.ShowDialog();
+            openFileDiaLog1.ShowDialog();
         }
 
         private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
         {
-            this.textBox2.Text = openFileDialog1.FileName;
+			this.textBox2.Text = openFileDiaLog1.FileName;
         }
+
+		private void tbTimerInterval_Enter(object sender, EventArgs e) {
+			if (tbTimerInterval.Text == "Введите интервал проверки почты") {
+				tbTimerInterval.Text = string.Empty;
+			}
+		}
+
+		private void tbTimerInterval_Leave(object sender, EventArgs e) {
+			if (tbTimerInterval.Text.Length == 0) {
+				tbTimerInterval.Text = "Введите интервал проверки почты";
+			}
+		}
     }
 }

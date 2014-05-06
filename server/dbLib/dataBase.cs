@@ -120,8 +120,14 @@ namespace dbLib
         [Column(DbType = "NVARCHAR(MAX)")]
         public string email;
 
-		public QA() {
-
+		public QA(string question, string answer, int theme_id, int consulter_id, DateTime start_time, DateTime end_time, string email) {
+			this.question = question;
+			this.answer = answer;
+			this.theme_id = theme_id;
+			this.consulter_id = consulter_id;
+			this.start_time = start_time;
+			this.end_time = end_time;
+			this.email = email;
 		}
     }
 

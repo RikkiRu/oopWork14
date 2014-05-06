@@ -42,7 +42,7 @@ namespace server
 
         void Log(object x)
         {
-            Program.MainForm.Log(x.ToString());
+            Program.MainForm.log(x.ToString());
         }
 
         public object process(object o)

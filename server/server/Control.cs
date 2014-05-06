@@ -14,20 +14,17 @@ namespace server
     class Control
     {
         Postman postman;
-		System.Timers.Timer mailTimer = new System.Timers.Timer(10000.0);
+		System.Timers.Timer mailTimer;
 		Analyzer analyzer;
         dbBind db;
 
-        public Control (dbBind db, string username, string host, string password, string popAdress, string port, string smtpAdress, string smtpPort) {
+		public Control(dbBind db, string username, string host, string password, string popAdress, string port, string smtpAdress, string smtpPort, double timerInterval) {
             this.db = db;
-			analyzer = new Analyzer(db, 60, 1, new StringDelegate(Program.MainForm.Log)); //антипаттерн разве?
+			this.mailTimer = new System.Timers.Timer(timerInterval * 1000.0);
 
-			this.postman = new Postman("Вопрос_", db, username, host, password, popAdress, Convert.ToInt32(port), smtpAdress, Convert.ToInt32(smtpPort), messageControl, Program.MainForm.log, mailTimer);
-			this.postman = new Postman(db, username, host, password, popAdress, Convert.ToInt32(port), smtpAdress, Convert.ToInt32(smtpPort), messageControl, Program.MainForm.Log, mailTimer);
-			this.postman.MessageRecievedEvent += new MessageDelegate(analyzer.proccessMessages);
-        }
-
-        
+			this.analyzer = new Analyzer(db, 60, 1, new StringDelegate(Program.MainForm.log)); //антипаттерн разве?
+			this.postman = new Postman("Вопрос_", db, username, host, password, popAdress, Convert.ToInt32(port), smtpAdress, Convert.ToInt32(smtpPort), analyzer.HandleNewMessages, Program.MainForm.log, mailTimer); // вот этому позавидует даже winAPI
+        }        
 
         public static void mCheck()
         {

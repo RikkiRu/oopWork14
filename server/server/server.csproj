@@ -125,8 +125,8 @@
       <Project>{ae1f0f3d-da01-4c0e-8771-06178b8f2d66}</Project>
       <Name>Helpers</Name>
     </ProjectReference>
-    <ProjectReference Include="..\PostmanLib\Postman.csproj">
-      <Project>{5a0e9f6e-1ac7-46a7-8498-0d081604b978}</Project>
+    <ProjectReference Include="..\Postman\Postman.csproj">
+      <Project>{95ba7656-581a-44ab-9094-cc22289d2d0b}</Project>
       <Name>Postman</Name>
     </ProjectReference>
   </ItemGroup>
