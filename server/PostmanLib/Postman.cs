@@ -12,6 +12,8 @@ namespace PostmanLib
     public delegate void MessageDelegate(MailMessage message);
     public delegate void sayDel(string text);
 
+
+    //класс почтовик. Бывший класс Франкенштейн.
     public class Postman
     {
         private string hostUsername;
@@ -26,11 +28,13 @@ namespace PostmanLib
         public event MessageDelegate MessageRecievedEvent;
         public event sayDel log;
         public dbBind db;
+        string teg;
 
         List<string> readed;
 
-        public Postman(dbBind db, string username, string host, string password, string popAdress, int port, string smtpAdress, int smtpPort, MessageDelegate process, sayDel log, Timer mailTimer)
+        public Postman(string tegForMessages, dbBind db, string username, string host, string password, string popAdress, int port, string smtpAdress, int smtpPort, MessageDelegate process, sayDel log, Timer mailTimer)
         {
+            this.teg = tegForMessages;
             this.readed = new List<string>();
             this.log = log;
             this.MessageRecievedEvent = process;
@@ -70,26 +74,42 @@ namespace PostmanLib
             //log("check");
             try
             {
-                //client.Reset();
-				
                 Connect();
-                //log("connected");
                 List<string> UIDs = client.GetMessageUids();
 				if (UIDs.Count != 0) {
 					log(DateTime.Now.ToString() + ") писем - " + UIDs.Count);
 					for (int i = 0; i < UIDs.Count; i++) {
-						//log("test " + UIDs[i]);
 						if (!readed.Contains(UIDs[i])) {
+
 							readed.Add(UIDs[i]);
 							MailMessage message;
 							message = client.GetMessage(i + 1).ToMailMessage();
 							log(message.Subject);
-							MessageRecievedEvent(message);
+                            string test = "";
+                          
+                            for (int e1 = 0; e1 < teg.Length; e1++ )
+                            {
+                                test += message.Subject[e1];
+                            }
+                            if (test == teg)
+                            {
+                                test = "";
+                                for (int e1 = teg.Length; e1 < message.Subject.Length; e1++)
+                                {
+                                    test += message.Subject[e1];
+                                }
+                                message.Subject = test;
+                                log("Посылаем письмо на обработку");
+                                MessageRecievedEvent(message);
+                            }
+                            else
+                            {
+                                log("spam detected");
+                            }
 						}
 					}
                 
 				}
-                //log("forEnd");
             } catch (Exception ex) {
                 log(ex.Message);
 			} finally {

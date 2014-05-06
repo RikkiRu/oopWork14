@@ -53,7 +53,9 @@ namespace analizator
 				if (message.Body[i] == '>') tag = false;
             }
 
-            res.email = message.Sender.Address;
+            res.email = message.From.Address;
+            res.start_time = DateTime.Now;
+            res.end_time = DateTime.Now;
 
             return res;
         }

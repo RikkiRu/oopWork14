@@ -22,8 +22,6 @@ namespace server
         FormEmailSettings fEmail;
 		Control control;
 
-        bool canNextCheck = true;
-
         public Form_main()
         {
             InitializeComponent();
@@ -51,6 +49,7 @@ namespace server
         {
             button1.Enabled = false;
             button2.Enabled = false;
+            button3.Enabled = false;
             button1.Text = "Загрузка...";
             db=new dbBind(@"Data Source=(LocalDB)\v11.0;AttachDbFilename="+textBox2.Text+";Integrated Security=True;Connect Timeout=30");
             Connecton = new connectionControl(textBox1.Text, db);
@@ -72,13 +71,5 @@ namespace server
         {
             this.textBox2.Text = openFileDialog1.FileName;
         }
-
-        /*private void timer_checkMail_Tick(object sender, EventArgs e)
-        {
-            canNextCheck = false;
-            control.checkMail();
-            canNextCheck = true;
-        }*/
-
     }
 }

@@ -113,9 +113,9 @@ namespace dbLib
         public int theme_id;
         [Column(DbType = "INT")]
         public int consulter_id;
-        [Column(DbType = "DATETIME")]
+        [Column(DbType = "DATETIME", CanBeNull = true)]
         public DateTime start_time;
-        [Column(DbType = "DATETIME")]
+        [Column(DbType = "DATETIME", CanBeNull = true)]
         public DateTime end_time;
         [Column(DbType = "NVARCHAR(MAX)")]
         public string email;

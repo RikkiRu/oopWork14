@@ -22,7 +22,7 @@ namespace server
 			analyzer = new Analyzer(db, 60, 1); //антипаттерн
             analyzer.log += Program.MainForm.log;
 
-			this.postman = new Postman(db, username, host, password, popAdress, Convert.ToInt32(port), smtpAdress, Convert.ToInt32(smtpPort), messageControl, Program.MainForm.log, mailTimer);
+			this.postman = new Postman("Вопрос_", db, username, host, password, popAdress, Convert.ToInt32(port), smtpAdress, Convert.ToInt32(smtpPort), messageControl, Program.MainForm.log, mailTimer);
         }
 
         
