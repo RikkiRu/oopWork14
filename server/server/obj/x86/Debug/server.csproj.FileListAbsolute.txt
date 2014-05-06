@@ -47,3 +47,22 @@ D:\Users\DenMax\git\oopWork14\server\server\bin\Debug\analizator.pdb
 D:\Users\DenMax\git\oopWork14\server\server\bin\Debug\ConnectLib.pdb
 D:\Users\DenMax\git\oopWork14\server\server\bin\Debug\dbLib.pdb
 D:\Users\DenMax\git\oopWork14\server\server\bin\Debug\PostmanLib.pdb
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14_2\oopWork14\server\server\bin\Debug\server.exe.config
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14_2\oopWork14\server\server\obj\x86\Debug\server.exe
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14_2\oopWork14\server\server\obj\x86\Debug\server.pdb
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14_2\oopWork14\server\server\bin\Debug\server.exe
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14_2\oopWork14\server\server\bin\Debug\server.pdb
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14_2\oopWork14\server\server\bin\Debug\analizator.dll
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14_2\oopWork14\server\server\bin\Debug\ConnectLib.dll
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14_2\oopWork14\server\server\bin\Debug\dbLib.dll
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14_2\oopWork14\server\server\bin\Debug\PostmanLib.dll
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14_2\oopWork14\server\server\bin\Debug\OpenPop.dll
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14_2\oopWork14\server\server\bin\Debug\analizator.pdb
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14_2\oopWork14\server\server\bin\Debug\ConnectLib.pdb
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14_2\oopWork14\server\server\bin\Debug\dbLib.pdb
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14_2\oopWork14\server\server\bin\Debug\PostmanLib.pdb
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14_2\oopWork14\server\server\obj\x86\Debug\server.csprojResolveAssemblyReference.cache
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14_2\oopWork14\server\server\obj\x86\Debug\server.Form_main.resources
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14_2\oopWork14\server\server\obj\x86\Debug\server.FormEmailSettings.resources
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14_2\oopWork14\server\server\obj\x86\Debug\server.Properties.Resources.resources
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14_2\oopWork14\server\server\obj\x86\Debug\server.csproj.GenerateResource.Cache

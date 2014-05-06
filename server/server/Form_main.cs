@@ -44,6 +44,7 @@ namespace server
         private void Form1_Load(object sender, EventArgs e)
         {
             fEmail = new FormEmailSettings();
+            textBox2.Text=Environment.CurrentDirectory+@"\db\oopDB.mdf";
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -60,6 +61,16 @@ namespace server
         private void button2_Click(object sender, EventArgs e)
         {
             fEmail.ShowDialog();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.ShowDialog();
+        }
+
+        private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
+        {
+            this.textBox2.Text = openFileDialog1.FileName;
         }
 
         /*private void timer_checkMail_Tick(object sender, EventArgs e)
