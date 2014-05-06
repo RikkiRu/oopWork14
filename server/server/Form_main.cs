@@ -15,10 +15,13 @@ namespace server
 {
     public partial class Form_main : Form
     {
+		delegate void SetTextCallback(string text);
+
         dbBind db;
         connectionControl Connecton;
         FormEmailSettings fEmail;
-        Control control;
+		Control control;
+
         bool canNextCheck = true;
 
         public Form_main()
@@ -26,11 +29,16 @@ namespace server
             InitializeComponent();
         }
 
-        public void log(object x)
+        public void log(string logMessage)
         {
-            richTextBox1.Text += x.ToString()+Environment.NewLine;
-            richTextBox1.SelectionStart = richTextBox1.TextLength;
-            richTextBox1.ScrollToCaret();
+			if (richTextBox1.InvokeRequired) {
+				SetTextCallback d = new SetTextCallback(log);
+				Invoke(d, new object[] { logMessage });
+			} else {
+				richTextBox1.Text += logMessage.ToString() + Environment.NewLine;
+				richTextBox1.SelectionStart = richTextBox1.TextLength;
+				richTextBox1.ScrollToCaret();
+			}
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -46,8 +54,7 @@ namespace server
             db=new dbBind(@"Data Source=(LocalDB)\v11.0;AttachDbFilename="+textBox2.Text+";Integrated Security=True;Connect Timeout=30");
             Connecton = new connectionControl(textBox1.Text, db);
             control = new Control(db, fEmail.name.Text, fEmail.host.Text, fEmail.pass.Text, fEmail.popadr.Text, fEmail.popport.Text, fEmail.smtpadr.Text, fEmail.smtpprot.Text);
-            timer_checkMail.Enabled = true;
-            button1.Text = "Сервер запущен";
+			button1.Text = "Сервер запущен";
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -55,16 +62,12 @@ namespace server
             fEmail.ShowDialog();
         }
 
-        private void timer_checkMail_Tick(object sender, EventArgs e)
+        /*private void timer_checkMail_Tick(object sender, EventArgs e)
         {
             canNextCheck = false;
             control.checkMail();
             canNextCheck = true;
-        }
+        }*/
 
-        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
-        {
-            
-        }
     }
 }

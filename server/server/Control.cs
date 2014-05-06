@@ -6,21 +6,23 @@ using PostmanLib;
 using dbLib;
 using analizator;
 using System.Threading;
+using System.Net.Mail;
 
 namespace server
 {
     class Control
     {
         Postman postman;
-        Analizator analiz;
+		System.Timers.Timer mailTimer = new System.Timers.Timer(10000.0);
+		Analyzer analyzer;
         dbBind db;
 
-        public Control (dbBind db, string username, string host, string password, string popAdress, string port, string smtpAdress, string smtpPort)
-        {
+        public Control (dbBind db, string username, string host, string password, string popAdress, string port, string smtpAdress, string smtpPort) {
             this.db = db;
-            analiz = new Analizator(db, 60, 1); //антипаттерн
-            analiz.log += Program.MainForm.log;
-            this.postman = new Postman(db, username, host, password, popAdress, Convert.ToInt32(port), smtpAdress, Convert.ToInt32(smtpPort), messageControl, Program.MainForm.log);
+			analyzer = new Analyzer(db, 60, 1); //антипаттерн
+            analyzer.log += Program.MainForm.log;
+
+			this.postman = new Postman(db, username, host, password, popAdress, Convert.ToInt32(port), smtpAdress, Convert.ToInt32(smtpPort), messageControl, Program.MainForm.log, mailTimer);
         }
 
         
@@ -30,18 +32,18 @@ namespace server
 
         }
 
-        public void checkMail()
+        /*public void checkMail()
         {
             try
             {
                 postman.CheckMailBox();
             }
             catch(Exception ex) { }
-        }
+        }*/
 
-        public void messageControl(string title, string message, string email)
+        public void messageControl(MailMessage message)
         {
-            QA res = analiz.proccessMessage(title, message, email);
+			QA res = analyzer.proccessMessage(message);
             
             //тут проверить есть ли в faq
             //ежели есть добавить ответ и сразу отослать ответное письмо

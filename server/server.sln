@@ -1,15 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Express 2013 for Windows Desktop
+# Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "server", "server\server.csproj", "{9F9F9431-7876-4847-9792-618C93FCBBB7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "analizator", "analizator\analizator.csproj", "{F425DFF5-3F70-403E-A7FC-DBBF26DC16B6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "analyzer", "analizator\analyzer.csproj", "{F425DFF5-3F70-403E-A7FC-DBBF26DC16B6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dbLib", "dbLib\dbLib.csproj", "{C0CD0370-7F5B-4998-BAF5-CBCB34E7BE9F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frankenstein", "PostmanLib\Frankenstein.csproj", "{5A0E9F6E-1AC7-46A7-8498-0D081604B978}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Postman", "PostmanLib\Postman.csproj", "{5A0E9F6E-1AC7-46A7-8498-0D081604B978}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

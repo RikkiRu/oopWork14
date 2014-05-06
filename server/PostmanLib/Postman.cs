@@ -9,8 +9,8 @@ using dbLib;
 
 namespace PostmanLib
 {
-    public delegate void ProcessMessageDel(string title, string message, string email);
-    public delegate void sayDel(object x);
+    public delegate void MessageDelegate(MailMessage message);
+    public delegate void sayDel(string text);
 
     public class Postman
     {
@@ -18,87 +18,83 @@ namespace PostmanLib
         private string hostAddress;
         private string hostPassword;
         private Pop3Client client;
-        private Timer timer;
-        string popAdress;
+		private Timer mailTimer;
+        string popAddress;
         int popPort;
         string smtpAdress;
         int smtpPort;
-        public event ProcessMessageDel ProcessMessage;
+        public event MessageDelegate MessageRecievedEvent;
         public event sayDel log;
         public dbBind db;
 
         List<string> readed;
 
-        public Postman(dbBind db, string username, string host, string password, string popAdress, int port, string smtpAdress, int smtpPort, ProcessMessageDel process, sayDel log)
+        public Postman(dbBind db, string username, string host, string password, string popAdress, int port, string smtpAdress, int smtpPort, MessageDelegate process, sayDel log, Timer mailTimer)
         {
             this.readed = new List<string>();
-
             this.log = log;
-            this.ProcessMessage = process;
+            this.MessageRecievedEvent = process;
             this.db = db;
             this.hostUsername = username;
             this.hostAddress = hostUsername + host;
             this.hostPassword = password;
-            this.popAdress = popAdress;
+            this.popAddress = popAdress;
             this.popPort = port;
             this.smtpAdress = smtpAdress;
             this.smtpPort = smtpPort;
+			this.mailTimer = mailTimer;
 
             client = new Pop3Client();
-            //Connect();
 
-            //if (client.Connected)
-            //{
-            //    log("Проверка почты");
-            //    timer = new Timer(6000.0);
-            //    timer.Elapsed += new ElapsedEventHandler(CheckMailBox);
-            //    timer.Start();
-            //}
+			mailTimer.Elapsed += new ElapsedEventHandler(CheckMailBox);
+			mailTimer.Start();
         }
 
         public void Connect()
         {
-            client.Connect(popAdress, popPort, true);
+            client.Connect(popAddress, popPort, true);
             client.Authenticate(hostUsername, hostPassword);
+			if (client.Connected)
+				log("Успешно подключено к " + popAddress + " :: username : " + hostUsername + ", hostPassword : " + hostPassword);
         }
 
         public void Disconnect()
         {
             client.Disconnect();
+			if (!client.Connected)
+				log("Успешно отключено от " + popAddress);
         }
 
-        public void CheckMailBox()
+        public void CheckMailBox(object sender, ElapsedEventArgs e)
         {
             //log("check");
             try
             {
                 //client.Reset();
+				
                 Connect();
                 //log("connected");
                 List<string> UIDs = client.GetMessageUids();
-                log(DateTime.Now.ToString()+") писем - "+UIDs.Count);
-                for (int i = 0; i < UIDs.Count; i++)
-                {
-                   
-                    //log("test " + UIDs[i]);
-                    if (!readed.Contains(UIDs[i]))
-                    {
-                        readed.Add(UIDs[i]);
-                        MailMessage x;
-                        x = client.GetMessage(i+1).ToMailMessage();
-                        log(x.Subject); 
-                        ProcessMessage(x.Subject, x.Body, x.From.Address);
-                    }
-                }
+				if (UIDs.Count != 0) {
+					log(DateTime.Now.ToString() + ") писем - " + UIDs.Count);
+					for (int i = 0; i < UIDs.Count; i++) {
+						//log("test " + UIDs[i]);
+						if (!readed.Contains(UIDs[i])) {
+							readed.Add(UIDs[i]);
+							MailMessage message;
+							message = client.GetMessage(i + 1).ToMailMessage();
+							log(message.Subject);
+							MessageRecievedEvent(message);
+						}
+					}
+                
+				}
                 //log("forEnd");
-            }
-
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 log(ex.Message);
-            }
-
-            Disconnect();
+			} finally {
+				Disconnect();
+			}
         }
 
         public void SendAnswer(string address, string answer, string title)

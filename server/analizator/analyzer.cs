@@ -4,14 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using dbLib;
+using System.Net.Mail;
 
 
 
 namespace analizator
 {
-    public delegate void sayDel (object o);
+    public delegate void sayDel (string text);
 
-    public class Analizator
+    public class Analyzer
     {
         const int delPercent = 100;
         int PercentSome; //процент для определения идентичности (схожих слов)
@@ -26,7 +27,7 @@ namespace analizator
 
         dbBind db;
 
-        public Analizator(dbBind db, int PercentOfIdentity, int nDifficulityQuestion)
+        public Analyzer(dbBind db, int PercentOfIdentity, int nDifficulityQuestion)
         {
             this.db = db;
             this.nullDifficulityOfQA = nDifficulityQuestion;
@@ -34,25 +35,25 @@ namespace analizator
         }
 
         //обработка сообщений (теги удаляет)
-        public QA proccessMessage(string title, string message, string email)
+        public QA proccessMessage(MailMessage message)
         {
             QA res = new QA();
-            res.theme_id = ThemeQ(title);
+            res.theme_id = ThemeQ(message.Subject);
 
-            bool teg = false; //это убирает лишние теги из письма <div></div>
-            for (int i = 0; i < message.Length; i++ )
+            bool tag = false; //это убирает лишние теги из письма <div></div>
+            for (int i = 0; i < message.Body.Length; i++ )
             {
-                if (message[i] == '<') teg = true;
+				if (message.Body[i] == '<') tag = true;
                 
-                if(!teg)
+                if(!tag)
                 {
-                    res.question += message[i];
+					res.question += message.Body[i];
                 }
 
-                if (message[i] == '>') teg = false;
+				if (message.Body[i] == '>') tag = false;
             }
 
-            res.email = email;
+            res.email = message.Sender.Address;
 
             return res;
         }
