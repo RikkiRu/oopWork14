@@ -64,7 +64,6 @@ D:\Users\DenMax\git\oopWork14\server\server\bin\Debug\ConnectLib.pdb
 D:\Users\DenMax\git\oopWork14\server\server\obj\x86\Debug\server.csprojResolveAssemblyReference.cache
 D:\Users\DenMax\git\oopWork14\server\server\obj\x86\Debug\server.Form_main.resources
 D:\Users\DenMax\git\oopWork14\server\server\obj\x86\Debug\server.FormEmailSettings.resources
-D:\Users\DenMax\git\oopWork14\server\server\obj\x86\Debug\server.Properties.Resources.resources
 D:\Users\DenMax\git\oopWork14\server\server\obj\x86\Debug\server.csproj.GenerateResource.Cache
 D:\Users\DenMax\git\oopWork14\server\server\obj\x86\Debug\server.exe
 D:\Users\DenMax\git\oopWork14\server\server\obj\x86\Debug\server.pdb
