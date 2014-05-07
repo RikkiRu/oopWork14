@@ -11,19 +11,18 @@ using System.Net.Mail;
 
 namespace server
 {
-    class Control
+    class Control : Helper
     {
         Postman postman;
 		System.Timers.Timer mailTimer;
 		Analyzer analyzer;
-        dbBind db;
 
 		public Control(dbBind db, string username, string host, string password, string popAdress, string port, string smtpAdress, string smtpPort, double timerInterval) {
             this.db = db;
 			this.mailTimer = new System.Timers.Timer(timerInterval * 1000.0);
 
-			this.analyzer = new Analyzer(db, 60, 1, new StringDelegate(Program.MainForm.log)); //антипаттерн разве?
-			this.postman = new Postman("Вопрос_", db, username, host, password, popAdress, Convert.ToInt32(port), smtpAdress, Convert.ToInt32(smtpPort), analyzer.HandleNewMessages, Program.MainForm.log, mailTimer); // вот этому позавидует даже winAPI
+			this.analyzer = new Analyzer(db, 60, 1, Program.MainForm.log); //антипаттерн разве?
+			this.postman = new Postman("Вопрос_", db, username, host, password, popAdress, Convert.ToInt32(port), smtpAdress, Convert.ToInt32(smtpPort), mailTimer, analyzer.HandleNewMessages, Program.MainForm.log); // вот этому позавидует даже winAPI
         }        
 
         public static void mCheck()
@@ -40,17 +39,17 @@ namespace server
             catch(Exception ex) { }
         }*/
 
-        public void messageControl(List<MailMessage> newMessages)
+        /*public void messageControl(List<MailMessage> newMessages)
         {
-			/*QA res = analyzer.proccessMessage(message);
+			QA res = analyzer.proccessMessage(message);
             
             //тут проверить есть ли в faq
             //ежели есть добавить ответ и сразу отослать ответное письмо
 
             db.tFQA.InsertOnSubmit(res);
-            db.SubmitChanges();*/
+            db.SubmitChanges();
             
-        }
+        }*/
 
         //это обработка времени на вопрос
         //string[] tx = sot.standart_time.Split('.');

@@ -11,7 +11,7 @@ namespace AnalyzerLib
 {
 	public delegate void QADelegate(List<QA> newQA);
 
-    public class Analyzer : Logger
+    public class Analyzer : Helper
     {
         const int delPercent = 100;
         int PercentSome; //процент для определения идентичности (схожих слов)
@@ -24,9 +24,7 @@ namespace AnalyzerLib
         //Оценка сложности вопроса
         //Поиск схожих ответов
 
-        dbBind db;
-
-        public Analyzer(dbBind db, int PercentOfIdentity, int nDifficulityQuestion, StringDelegate Log)
+		public Analyzer(dbBind db, int PercentOfIdentity, int nDifficulityQuestion, StringDelegate log = null)
         {
             this.db = db;
             this.nullDifficulityOfQA = nDifficulityQuestion;

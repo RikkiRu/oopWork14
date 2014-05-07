@@ -1,8 +1,9 @@
-﻿
+﻿using dbLib;
+
 namespace Helpers {
 	public delegate void StringDelegate(string text);
 
-	public class Logger {
+	public abstract class Logger {
 		public event StringDelegate log;
 		protected void Log(string text) {
 			StringDelegate handler = log;
@@ -10,5 +11,8 @@ namespace Helpers {
 				handler(text);
 			}
 		}
+	}
+	public abstract class Helper : Logger {
+		protected dbBind db;
 	}
 }

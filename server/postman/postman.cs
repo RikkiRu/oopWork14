@@ -14,7 +14,7 @@ namespace PostmanLib
 
     //класс почтовик. Бывший класс Франкенштейн.
 
-    public class Postman : Logger
+    public class Postman : Helper
     {
         private string hostUsername;
         private string hostAddress;
@@ -25,12 +25,11 @@ namespace PostmanLib
 		private string smtpAdress;
         int smtpPort;
         public event MessageDelegate MessageRecievedEvent;
-        public dbBind db;
 		string questionTag;
 
         List<string> readed;
 
-        public Postman(string questionTag,dbBind db, string username, string host, string password, string popAdress, int port, string smtpAdress, int smtpPort, MessageDelegate messagesHandler, StringDelegate log, Timer mailTimer)
+        public Postman(string questionTag,dbBind db, string username, string host, string password, string popAdress, int port, string smtpAdress, int smtpPort, Timer mailTimer, MessageDelegate messagesHandler, StringDelegate log = null)
         {
 			this.questionTag = questionTag;
             this.readed = new List<string>();

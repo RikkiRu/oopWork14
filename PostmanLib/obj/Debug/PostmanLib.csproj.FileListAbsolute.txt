@@ -1,8 +1,0 @@
-C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\server\PostmanLib\bin\Debug\PostmanLib.dll
-C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\server\PostmanLib\bin\Debug\PostmanLib.pdb
-C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\server\PostmanLib\bin\Debug\dbLib.dll
-C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\server\PostmanLib\bin\Debug\OpenPop.dll
-C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\server\PostmanLib\bin\Debug\dbLib.pdb
-C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\server\PostmanLib\obj\Debug\PostmanLib.csprojResolveAssemblyReference.cache
-C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\server\PostmanLib\obj\Debug\PostmanLib.dll
-C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\server\PostmanLib\obj\Debug\PostmanLib.pdb
