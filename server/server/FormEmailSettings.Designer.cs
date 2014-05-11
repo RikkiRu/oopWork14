@@ -185,7 +185,7 @@
 			this.cbAccounts.Name = "cbAccounts";
 			this.cbAccounts.Size = new System.Drawing.Size(100, 21);
 			this.cbAccounts.TabIndex = 16;
-			this.cbAccounts.SelectedIndexChanged += new System.EventHandler(this.cbAccounts_SelectedIndexChange);
+			this.cbAccounts.SelectionChangeCommitted += new System.EventHandler(this.cbAccounts_SelectionChangeCommitted);
 			// 
 			// FormEmailSettings
 			// 
@@ -210,7 +210,6 @@
 			this.Controls.Add(this.button1);
 			this.Name = "FormEmailSettings";
 			this.Text = "Email Settings";
-			this.Load += new System.EventHandler(this.FormEmailSettings_Load);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

@@ -8,3 +8,8 @@ C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\Connect
 C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\ConnectLib\ConnectLib\obj\Debug\ConnectLib.pdb
 C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\ConnectLib\ConnectLib\bin\Debug\ConnectLib.dll
 C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\ConnectLib\ConnectLib\bin\Debug\ConnectLib.pdb
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14_2\oopWork14\ConnectLib\ConnectLib\bin\Debug\ConnectLib.dll
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14_2\oopWork14\ConnectLib\ConnectLib\bin\Debug\ConnectLib.pdb
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14_2\oopWork14\ConnectLib\ConnectLib\obj\Debug\ConnectLib.csprojResolveAssemblyReference.cache
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14_2\oopWork14\ConnectLib\ConnectLib\obj\Debug\ConnectLib.dll
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14_2\oopWork14\ConnectLib\ConnectLib\obj\Debug\ConnectLib.pdb

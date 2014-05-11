@@ -47,9 +47,9 @@ namespace client
             {
                 //тут пойдет подключение
                 svc = new pingInterClient("BasicHttpBinding_pingInter", textBox1server.Text);
-                int res = login();
-                if (res == -1) throw new Exception("Авторизация не удалась");
-                Program.fm = new FormMain(res, svc);
+                int[] res = login();
+                if (res[1] == -1) throw new Exception("Авторизация не удалась");
+                Program.fm = new FormMain(res[1], svc, res[0]);
                 this.Hide();
                 Program.fm.ShowDialog();
             }
@@ -79,10 +79,13 @@ namespace client
             }
         }
 
-        int login()
+        int[] login()
         {
-            string a = "login" + "\n" + textBoxLogin.Text + "\n" + textBoxPassw.Text;
-            int x = Convert.ToInt32(svc.oSend(a));
+            int[] x = new int[2];
+            string a = "login" + "~" + textBoxLogin.Text + "~" + textBoxPassw.Text;
+            string[] answ = (svc.oSend(a)).ToString().Split('~');
+            x[0] = Convert.ToInt32(answ[0]);
+            x[1] = Convert.ToInt32(answ[1]);
             return x;
         }
     }

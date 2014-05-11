@@ -5,7 +5,6 @@ using System.Text;
 using System.ServiceModel;
 using ConnectLib;
 using dbLib;
-using Helpers;
 
 namespace server
 {
@@ -13,42 +12,44 @@ namespace server
     {
         dbBind db;
         static ServiceHost host;
+        Control control;
 
-        public connectionControl(string adress, dbBind db)
+        public connectionControl(string adress, dbBind db, Control ctrl)
         {
             try
             {
+                this.control = ctrl;
                 this.db = db;
                 Connection.action = process;
                 host = new ServiceHost(typeof(Connection), new Uri(adress));
                 host.Open();
-                Log("Сервер запущен");
+                log("Сервер запущен");
 
                 #region Output dispatchers listening
                 foreach (Uri uri in host.BaseAddresses)
-                { Log(uri.ToString()); }
-                Log("");
-                Log("Count and list of listening : " + host.ChannelDispatchers.Count.ToString());
+                { log(uri.ToString()); }
+                log("");
+                log("Count and list of listening : " + host.ChannelDispatchers.Count.ToString());
                 foreach (System.ServiceModel.Dispatcher.ChannelDispatcher dispatcher in host.ChannelDispatchers)
                 {
-                    Log("\t" + dispatcher.Listener.Uri.ToString() + " " + dispatcher.BindingName);
+                    log("|" + dispatcher.Listener.Uri.ToString() + " " + dispatcher.BindingName);
                 }
                 #endregion
             }
             catch (Exception ex)
             {
-                Log(ex.Message);
+                log(ex.Message);
             }
         }
 
-        void Log(object x)
+        void log(object x)
         {
             Program.MainForm.log(x.ToString());
         }
 
         public object process(object o)
         {
-            Log(o);
+            log(o);
 
             if(o is string)
             {
@@ -66,14 +67,14 @@ namespace server
 
         public object stringProcess(string x)
         {
-            string[] s = x.Split('\n');
+            string[] s = x.Split('~');
             bool add = false;
 
             switch(s[0])
             {
-                case "Login":
-                    var a = db.tConsulters.Where(c => c.Login == s[1]).FirstOrDefault();
-                    if (a != null && a.password == s[2]) return a.isBoss;
+                case "login":
+                    var a = db.tConsulters.Where(c => c.login == s[1]).FirstOrDefault();
+                    if (a != null && a.password == s[2]) return a.Id+"~"+a.isBoss;
                     return -1;
 
                 case "addCons":
@@ -90,7 +91,7 @@ namespace server
                         con.Id = Convert.ToInt32(s[1]);
                         con.firstname = s[2];
                         con.lastname = s[3];
-                        con.Login = s[4];
+                        con.login = s[4];
                         con.password = s[5];
                         con.isBoss = Convert.ToInt32(s[6]); 
                         con.salary = Convert.ToInt32(s[7]);
@@ -170,6 +171,34 @@ namespace server
                     }
                     catch (Exception ex) { return ex.Message; }
 
+                case "reqQ":
+                    try
+                    {
+                        QA ar = control.getQA(Convert.ToInt32(s[1]));
+                        if (ar == null) return null;
+                        var t = db.tThemes.Where(c => c.Id == ar.theme_id).FirstOrDefault();
+                        if (t == null) throw new Exception("Не нашлась тема при запросе вопроса");
+                        int diff = control.getDiff(ar);
+                        return ar.Id + "|" + t.Theme + "|" + diff.ToString() + "|" + ar.question + "|" + ar.start_time.ToString() + "|" + ar.end_time.ToString() + "|";
+                    }
+                    catch (Exception ex) { log(ex.Message); return null; }
+
+                case "setQ":
+                    try
+                    {
+                        control.setQAanswer(Convert.ToInt32(s[1]), s[2], s[3]);
+                        return "Отправлено";
+                    }
+                    catch (Exception ex) { return ex.Message; }
+
+                case "someQA":
+                    //try
+                    {
+                        QA f = db.tFQA.Where(c => c.Id == Convert.ToInt32(s[1])).FirstOrDefault();
+                        return control.getSomeQA(f, Convert.ToBoolean(s[2]));
+                    }
+                    //catch (Exception ex) { return ex.Message; }
+
 
             }
             return "Не обработано";
@@ -184,8 +213,8 @@ namespace server
                     res = "";
                     foreach (var a in db.tFAQ)
                     {
-                        res += a.Id.ToString() + "\t" + a.question + "\t" + a.answer + "\t" + a.theme_id.ToString();
-                        res+="\n";
+                        res += a.Id.ToString() + "|" + a.question + "|" + a.answer + "|" + a.theme_id.ToString();
+                        res+="~";
                     }
                     return res;
 
@@ -193,8 +222,8 @@ namespace server
                     res = "";
                     foreach (var a in db.tConsulters)
                     {
-                        res += a.Id.ToString() + "\t" + a.firstname + "\t" + a.lastname + "\t" + a.Login + "\t" + a.password + "\t" + a.isBoss + "\t" + a.salary;
-                        res += "\n";
+                        res += a.Id.ToString() + "|" + a.firstname + "|" + a.lastname + "|" + a.login + "|" + a.password + "|" + a.isBoss + "|" + a.salary;
+                        res += "~";
                     }
                     return res; 
 
@@ -202,8 +231,8 @@ namespace server
                     res = "";
                     foreach (var a in db.tThemes)
                     {
-                        res += a.Id.ToString() + "\t" + a.Theme + "\t" + a.difficulity.ToString() + "\t" + a.standart_time.ToString() + "\t" + a.tarif_id.ToString();
-                        res += "\n";
+                        res += a.Id.ToString() + "|" + a.Theme + "|" + a.difficulity.ToString() + "|" + a.standart_time.ToString() + "|" + a.tarif_id.ToString();
+                        res += "~";
                     }
                     return res;
 
@@ -211,8 +240,8 @@ namespace server
                     res = "";
                     foreach(var a in db.tTarif)
                     {
-                        res += a.Id.ToString() + "\t" + a.cost.ToString() + "\t" + a.multipiller.ToString();
-                        res += "\n";
+                        res += a.Id.ToString() + "|" + a.cost.ToString() + "|" + a.multipiller.ToString();
+                        res += "~";
                     }
                     return res;
             }

@@ -28,6 +28,25 @@ C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\server\
 C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\server\server\obj\x86\Debug\server.Form_main.resources
 C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\server\server\obj\x86\Debug\server.FormEmailSettings.resources
 C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\server\server\bin\Debug\ConnectLib.dll
+D:\Users\DenMax\git\oopWork14\server\server\bin\Debug\server.exe.config
+D:\Users\DenMax\git\oopWork14\server\server\obj\x86\Debug\server.exe
+D:\Users\DenMax\git\oopWork14\server\server\obj\x86\Debug\server.pdb
+D:\Users\DenMax\git\oopWork14\server\server\obj\x86\Debug\server.csprojResolveAssemblyReference.cache
+D:\Users\DenMax\git\oopWork14\server\server\obj\x86\Debug\server.Form_main.resources
+D:\Users\DenMax\git\oopWork14\server\server\obj\x86\Debug\server.FormEmailSettings.resources
+D:\Users\DenMax\git\oopWork14\server\server\obj\x86\Debug\server.Properties.Resources.resources
+D:\Users\DenMax\git\oopWork14\server\server\obj\x86\Debug\server.csproj.GenerateResource.Cache
+D:\Users\DenMax\git\oopWork14\server\server\bin\Debug\server.exe
+D:\Users\DenMax\git\oopWork14\server\server\bin\Debug\server.pdb
+D:\Users\DenMax\git\oopWork14\server\server\bin\Debug\analizator.dll
+D:\Users\DenMax\git\oopWork14\server\server\bin\Debug\ConnectLib.dll
+D:\Users\DenMax\git\oopWork14\server\server\bin\Debug\dbLib.dll
+D:\Users\DenMax\git\oopWork14\server\server\bin\Debug\PostmanLib.dll
+D:\Users\DenMax\git\oopWork14\server\server\bin\Debug\OpenPop.dll
+D:\Users\DenMax\git\oopWork14\server\server\bin\Debug\analizator.pdb
+D:\Users\DenMax\git\oopWork14\server\server\bin\Debug\ConnectLib.pdb
+D:\Users\DenMax\git\oopWork14\server\server\bin\Debug\dbLib.pdb
+D:\Users\DenMax\git\oopWork14\server\server\bin\Debug\PostmanLib.pdb
 C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14_2\oopWork14\server\server\bin\Debug\server.exe.config
 C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14_2\oopWork14\server\server\obj\x86\Debug\server.exe
 C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14_2\oopWork14\server\server\obj\x86\Debug\server.pdb
@@ -47,23 +66,3 @@ C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14_2\oopWo
 C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14_2\oopWork14\server\server\obj\x86\Debug\server.FormEmailSettings.resources
 C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14_2\oopWork14\server\server\obj\x86\Debug\server.Properties.Resources.resources
 C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14_2\oopWork14\server\server\obj\x86\Debug\server.csproj.GenerateResource.Cache
-D:\Users\DenMax\git\oopWork14\server\server\bin\Debug\server.exe.config
-D:\Users\DenMax\git\oopWork14\server\server\bin\Debug\server.exe
-D:\Users\DenMax\git\oopWork14\server\server\bin\Debug\server.pdb
-D:\Users\DenMax\git\oopWork14\server\server\bin\Debug\analizator.dll
-D:\Users\DenMax\git\oopWork14\server\server\bin\Debug\ConnectLib.dll
-D:\Users\DenMax\git\oopWork14\server\server\bin\Debug\dbLib.dll
-D:\Users\DenMax\git\oopWork14\server\server\bin\Debug\Helper.dll
-D:\Users\DenMax\git\oopWork14\server\server\bin\Debug\Postman.dll
-D:\Users\DenMax\git\oopWork14\server\server\bin\Debug\OpenPop.dll
-D:\Users\DenMax\git\oopWork14\server\server\bin\Debug\analizator.pdb
-D:\Users\DenMax\git\oopWork14\server\server\bin\Debug\dbLib.pdb
-D:\Users\DenMax\git\oopWork14\server\server\bin\Debug\Helper.pdb
-D:\Users\DenMax\git\oopWork14\server\server\bin\Debug\Postman.pdb
-D:\Users\DenMax\git\oopWork14\server\server\bin\Debug\ConnectLib.pdb
-D:\Users\DenMax\git\oopWork14\server\server\obj\x86\Debug\server.csprojResolveAssemblyReference.cache
-D:\Users\DenMax\git\oopWork14\server\server\obj\x86\Debug\server.Form_main.resources
-D:\Users\DenMax\git\oopWork14\server\server\obj\x86\Debug\server.FormEmailSettings.resources
-D:\Users\DenMax\git\oopWork14\server\server\obj\x86\Debug\server.csproj.GenerateResource.Cache
-D:\Users\DenMax\git\oopWork14\server\server\obj\x86\Debug\server.exe
-D:\Users\DenMax\git\oopWork14\server\server\obj\x86\Debug\server.pdb

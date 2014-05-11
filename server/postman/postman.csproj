@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{95BA7656-581A-44AB-9094-CC22289D2D0B}</ProjectGuid>
+    <ProjectGuid>{A8673ADC-E5A8-4216-AEA0-5E137CE0F592}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Postman</RootNamespace>
-    <AssemblyName>Postman</AssemblyName>
+    <RootNamespace>postman</RootNamespace>
+    <AssemblyName>postman</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -31,8 +31,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="OpenPop">
-      <HintPath>bin\OpenPop.dll</HintPath>
+    <Reference Include="analizator">
+      <HintPath>..\analizator\bin\Debug\analizator.dll</HintPath>
+    </Reference>
+    <Reference Include="dbLib">
+      <HintPath>..\dbLib\bin\Debug\dbLib.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenPop, Version=2.0.5.0, Culture=neutral, PublicKeyToken=bebb5741791313cd, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\OpenPop.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -44,18 +51,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Postman.cs" />
+    <Compile Include="postman.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\dbLib\dbLib.csproj">
-      <Project>{c0cd0370-7f5b-4998-baf5-cbcb34e7be9f}</Project>
-      <Name>dbLib</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Helper\Helpers.csproj">
-      <Project>{ae1f0f3d-da01-4c0e-8771-06178b8f2d66}</Project>
-      <Name>Helpers</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

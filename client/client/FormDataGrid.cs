@@ -15,9 +15,9 @@ namespace client
         string addHeader;
         pingInterClient svc;
         string rows = "";
-        int request;
+        object request;
 
-        public FormDataGrid(string[]columns, string header, int request, string addHeader, pingInterClient svc)
+        public FormDataGrid(string[]columns, string header, object request, string addHeader, pingInterClient svc)
         {
             InitializeComponent();
             this.request = request;
@@ -37,13 +37,13 @@ namespace client
         void load()
         {
             rows = svc.oSend(request).ToString();
-            string[] cell = rows.Split('\n');
+
+            string[] cell = rows.Split('~');
             dataGridView1.RowCount = cell.GetLength(0);
-            
 
             for (int i = 0; i < cell.GetLength(0); i++)
             {
-                string[] temp = cell[i].Split('\t');
+                string[] temp = cell[i].Split('|');
                 for (int j = 0; j < temp.GetLength(0); j++)
                 {
                     dataGridView1[j, i].Value = temp[j];
@@ -57,10 +57,10 @@ namespace client
         {
             try
             {
-                string res = addHeader + "\n";
+                string res = addHeader + "~";
                 for (int i = 0; i < dataGridView2.ColumnCount; i++)
                 {
-                    res += dataGridView2[i, 0].Value.ToString() + "\n";
+                    res += dataGridView2[i, 0].Value.ToString() + "~";
                 }
                 MessageBox.Show(svc.oSend(res).ToString());
                 load();

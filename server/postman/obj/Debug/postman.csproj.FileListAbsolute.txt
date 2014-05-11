@@ -1,10 +1,9 @@
-D:\Users\DenMax\git\oopWork14\server\Postman\bin\Debug\Postman.dll
-D:\Users\DenMax\git\oopWork14\server\Postman\bin\Debug\Postman.pdb
-D:\Users\DenMax\git\oopWork14\server\Postman\bin\Debug\dbLib.dll
-D:\Users\DenMax\git\oopWork14\server\Postman\bin\Debug\Helper.dll
-D:\Users\DenMax\git\oopWork14\server\Postman\bin\Debug\OpenPop.dll
-D:\Users\DenMax\git\oopWork14\server\Postman\bin\Debug\dbLib.pdb
-D:\Users\DenMax\git\oopWork14\server\Postman\bin\Debug\Helper.pdb
-D:\Users\DenMax\git\oopWork14\server\Postman\obj\Debug\Postman.csprojResolveAssemblyReference.cache
-D:\Users\DenMax\git\oopWork14\server\Postman\obj\Debug\Postman.dll
-D:\Users\DenMax\git\oopWork14\server\Postman\obj\Debug\Postman.pdb
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\server\postman\bin\Debug\postman.dll
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\server\postman\bin\Debug\postman.pdb
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\server\postman\obj\Debug\postman.csprojResolveAssemblyReference.cache
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\server\postman\obj\Debug\postman.dll
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\server\postman\obj\Debug\postman.pdb
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\server\postman\bin\Debug\analizator.dll
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\server\postman\bin\Debug\dbLib.dll
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\server\postman\bin\Debug\analizator.pdb
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14\server\postman\bin\Debug\dbLib.pdb
