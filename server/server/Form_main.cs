@@ -52,7 +52,7 @@ namespace server
             button3.Enabled = false;
             button1.Text = "Загрузка...";
             db=new dbBind(@"Data Source=(LocalDB)\v11.0;AttachDbFilename="+textBox2.Text+";Integrated Security=True;Connect Timeout=30");
-            Connecton = new connectionControl(textBox1.Text, db);
+            Connecton = new connectionControl(textBox1.Text, db, control);
 			double timerInterval = 10.0;
 			try {
 				timerInterval = Convert.ToDouble(tbTimerInterval);

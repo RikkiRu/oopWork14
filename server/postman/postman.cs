@@ -139,5 +139,28 @@ namespace PostmanLib
             mailer.EnableSsl = true;
             mailer.Send(answerMail);
         }
+
+        public class RecivedEventArgs : EventArgs
+        {
+            private int count;
+            private List<MailMessage> newMessages;
+
+            public int Count
+            {
+                get { return count; }
+            }
+            public List<MailMessage> NewMessages
+            {
+                get { return newMessages; }
+            }
+
+            public RecivedEventArgs(List<MailMessage> newMessages)
+            {
+                this.newMessages = newMessages;
+                this.count = newMessages.Count;
+            }
+        }
+
+
     }
 }

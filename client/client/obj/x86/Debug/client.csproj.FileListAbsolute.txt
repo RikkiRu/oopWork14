@@ -51,3 +51,18 @@ C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14_2\oopWo
 C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14_2\oopWork14\client\client\obj\x86\Debug\client.FormMain.resources
 C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14_2\oopWork14\client\client\obj\x86\Debug\client.Properties.Resources.resources
 C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14_2\oopWork14\client\client\obj\x86\Debug\client.csproj.GenerateResource.Cache
+D:\Users\DenMax\git\oopWork14\client\client\bin\Debug\client.exe.config
+D:\Users\DenMax\git\oopWork14\client\client\bin\Debug\client.exe
+D:\Users\DenMax\git\oopWork14\client\client\bin\Debug\client.pdb
+D:\Users\DenMax\git\oopWork14\client\client\bin\Debug\ConnectLib.dll
+D:\Users\DenMax\git\oopWork14\client\client\bin\Debug\security.dll
+D:\Users\DenMax\git\oopWork14\client\client\bin\Debug\ConnectLib.pdb
+D:\Users\DenMax\git\oopWork14\client\client\obj\x86\Debug\client.csprojResolveAssemblyReference.cache
+D:\Users\DenMax\git\oopWork14\client\client\obj\x86\Debug\client.FormAutorisation.resources
+D:\Users\DenMax\git\oopWork14\client\client\obj\x86\Debug\client.FormDataGrid.resources
+D:\Users\DenMax\git\oopWork14\client\client\obj\x86\Debug\client.FormError.resources
+D:\Users\DenMax\git\oopWork14\client\client\obj\x86\Debug\client.FormMain.resources
+D:\Users\DenMax\git\oopWork14\client\client\obj\x86\Debug\client.Properties.Resources.resources
+D:\Users\DenMax\git\oopWork14\client\client\obj\x86\Debug\client.csproj.GenerateResource.Cache
+D:\Users\DenMax\git\oopWork14\client\client\obj\x86\Debug\client.exe
+D:\Users\DenMax\git\oopWork14\client\client\obj\x86\Debug\client.pdb

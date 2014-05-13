@@ -26,8 +26,19 @@ namespace server.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\v11.0;AttachDbFilename=|DataDirectory|\\bin\\Debug\\db\\oopDB.m" +
-            "df;Integrated Security=True;Connect Timeout=30")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\v11.0;AttachDbFilename=C:\\Users\\www.mobilkom.ru\\Documents\\m" +
+            "ainDB.mdf;Integrated Security=True;Connect Timeout=30")]
+        public string mainDBConnectionString {
+            get {
+                return ((string)(this["mainDBConnectionString"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\v11.0;AttachDbFilename=D:\\oopDB.mdf;Integrated Security=Tru" +
+            "e;Connect Timeout=30")]
         public string oopDBConnectionString {
             get {
                 return ((string)(this["oopDBConnectionString"]));
