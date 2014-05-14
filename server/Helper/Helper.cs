@@ -1,6 +1,6 @@
 ﻿using dbLib;
 
-namespace Helpers {
+namespace HelpersLib {
 	public delegate void StringDelegate(string text);
 
 	public abstract class Logger {

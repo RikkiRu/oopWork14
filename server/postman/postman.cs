@@ -6,7 +6,7 @@ using OpenPop.Pop3;
 using OpenPop.Mime.Header;
 using System.Timers;
 using dbLib;
-using Helpers;
+using HelpersLib;
 
 namespace PostmanLib
 {

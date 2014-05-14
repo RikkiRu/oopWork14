@@ -5,7 +5,7 @@ using System.Text;
 using System.ServiceModel;
 using ConnectLib;
 using dbLib;
-using Helpers;
+using HelpersLib;
 
 namespace server
 {

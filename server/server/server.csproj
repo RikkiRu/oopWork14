@@ -117,21 +117,21 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\analizator\analyzer.csproj">
+    <ProjectReference Include="..\analizator\AnalyzerLib.csproj">
       <Project>{f425dff5-3f70-403e-a7fc-dbbf26dc16b6}</Project>
-      <Name>analyzer</Name>
+      <Name>AnalyzerLib</Name>
     </ProjectReference>
     <ProjectReference Include="..\dbLib\dbLib.csproj">
       <Project>{c0cd0370-7f5b-4998-baf5-cbcb34e7be9f}</Project>
       <Name>dbLib</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Helper\Helpers.csproj">
+    <ProjectReference Include="..\Helper\HelpersLib.csproj">
       <Project>{ae1f0f3d-da01-4c0e-8771-06178b8f2d66}</Project>
-      <Name>Helpers</Name>
+      <Name>HelpersLib</Name>
     </ProjectReference>
-    <ProjectReference Include="..\postman\postman.csproj">
+    <ProjectReference Include="..\postman\PostmanLib.csproj">
       <Project>{a8673adc-e5a8-4216-aea0-5e137ce0f592}</Project>
-      <Name>postman</Name>
+      <Name>PostmanLib</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

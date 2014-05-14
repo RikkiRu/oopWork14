@@ -7,8 +7,7 @@ namespace dbLib
     public class dbBind : DataContext
     {
         public dbBind(string connection)
-            : base(connection)
-        { }
+			: base(connection) { }
 
         public System.Data.Linq.Table<Consulters> tConsulters
         {
