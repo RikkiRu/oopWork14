@@ -4,12 +4,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F425DFF5-3F70-403E-A7FC-DBBF26DC16B6}</ProjectGuid>
+    <ProjectGuid>{5EC1D3E8-6788-4620-AC7B-0B1FE86D2237}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>analizator</RootNamespace>
-    <AssemblyName>analizator</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <RootNamespace>QuestionHandler</RootNamespace>
+    <AssemblyName>QuestionHandler</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -31,9 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="dbLib">
-      <HintPath>..\dbLib\bin\Debug\dbLib.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
@@ -43,13 +40,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="analyzer.cs" />
+    <Compile Include="QuestionHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Helper\Helpers.csproj">
+    <ProjectReference Include="..\analizator\AnalyzerLib.csproj">
+      <Project>{f425dff5-3f70-403e-a7fc-dbbf26dc16b6}</Project>
+      <Name>AnalyzerLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\dbLib\dbLib.csproj">
+      <Project>{c0cd0370-7f5b-4998-baf5-cbcb34e7be9f}</Project>
+      <Name>dbLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Helper\HelpersLib.csproj">
       <Project>{ae1f0f3d-da01-4c0e-8771-06178b8f2d66}</Project>
-      <Name>Helpers</Name>
+      <Name>HelpersLib</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

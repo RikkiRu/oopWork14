@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>client</RootNamespace>
     <AssemblyName>client</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -123,6 +123,12 @@
   <ItemGroup>
     <Content Include="logo.ico" />
     <None Include="Resources\error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ReportCreator\ReportCreatorLib.csproj">
+      <Project>{f1d84af2-2de2-47ff-8cdb-3c35d771803e}</Project>
+      <Name>ReportCreatorLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

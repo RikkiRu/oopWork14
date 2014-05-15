@@ -1,18 +1,23 @@
 ﻿using dbLib;
 
 namespace HelpersLib {
-	public delegate void StringDelegate(string text);
+	public delegate void StringHandler(string text);
 
 	public abstract class Logger {
-		public event StringDelegate log;
+		public StringHandler log;
+		protected Logger(StringHandler log = null) {
+			this.log = log;
+		}
 		protected void Log(string text) {
-			StringDelegate handler = log;
-			if (handler != null) {
-				handler(text);
+			if (log != null) {
+				log(text);
 			}
 		}
 	}
 	public abstract class Helper : Logger {
 		protected dbBind db;
+		protected Helper(dbBind db, StringHandler log = null) : base(log) {
+			this.db = db;
+		}
 	}
 }

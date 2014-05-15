@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-//using System.Threading.Tasks;
 using System.Net.Mail;
-using Helpers;
+using HelpersLib;
 using dbLib;
 
 namespace AnalyzerLib
@@ -24,9 +23,8 @@ namespace AnalyzerLib
         //Оценка сложности вопроса
         //Поиск схожих ответов
 
-		public Analyzer(dbBind db, int PercentOfIdentity, int nDifficulityQuestion, StringDelegate log = null)
+		public Analyzer(dbBind db, int PercentOfIdentity, int nDifficulityQuestion, StringHandler log = null) : base(db)
         {
-            this.db = db;
             this.nullDifficulityOfQA = nDifficulityQuestion;
             this.PercentSome = PercentOfIdentity;
         }

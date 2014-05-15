@@ -1,0 +1,11 @@
+D:\Users\DenMax\git\oopWork14\server\QuestionHandler\bin\Debug\QuestionHandler.dll
+D:\Users\DenMax\git\oopWork14\server\QuestionHandler\bin\Debug\QuestionHandler.pdb
+D:\Users\DenMax\git\oopWork14\server\QuestionHandler\bin\Debug\analizator.dll
+D:\Users\DenMax\git\oopWork14\server\QuestionHandler\bin\Debug\dbLib.dll
+D:\Users\DenMax\git\oopWork14\server\QuestionHandler\bin\Debug\Helper.dll
+D:\Users\DenMax\git\oopWork14\server\QuestionHandler\bin\Debug\analizator.pdb
+D:\Users\DenMax\git\oopWork14\server\QuestionHandler\bin\Debug\dbLib.pdb
+D:\Users\DenMax\git\oopWork14\server\QuestionHandler\bin\Debug\Helper.pdb
+D:\Users\DenMax\git\oopWork14\server\QuestionHandler\obj\Debug\QuestionHandlerLib.csprojResolveAssemblyReference.cache
+D:\Users\DenMax\git\oopWork14\server\QuestionHandler\obj\Debug\QuestionHandler.dll
+D:\Users\DenMax\git\oopWork14\server\QuestionHandler\obj\Debug\QuestionHandler.pdb

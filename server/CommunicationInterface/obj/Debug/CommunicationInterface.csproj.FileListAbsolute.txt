@@ -1,0 +1,4 @@
+D:\Users\DenMax\git\oopWork14\server\CommunicationInterface\bin\Debug\CommunicationInterface.dll
+D:\Users\DenMax\git\oopWork14\server\CommunicationInterface\bin\Debug\CommunicationInterface.pdb
+D:\Users\DenMax\git\oopWork14\server\CommunicationInterface\obj\Debug\CommunicationInterface.dll
+D:\Users\DenMax\git\oopWork14\server\CommunicationInterface\obj\Debug\CommunicationInterface.pdb

@@ -3,9 +3,12 @@ using System.Windows.Forms;
 using System.IO;
 using security;
 using System.Security.Cryptography;
+using System.Collections.Generic;
 using System.ServiceModel;
 using ConnectLib;
-using System.Collections.Generic;
+using ReportCreator;
+using System.Diagnostics;
+
 
 namespace client
 {
@@ -88,5 +91,12 @@ namespace client
             x[1] = Convert.ToInt32(answ[1]);
             return x;
         }
+
+		private void bCreateExcel_Click(object sender, EventArgs e) {
+			ReportCreator.ReportCreator reportCreator = new ReportCreator.ReportCreator();
+			reportCreator.CreateExcelReport("1.xls");
+			ProcessStartInfo process = new ProcessStartInfo(@"D:\Program Files\Microsoft Office\Office15\EXCEL.EXE", "1.xls");
+			Process.Start(process);
+		}
     }
 }

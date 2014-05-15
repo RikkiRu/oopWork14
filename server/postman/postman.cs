@@ -10,53 +10,39 @@ using HelpersLib;
 
 namespace PostmanLib
 {
-	public delegate void MessageDelegate(List<MailMessage> newMessages);
+	public delegate void MessageHandler(List<MailMessage> newMessages);
 
     //класс почтовик. Бывший класс Франкенштейн.
 
     public class Postman : Helper
     {
-        private string hostUsername;
-        private string hostAddress;
-        private string hostPassword;
-        private Pop3Client client;
-		private string popAddress;
-		private int popPort;
-		private string smtpAdress;
-        int smtpPort;
-        public event MessageDelegate MessageRecievedEvent;
+		private PostmanConnectionInfo connectionInfo;
+		private Pop3Client client;
+        public event MessageHandler MessageRecievedEvent;
 		string questionTag;
 
         List<string> readed;
 
-        public Postman(string questionTag,dbBind db, string username, string host, string password, string popAdress, int port, string smtpAdress, int smtpPort, Timer mailTimer, MessageDelegate messagesHandler, StringDelegate log = null)
+        public Postman(string questionTag, dbBind db, PostmanConnectionInfo connectionInfo, Timer mailTimer, MessageHandler messagesHandler, StringHandler log = null) : base(db, log)
         {
 			this.questionTag = questionTag;
             this.readed = new List<string>();
             this.MessageRecievedEvent = messagesHandler;
             this.db = db;
-            this.hostUsername = username;
-            this.hostAddress = hostUsername + host;
-            this.hostPassword = password;
-            this.popAddress = popAdress;
-            this.popPort = port;
-            this.smtpAdress = smtpAdress;
-            this.smtpPort = smtpPort;
-			this.log += log;
+			this.connectionInfo = connectionInfo;
 
             client = new Pop3Client();
 
 			mailTimer.Elapsed += new ElapsedEventHandler(CheckMailBox);
-			mailTimer.Start();
         }
 
         public void Connect()
         {
 			try {
-				client.Connect(popAddress, popPort, true);
-				client.Authenticate(hostUsername, hostPassword);
+				client.Connect(this.connectionInfo.popAddress, this.connectionInfo.popPort, true);
+				client.Authenticate(this.connectionInfo.hostUsername, this.connectionInfo.hostPassword);
 				if (client.Connected)
-					Log("Успешно подключено к " + popAddress + " :: username : " + hostUsername + ", hostPassword : " + hostPassword);
+					Log("Успешно подключено к " + this.connectionInfo.popAddress + " :: username : " + this.connectionInfo.hostUsername + ", hostPassword : " + this.connectionInfo.hostPassword);
 			} catch (Exception exc) {
 				Log(exc.Message);
 			}
@@ -67,7 +53,7 @@ namespace PostmanLib
 			try {
 				client.Disconnect();
 				if (!client.Connected)
-					Log("Успешно отключено от " + popAddress);
+					Log("Успешно отключено от " + this.connectionInfo.popAddress);
 			} catch (Exception exc) {
 				Log(exc.Message);
 			}
@@ -133,9 +119,9 @@ namespace PostmanLib
         }
         public void SendAnswer(string address, string answer, string title)
         {
-            MailMessage answerMail = new MailMessage(hostAddress, address, title, answer);
-            SmtpClient mailer = new SmtpClient(smtpAdress, smtpPort);
-            mailer.Credentials = new NetworkCredential(hostAddress, hostPassword);
+			MailMessage answerMail = new MailMessage(this.connectionInfo.hostAddress, address, title, answer);
+			SmtpClient mailer = new SmtpClient(this.connectionInfo.smtpAddress, this.connectionInfo.smtpPort);
+			mailer.Credentials = new NetworkCredential(this.connectionInfo.hostAddress, this.connectionInfo.hostPassword);
             mailer.EnableSsl = true;
             mailer.Send(answerMail);
         }
@@ -163,4 +149,23 @@ namespace PostmanLib
 
 
     }
+	public class PostmanConnectionInfo {
+		public string hostUsername;
+		public string hostAddress;
+		public string hostPassword;
+		public string popAddress;
+		public int popPort;
+		public string smtpAddress;
+		public int smtpPort;
+
+		public PostmanConnectionInfo(string hostUsername, string hostAddress, string hostPassword, string popAddress, int popPort, string smtpAddress, int smtpPort) {
+			this.hostUsername = hostUsername;
+			this.hostAddress = hostAddress;
+			this.hostPassword = hostPassword;
+			this.popAddress = popAddress;
+			this.popPort = popPort;
+			this.smtpAddress = smtpAddress;
+			this.smtpPort = smtpPort;
+		}
+	}
 }

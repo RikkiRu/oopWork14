@@ -4,18 +4,17 @@ using System.Data.Linq;
 
 namespace dbLib
 {
+	[Database]
     public class dbBind : DataContext
     {
         public dbBind(string connection)
 			: base(connection) { }
 
-        public System.Data.Linq.Table<Consulters> tConsulters
-        {
-            get { return this.GetTable<Consulters>(); }
-        }
+		public System.Data.Linq.Table<Consulters> tConsulters {
+			get { return base.GetTable<Consulters>(); }
+		}
 
-        public System.Data.Linq.Table<consulter_salary> tConsultersSalary
-        {
+        public System.Data.Linq.Table<consulter_salary> tConsultersSalary {
             get { return this.GetTable<consulter_salary>(); }
         }
 

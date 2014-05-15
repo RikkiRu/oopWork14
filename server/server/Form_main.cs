@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using dbLib;
-using AnalyzerLib;
 
 
 namespace server
@@ -51,13 +50,13 @@ namespace server
             button2.Enabled = false;
             button3.Enabled = false;
             button1.Text = "Загрузка...";
-            db=new dbBind(@"Data Source=(LocalDB)\v11.0;AttachDbFilename="+textBox2.Text+";Integrated Security=True;Connect Timeout=30");
+            db=new dbBind(@"Data Source=(LocalDB)\v11.0;AttachDbFilename="+textBox2.Text+";Integrated Security=True;Connect Timeout=30;");
             Connecton = new connectionControl(textBox1.Text, db, control);
 			double timerInterval = 10.0;
 			try {
 				timerInterval = Convert.ToDouble(tbTimerInterval);
 			} catch { } finally { tbTimerInterval.Text = timerInterval.ToString() + " сек."; }
-			control = new Control(db, fEmail.name.Text, fEmail.host.Text, fEmail.pass.Text, fEmail.popadr.Text, fEmail.popport.Text, fEmail.smtpadr.Text, fEmail.smtpprot.Text, timerInterval);
+			control = new Control(db, fEmail.name.Text, fEmail.host.Text, fEmail.pass.Text, fEmail.popadr.Text, fEmail.popport.Text, fEmail.smtpadr.Text, fEmail.smtpprot.Text, timerInterval, this.log);
 			button1.Text = "Сервер запущен";
         }
 

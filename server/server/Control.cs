@@ -17,20 +17,20 @@ namespace server
 		System.Timers.Timer mailTimer;
 		Analyzer analyzer;
 
-		public Control(dbBind db, string username, string host, string password, string popAdress, string port, string smtpAdress, string smtpPort, double timerInterval) {
-            this.db = db;
+		public Control(dbBind db, string username, string host, string password, string popAdress, string port, string smtpAdress, string smtpPort, double timerInterval, StringHandler log) : base(db, log) {
 			this.mailTimer = new System.Timers.Timer(timerInterval * 1000.0);
 
 			this.analyzer = new Analyzer(db, 60, 1, Program.MainForm.log); //антипаттерн разве?
-			this.postman = new Postman("Вопрос_", db, username, host, password, popAdress, Convert.ToInt32(port), smtpAdress, Convert.ToInt32(smtpPort), mailTimer, analyzer.HandleNewMessages, Program.MainForm.log); // вот этому позавидует даже winAPI
-        }        
+			//this.postman = new Postman("Вопрос_", db, username, host, password, popAdress, Convert.ToInt32(port), smtpAdress, Convert.ToInt32(smtpPort), mailTimer, analyzer.HandleNewMessages, Program.MainForm.log); // вот этому позавидует даже winAPI
+			this.postman = new Postman("Вопрос_", db, new PostmanConnectionInfo(username, host, password, popAdress, Convert.ToInt32(port), smtpAdress, Convert.ToInt32(smtpPort)), this.mailTimer, analyzer.HandleNewMessages, this.log);
+		}        
 
         //выдать вопрос консультанту (вызывается в конекшонконтроле)
         public QA getQA (int ConsId)
         {
             foreach (var ar in db.tFQA)
             {
-                if (ar.answer == null && (ar.consulter_id==null || ar.consulter_id==-1 || ar.consulter_id==ConsId))
+                if (ar.answer == null && (ar.consulter_id==-1 || ar.consulter_id==ConsId))
                 {
                     ar.consulter_id = ConsId;
                     db.SubmitChanges();
