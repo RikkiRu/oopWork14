@@ -6,6 +6,6 @@ namespace CommunicationInterface {
 	[ServiceContract]
 	public interface ICommandHandler {
 		[OperationContract]
-		object GetCommandString(Commands command, object data = null);
+		object GetCommandString(Commands command, string data = null);
 	}
 }

@@ -1,0 +1,15 @@
+D:\Users\DenMax\git\oopWork14\client\Client 2.0\bin\Debug\Client 2.0.exe.config
+D:\Users\DenMax\git\oopWork14\client\Client 2.0\bin\Debug\Client 2.0.exe
+D:\Users\DenMax\git\oopWork14\client\Client 2.0\bin\Debug\Client 2.0.pdb
+D:\Users\DenMax\git\oopWork14\client\Client 2.0\bin\Debug\CommunicationInterface.dll
+D:\Users\DenMax\git\oopWork14\client\Client 2.0\bin\Debug\ReportCreator.dll
+D:\Users\DenMax\git\oopWork14\client\Client 2.0\bin\Debug\security.dll
+D:\Users\DenMax\git\oopWork14\client\Client 2.0\bin\Debug\CommunicationInterface.pdb
+D:\Users\DenMax\git\oopWork14\client\Client 2.0\bin\Debug\ReportCreator.pdb
+D:\Users\DenMax\git\oopWork14\client\Client 2.0\obj\Debug\Client 2.0.csprojResolveAssemblyReference.cache
+D:\Users\DenMax\git\oopWork14\client\Client 2.0\obj\Debug\Client_2._0.AuthorizationForm.resources
+D:\Users\DenMax\git\oopWork14\client\Client 2.0\obj\Debug\Client_2._0.FormError.resources
+D:\Users\DenMax\git\oopWork14\client\Client 2.0\obj\Debug\Client_2._0.Properties.Resources.resources
+D:\Users\DenMax\git\oopWork14\client\Client 2.0\obj\Debug\Client 2.0.csproj.GenerateResource.Cache
+D:\Users\DenMax\git\oopWork14\client\Client 2.0\obj\Debug\Client 2.0.exe
+D:\Users\DenMax\git\oopWork14\client\Client 2.0\obj\Debug\Client 2.0.pdb
