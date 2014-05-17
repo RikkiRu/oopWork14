@@ -11,22 +11,26 @@ using System.Diagnostics;
 
 namespace Client_2._0
 {
-    public partial class MainForm : ChildForm {
+    public partial class MainForm : Form{
 
-        int consId;
-        int tempQid;
-		Client client;
+		private int consId;
+		private int tempQid;
+		private Client client;
+		private Form parent;
+		private DataViewForm dataViewForm;
 
-        public MainForm(int id, bool admin, Client client, Form parent)
+        public MainForm(string[] loginInfo, Client client, Form parent)
         {
             InitializeComponent();
+			bool admin = Convert.ToBoolean(Convert.ToInt32(loginInfo[5]));
 			if (!admin)
 				tabControl.TabPages.RemoveAt(0);
-            this.consId = id;
+			this.consId = Convert.ToInt32(loginInfo[0]);
 			this.client = client;
 			this.parent = parent;
-            this.Text = "Ваш номер: " + consId.ToString();
-            tempQid = -1;
+			this.Text = "Пользователь: " + loginInfo[3] + ' ' + loginInfo[4];
+            this.tempQid = -1;
+			this.dataViewForm = new DataViewForm();
         }
 
 		private void MainForm_FormClosed(object sender, FormClosedEventArgs e) {
@@ -40,9 +44,20 @@ namespace Client_2._0
 		}
 
 		private void bShowTarif_Click(object sender, EventArgs e) {
-
+			dataViewForm.LoadItems(client, CommunicationInterface.Commands.SHOW_TARIF).Show();
 		}
 
+		private void bShowFAQ_Click(object sender, EventArgs e) {
+			dataViewForm.LoadItems(client, CommunicationInterface.Commands.SHOW_FAQ).Show();
+		}
+
+		private void bShowTheme_Click(object sender, EventArgs e) {
+			dataViewForm.LoadItems(client, CommunicationInterface.Commands.SHOW_THEME).Show();
+		}
+
+		private void bShowWorkers_Click(object sender, EventArgs e) {
+			dataViewForm.LoadItems(client, CommunicationInterface.Commands.SHOW_CONSULTER).Show();
+		}
         /*private void button3FAQ_Click(object sender, EventArgs e)
         {
             string[] a = { "Id", "Вопрос", "Ответ", "Id темы" };

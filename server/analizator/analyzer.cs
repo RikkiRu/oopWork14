@@ -61,7 +61,7 @@ namespace AnalyzerLib
         //если в FAQ вернет айди FAQ иначе -1
         public int inFAQ(QA x)
         {
-            FAQ f;// = db.tFAQ.Where(c => c.theme_id == x.theme_id).FirstOrDefault();
+            //FAQ f;// = db.tFAQ.Where(c => c.theme_id == x.theme_id).FirstOrDefault();
             foreach (var a in db.tFAQ)
             {
                 if(a.theme_id==x.theme_id)

@@ -76,6 +76,7 @@
 			this.bReturn.TabIndex = 5;
 			this.bReturn.Text = "Назад";
 			this.bReturn.UseVisualStyleBackColor = true;
+			this.bReturn.Click += new System.EventHandler(this.bReturn_Click);
 			// 
 			// bDelete
 			// 
@@ -99,6 +100,7 @@
 			this.Controls.Add(this.dgItemList);
 			this.Name = "DataViewForm";
 			this.Text = "Название таблицы";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DataViewForm_FormClosing);
 			((System.ComponentModel.ISupportInitialize)(this.dgItemList)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.dgCurrentItem)).EndInit();
 			this.ResumeLayout(false);

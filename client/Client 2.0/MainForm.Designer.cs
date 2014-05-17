@@ -119,6 +119,7 @@
 			this.bShowWorkers.TabIndex = 6;
 			this.bShowWorkers.Text = "Персонал";
 			this.bShowWorkers.UseVisualStyleBackColor = true;
+			this.bShowWorkers.Click += new System.EventHandler(this.bShowWorkers_Click);
 			// 
 			// bShowTheme
 			// 
@@ -128,6 +129,7 @@
 			this.bShowTheme.TabIndex = 5;
 			this.bShowTheme.Text = "Темы";
 			this.bShowTheme.UseVisualStyleBackColor = true;
+			this.bShowTheme.Click += new System.EventHandler(this.bShowTheme_Click);
 			// 
 			// bShowTarif
 			// 
@@ -147,6 +149,7 @@
 			this.bShowFAQ.TabIndex = 2;
 			this.bShowFAQ.Text = "FAQ";
 			this.bShowFAQ.UseVisualStyleBackColor = true;
+			this.bShowFAQ.Click += new System.EventHandler(this.bShowFAQ_Click);
 			// 
 			// bCreateEfficiencyChart
 			// 

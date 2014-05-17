@@ -2,7 +2,6 @@
 
 namespace HelpersLib {
 	public delegate void StringHandler(string text);
-
 	public abstract class Logger {
 		public StringHandler log;
 		protected Logger(StringHandler log = null) {

@@ -4,9 +4,6 @@ using System.Data.Linq;
 
 namespace dbLib
 {
-	public abstract class Table {
-		public char concatSymbol = '~';
-	}
 	[Database]
     public class dbBind : DataContext
     {
@@ -17,18 +14,34 @@ namespace dbLib
 			get { return base.GetTable<Consulters>(); }
 		}
 
+		public string getStringTable(ITable table) {
+			string stringTable = string.Empty;
+			var columns = this.Mapping.MappingSource
+					  .GetModel(typeof(DataContext))
+					  .GetMetaType(table.ElementType)
+					  .DataMembers;
+			for(int i = 0; i < columns.Count -1 ; ++i) {
+				stringTable += columns[i].Name + '~';
+			}
+			stringTable += Environment.NewLine;
+			foreach (var row in table) {
+				stringTable += row + Environment.NewLine;
+			}
+			return stringTable;
+		}
+
         public System.Data.Linq.Table<consulter_salary> tConsultersSalary {
             get { return this.GetTable<consulter_salary>(); }
         }
 
         public System.Data.Linq.Table<FAQ> tFAQ
         {
-            get { return this.GetTable<FAQ>(); }
+            get { return this.GetTable<FAQ>();}
         }
 
         public System.Data.Linq.Table<QA> tFQA
         {
-            get { return this.GetTable<QA>(); }
+			get { return this.GetTable<QA>(); }
         }
 
         public System.Data.Linq.Table<Tarif> tTarif
@@ -41,7 +54,9 @@ namespace dbLib
             get { return this.GetTable<Themes>(); }
         }
     }
-
+	public abstract class Table {
+		public char concatSymbol = '~';
+	}
     [Table]
     public class consulter_salary : Table
     {
@@ -89,7 +104,7 @@ namespace dbLib
             this.isBoss = IsBoss;
 		}
 		public override string ToString() {
-			return this.Id.ToString() + concatSymbol + this.firstname + concatSymbol + this.lastname + concatSymbol + this.isBoss;
+			return this.Id.ToString() + concatSymbol + this.login + concatSymbol + this.password + concatSymbol + this.firstname + concatSymbol + this.lastname + concatSymbol + this.isBoss;
 		}
     }
 
@@ -104,6 +119,10 @@ namespace dbLib
         public string answer;
         [Column(DbType = "INT")]
         public int theme_id;
+
+		public override string ToString() {
+			return this.Id.ToString() + concatSymbol + this.question + concatSymbol + this.answer + concatSymbol + this.theme_id;
+		}
     }
 
     [Table]
@@ -146,6 +165,10 @@ namespace dbLib
         public int cost;
         [Column(DbType = "INT")]
         public int multipiller;
+
+		public override string ToString() {
+			return this.Id.ToString() + concatSymbol + this.cost + concatSymbol + this.multipiller;
+		}
     }
 
     [Table]
@@ -161,5 +184,9 @@ namespace dbLib
         public int tarif_id;
         [Column(DbType = "NVARCHAR(50)")]
         public string standart_time;
+
+		public override string ToString() {
+			return this.Id.ToString() + concatSymbol + this.Theme + concatSymbol + this.difficulity + concatSymbol + this.tarif_id;
+		}
     }
 }

@@ -30,6 +30,7 @@ namespace Server_2._0 {
 			this.postman = new Postman("Вопрос_", this.db, connectionInfo, this.mailTimer, this.analyzer.HandleNewMessages, this.log);
 			this.questionHandler = new QuestionHandler(this.db, this.analyzer, this.postman.SendAnswer, this.log);
 			mailTimer.Start();
+			db.getStringTable(db.tConsulters);
 			Log("Сервер запущен");
 		}
 		public void Stop() {
@@ -37,7 +38,9 @@ namespace Server_2._0 {
 			host.Close();
 		}
 		public object GetCommandString(Commands command, string data = null) {
-			string[] processedData = data.Split('~');
+			string[] processedData = null;
+			if(data != null)
+				processedData = data.Split('~');
 			switch (command) {
 				case Commands.LOGIN:
 					var a = db.tConsulters.Where(c => c.login == processedData[0]).FirstOrDefault();
@@ -55,6 +58,14 @@ namespace Server_2._0 {
 						db.SubmitChanges();
 						return "Добавлено";
 					} catch (Exception ex) { return ex.Message; }
+				case Commands.SHOW_CONSULTER:
+					return db.getStringTable(db.tConsulters);
+				case Commands.SHOW_TARIF:
+					return db.getStringTable(db.tTarif);
+				case Commands.SHOW_FAQ:
+					return db.getStringTable(db.tFAQ);
+				case Commands.SHOW_THEME:
+					return db.getStringTable(db.tThemes);
 				/*case Commands.ADD_FAQ:
 					try {
 						var faq = db.tFAQ.Where(c => c.Id == Convert.ToInt32(s[1])).FirstOrDefault();

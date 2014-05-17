@@ -48,9 +48,9 @@ namespace Client_2._0
 				else {
 					this.Hide();
 					string[] loginInfo = (res as string).Split('~');
-					MessageBox.Show("Добро пожаловать " + loginInfo[1] + ' ' + loginInfo[2]);
+					MessageBox.Show("Добро пожаловать " + loginInfo[3] + ' ' + loginInfo[4]);
 					if (mainForm == null || mainForm.IsDisposed)
-						mainForm = new MainForm(Convert.ToInt32(loginInfo[0]), Convert.ToBoolean(Convert.ToInt32(loginInfo[3])), client, this);
+						mainForm = new MainForm(loginInfo, client, this);
 					mainForm.Show();
 				}
 			} catch (Exception ex) {
