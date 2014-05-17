@@ -36,8 +36,7 @@
 			this.buttonConnect = new System.Windows.Forms.Button();
 			this.checkBoxSaveLP = new System.Windows.Forms.CheckBox();
 			this.label3 = new System.Windows.Forms.Label();
-			this.textBox1server = new System.Windows.Forms.TextBox();
-			this.bCreateExcel = new System.Windows.Forms.Button();
+			this.tbServerAddress = new System.Windows.Forms.TextBox();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -118,33 +117,22 @@
 			this.label3.TabIndex = 6;
 			this.label3.Text = "Сервер";
 			// 
-			// textBox1server
+			// tbServerAddress
 			// 
-			this.textBox1server.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.textBox1server.Location = new System.Drawing.Point(118, 28);
-			this.textBox1server.Margin = new System.Windows.Forms.Padding(2);
-			this.textBox1server.Name = "textBox1server";
-			this.textBox1server.Size = new System.Drawing.Size(177, 30);
-			this.textBox1server.TabIndex = 7;
+			this.tbServerAddress.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.tbServerAddress.Location = new System.Drawing.Point(118, 28);
+			this.tbServerAddress.Margin = new System.Windows.Forms.Padding(2);
+			this.tbServerAddress.Name = "tbServerAddress";
+			this.tbServerAddress.Size = new System.Drawing.Size(177, 30);
+			this.tbServerAddress.TabIndex = 7;
 			// 
-			// bCreateExcel
-			// 
-			this.bCreateExcel.Location = new System.Drawing.Point(22, 147);
-			this.bCreateExcel.Name = "bCreateExcel";
-			this.bCreateExcel.Size = new System.Drawing.Size(75, 23);
-			this.bCreateExcel.TabIndex = 8;
-			this.bCreateExcel.Text = "button1";
-			this.bCreateExcel.UseVisualStyleBackColor = true;
-			this.bCreateExcel.Click += new System.EventHandler(this.bCreateExcel_Click);
-			// 
-			// FormAutorisation
+			// AuthorizationForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.WhiteSmoke;
-			this.ClientSize = new System.Drawing.Size(313, 217);
-			this.Controls.Add(this.bCreateExcel);
-			this.Controls.Add(this.textBox1server);
+			this.ClientSize = new System.Drawing.Size(313, 216);
+			this.Controls.Add(this.tbServerAddress);
 			this.Controls.Add(this.label3);
 			this.Controls.Add(this.checkBoxSaveLP);
 			this.Controls.Add(this.buttonConnect);
@@ -156,7 +144,7 @@
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Margin = new System.Windows.Forms.Padding(2);
 			this.MaximizeBox = false;
-			this.Name = "FormAutorisation";
+			this.Name = "AuthorizationForm";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Авторизация";
 			this.Load += new System.EventHandler(this.FormAutorisation_Load);
@@ -174,8 +162,7 @@
         private System.Windows.Forms.Button buttonConnect;
         private System.Windows.Forms.CheckBox checkBoxSaveLP;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1server;
-		private System.Windows.Forms.Button bCreateExcel;
+		private System.Windows.Forms.TextBox tbServerAddress;
     }
 }
 

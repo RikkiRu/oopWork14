@@ -30,7 +30,7 @@
         {
 			this.bStartServer = new System.Windows.Forms.Button();
 			this.rtbLog = new System.Windows.Forms.RichTextBox();
-			this.tbHostName = new System.Windows.Forms.TextBox();
+			this.tbHostAddress = new System.Windows.Forms.TextBox();
 			this.lHostName = new System.Windows.Forms.Label();
 			this.lDBPath = new System.Windows.Forms.Label();
 			this.tbDBPath = new System.Windows.Forms.TextBox();
@@ -59,13 +59,13 @@
 			this.rtbLog.TabIndex = 1;
 			this.rtbLog.Text = "";
 			// 
-			// tbHostName
+			// tbHostAddress
 			// 
-			this.tbHostName.Location = new System.Drawing.Point(80, 262);
-			this.tbHostName.Name = "tbHostName";
-			this.tbHostName.Size = new System.Drawing.Size(133, 20);
-			this.tbHostName.TabIndex = 2;
-			this.tbHostName.Text = "http://localhost:8081/";
+			this.tbHostAddress.Location = new System.Drawing.Point(80, 262);
+			this.tbHostAddress.Name = "tbHostAddress";
+			this.tbHostAddress.Size = new System.Drawing.Size(133, 20);
+			this.tbHostAddress.TabIndex = 2;
+			this.tbHostAddress.Text = "http://localhost:8081/";
 			// 
 			// lHostName
 			// 
@@ -113,7 +113,7 @@
 			this.bChooseDBPath.UseVisualStyleBackColor = true;
 			this.bChooseDBPath.Click += new System.EventHandler(this.bChooseDBPath_Click);
 			// 
-			// openFileDiaLog1
+			// openFileDiaLogChooseDB
 			// 
 			this.openFileDiaLogChooseDB.Title = "Выберите файл базы данных";
 			this.openFileDiaLogChooseDB.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDiaLogChooseDB_FileOk);
@@ -139,7 +139,7 @@
 			this.Controls.Add(this.lDBPath);
 			this.Controls.Add(this.tbDBPath);
 			this.Controls.Add(this.lHostName);
-			this.Controls.Add(this.tbHostName);
+			this.Controls.Add(this.tbHostAddress);
 			this.Controls.Add(this.rtbLog);
 			this.Controls.Add(this.bStartServer);
 			this.Name = "StartForm";
@@ -154,7 +154,7 @@
 
         private System.Windows.Forms.Button bStartServer;
         private System.Windows.Forms.RichTextBox rtbLog;
-        private System.Windows.Forms.TextBox tbHostName;
+        private System.Windows.Forms.TextBox tbHostAddress;
         private System.Windows.Forms.Label lHostName;
         private System.Windows.Forms.Label lDBPath;
         private System.Windows.Forms.TextBox tbDBPath;

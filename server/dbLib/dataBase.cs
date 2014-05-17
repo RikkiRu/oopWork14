@@ -4,6 +4,9 @@ using System.Data.Linq;
 
 namespace dbLib
 {
+	public abstract class Table {
+		public char concatSymbol = '~';
+	}
 	[Database]
     public class dbBind : DataContext
     {
@@ -40,7 +43,7 @@ namespace dbLib
     }
 
     [Table]
-    public class consulter_salary
+    public class consulter_salary : Table
     {
         [Column(DbType = "INT")]
         public int consulter_Id;
@@ -53,7 +56,7 @@ namespace dbLib
     }
 
     [Table]
-    public class Consulters
+    public class Consulters : Table
     {
         [Column(IsPrimaryKey = true, IsDbGenerated = true, DbType = "INT")]
         public int Id;
@@ -70,23 +73,28 @@ namespace dbLib
         [Column(DbType = "INT")]
         public int isBoss;
 
-        public Consulters()
-        { }
+        public Consulters() {}
 
         public Consulters(int id, string login, string password, string firstname, string lastname, int salary,int IsBoss)
         {
-            this.Id = id;
+			this.Set(id, login, password, firstname, lastname, salary, IsBoss);
+        }
+		public void Set(int id, string login, string password, string firstname, string lastname, int salary,int IsBoss){
+			this.Id = id;
             this.login = login;
             this.password = password;
             this.firstname = firstname;
             this.lastname = lastname;
             this.salary = salary;
             this.isBoss = IsBoss;
-        }
+		}
+		public override string ToString() {
+			return this.Id.ToString() + concatSymbol + this.firstname + concatSymbol + this.lastname + concatSymbol + this.isBoss;
+		}
     }
 
     [Table]
-    public class FAQ
+    public class FAQ : Table
     {
         [Column(IsPrimaryKey = true, IsDbGenerated = true, DbType = "INT")]
         public int Id;
@@ -99,7 +107,7 @@ namespace dbLib
     }
 
     [Table]
-    public class QA
+    public class QA : Table
     {
         [Column(IsPrimaryKey = true, IsDbGenerated = true, DbType = "INT")]
         public int Id;
@@ -130,7 +138,7 @@ namespace dbLib
     }
 
     [Table]
-    public class Tarif
+    public class Tarif : Table
     {
         [Column(IsPrimaryKey = true, IsDbGenerated = true, DbType = "INT")]
         public int Id;
@@ -141,7 +149,7 @@ namespace dbLib
     }
 
     [Table]
-    public class Themes
+    public class Themes : Table
     {
         [Column(IsPrimaryKey = true, IsDbGenerated = true, DbType = "INT")]
         public int Id;

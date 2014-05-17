@@ -5,11 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Excel = Microsoft.Office.Interop.Excel;
 
-namespace ReportCreator
+namespace ReportCreatorLib
 {
-    public class ReportCreator
+    public static class ReportCreator
     {
-		public void CreateExcelReport(string filepath) {
+		public static void CreateExcelReport(string filepath) {
 			object misValue = System.Reflection.Missing.Value;
 			Excel.Application xlApp = new Excel.Application();
 			Excel.Workbook xlWorkBook = xlApp.Workbooks.Add(misValue);

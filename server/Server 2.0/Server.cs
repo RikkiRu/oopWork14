@@ -8,86 +8,6 @@ using AnalyzerLib;
 using QuestionHandlerLib;
 using HelpersLib;
 
-/*namespace CommunicationInterface {
-	public class CommandHandler : ICommandHandler {
-		public object GetCommandString(Commands command, string data = null) {
-			switch (command) {
-				/*case Commands.LOGIN:
-					var a = db.tConsulters.Where(c => c.login == s[1]).FirstOrDefault();
-					if (a != null && a.password == s[2]) return a.Id + "~" + a.isBoss;
-					return -1;
-				case Commands.ADD_CONSULTER:
-					try {
-						var con = db.tConsulters.Where(c => c.Id == Convert.ToInt32(s[1])).FirstOrDefault();
-						add = false;
-						if (con == null) {
-							con = new Consulters();
-							add = true;
-						}
-
-						con.Id = Convert.ToInt32(s[1]);
-						con.firstname = s[2];
-						con.lastname = s[3];
-						con.login = s[4];
-						con.password = s[5];
-						con.isBoss = Convert.ToInt32(s[6]);
-						con.salary = Convert.ToInt32(s[7]);
-						if (add) db.tConsulters.InsertOnSubmit(con);
-						db.SubmitChanges();
-						return "Добавлено";
-					} catch (Exception ex) { return ex.Message; }
-				case Commands.ADD_FAQ:
-					try {
-						var con = db.tFAQ.Where(c => c.Id == Convert.ToInt32(s[1])).FirstOrDefault();
-						add = false;
-						if (con == null) {
-							con = new FAQ();
-							add = true;
-						}
-
-						con.Id = Convert.ToInt32(s[1]);
-						con.question = s[2];
-						con.answer = s[3];
-						con.theme_id = Convert.ToInt32(s[4]);
-						var test = db.tThemes.Where(c => c.Id == con.theme_id).FirstOrDefault();
-						if (test == null) throw new Exception("Нет такой темы");
-						if (add) db.tFAQ.InsertOnSubmit(con);
-						db.SubmitChanges();
-						return "Добавлено";
-					} catch (Exception ex) { return ex.Message; }
-				case Commands.ADD_TARIF:
-				case Commands.ADD_THEME:
-					try {
-						var con = db.tThemes.Where(c => c.Id == Convert.ToInt32(s[1])).FirstOrDefault();
-						add = false;
-						if (con == null) {
-							con = new Themes();
-							add = true;
-						}
-						con.Id = Convert.ToInt32(s[1]);
-						con.Theme = s[2];
-						con.difficulity = Convert.ToInt32(s[3]);
-						if (con.difficulity < 0) throw new Exception("Сложность должна быть >0");
-						con.standart_time = s[4];
-						string[] testN = s[4].Split('.');
-						if (testN.GetLength(0) != 3) throw new Exception("Формат срока не верен");
-						con.tarif_id = Convert.ToInt32(s[5]);
-						var test = db.tThemes.Where(c => c.Id == con.tarif_id).FirstOrDefault();
-						if (test == null) throw new Exception("Нет такого тарифа");
-						if (add) db.tThemes.InsertOnSubmit(con);
-						db.SubmitChanges();
-						return "Добавлено";
-					} catch (Exception ex) { return ex.Message; }
-				case Commands.GET_QUESTION:
-				case Commands.GET_SOME_QUESTIONS:
-				case Commands.SET_ANSWER:
-				default:
-					return "No such command";
-			}
-		}
-	}
-}*/
-
 namespace Server_2._0 {
 	[ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, ConcurrencyMode = ConcurrencyMode.Multiple)]
 	public class Server : Helper, ICommandHandler {
@@ -99,11 +19,10 @@ namespace Server_2._0 {
 		private QuestionHandler questionHandler;
 
 		public Server(StringHandler log = null)
-			: base(null, log) {
-			this.host = new ServiceHost(this, new Uri("http://localhost:8081/TestService"));
+			: base(null, log) {	}
+		public void Start(string baseAddress, string dbPath, PostmanConnectionInfo connectionInfo, double timerInterval = 10.0) {
+			this.host = new ServiceHost(this, new Uri(baseAddress));
 			this.host.AddServiceEndpoint(typeof(ICommandHandler), new BasicHttpBinding(), "");
-		}
-		public void Start(string dbPath, PostmanConnectionInfo connectionInfo, double timerInterval = 10.0) {
 			this.host.Open();
 			this.db = new dbBind(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=" + dbPath + ";Integrated Security=True;Connect Timeout=30");
 			this.mailTimer = new System.Timers.Timer(timerInterval * 1000.0);
@@ -118,33 +37,25 @@ namespace Server_2._0 {
 			host.Close();
 		}
 		public object GetCommandString(Commands command, string data = null) {
+			string[] processedData = data.Split('~');
 			switch (command) {
 				case Commands.LOGIN:
-					string[] login = data.Split('~');
-					var a = db.tConsulters.Where(c => c.login == login[0]).FirstOrDefault();
-					if (a != null && a.password == login[1]) return a.Id + "~" + a.isBoss;
+					var a = db.tConsulters.Where(c => c.login == processedData[0]).FirstOrDefault();
+					if (a != null && a.password == processedData[1]) return a.ToString();
 					return -1;
-				/*case Commands.ADD_CONSULTER:
+				case Commands.ADD_CONSULTER:
 					try {
-						var con = db.tConsulters.Where(c => c.Id == Convert.ToInt32(s[1])).FirstOrDefault();
-						bool add = false;
+						var con = db.tConsulters.Where(c => c.Id == Convert.ToInt32(processedData[0])).FirstOrDefault();
 						if (con == null) {
-							con = new Consulters();
-							add = true;
+							con = new Consulters(Convert.ToInt32(processedData[0]), processedData[3], processedData[4], processedData[1], processedData[2], Convert.ToInt32(processedData[6]), Convert.ToInt32(processedData[5]));
+							db.tConsulters.InsertOnSubmit(con);
+						} else {
+							con.Set(Convert.ToInt32(processedData[0]), processedData[3], processedData[4], processedData[1], processedData[2], Convert.ToInt32(processedData[6]), Convert.ToInt32(processedData[5]));
 						}
-
-						con.Id = Convert.ToInt32(s[1]);
-						con.firstname = s[2];
-						con.lastname = s[3];
-						con.login = s[4];
-						con.password = s[5];
-						con.isBoss = Convert.ToInt32(s[6]);
-						con.salary = Convert.ToInt32(s[7]);
-						if (add) db.tConsulters.InsertOnSubmit(con);
 						db.SubmitChanges();
 						return "Добавлено";
 					} catch (Exception ex) { return ex.Message; }
-				case Commands.ADD_FAQ:
+				/*case Commands.ADD_FAQ:
 					try {
 						var faq = db.tFAQ.Where(c => c.Id == Convert.ToInt32(s[1])).FirstOrDefault();
 						bool add = false;

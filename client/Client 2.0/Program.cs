@@ -5,11 +5,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Client_2._0 {
+	public class ChildForm : Form {
+		protected Form parent;
+	}
+
 	static class Program {
 		/// <summary>
 		/// Главная точка входа для приложения.
 		/// </summary>
-		public static Client client = new Client();
 		[STAThread]
 		static void Main() {
 			Application.EnableVisualStyles();

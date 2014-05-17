@@ -49,9 +49,9 @@ namespace Server_2._0
 			bStartServer.Text = "Загрузка...";
 			double timerInterval = 10.0;
 			try {
-				timerInterval = Convert.ToDouble(tbTimerInterval);
+				timerInterval = Convert.ToDouble(tbTimerInterval.Text);
 			} catch { } finally { tbTimerInterval.Text = timerInterval.ToString() + " сек."; }
-			Program.server.Start(tbDBPath.Text, new PostmanLib.PostmanConnectionInfo(emailSettingsForm.tbUserName.Text, emailSettingsForm.tbHostName.Text, emailSettingsForm.tbPassword.Text, emailSettingsForm.tbPOPAddress.Text, Convert.ToInt32(emailSettingsForm.tbPOPPort.Text), emailSettingsForm.tbSMTPAddress.Text, Convert.ToInt32(emailSettingsForm.tbSMTPPort.Text)), timerInterval);
+			Program.server.Start(tbHostAddress.Text, tbDBPath.Text, new PostmanLib.PostmanConnectionInfo(emailSettingsForm.tbUserName.Text, emailSettingsForm.tbHostName.Text, emailSettingsForm.tbPassword.Text, emailSettingsForm.tbPOPAddress.Text, Convert.ToInt32(emailSettingsForm.tbPOPPort.Text), emailSettingsForm.tbSMTPAddress.Text, Convert.ToInt32(emailSettingsForm.tbSMTPPort.Text)), timerInterval);
 
 			bStartServer.Text = "Сервер запущен";
         }

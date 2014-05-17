@@ -6,7 +6,7 @@ using System.Security.Cryptography;
 using System.Collections.Generic;
 using System.ServiceModel;
 using ConnectLib;
-using ReportCreator;
+using ReportCreatorLib;
 using System.Diagnostics;
 
 
@@ -93,8 +93,7 @@ namespace client
         }
 
 		private void bCreateExcel_Click(object sender, EventArgs e) {
-			ReportCreator.ReportCreator reportCreator = new ReportCreator.ReportCreator();
-			reportCreator.CreateExcelReport("1.xls");
+			ReportCreator.CreateExcelReport("1.xls");
 			ProcessStartInfo process = new ProcessStartInfo(@"D:\Program Files\Microsoft Office\Office15\EXCEL.EXE", "1.xls");
 			Process.Start(process);
 		}

@@ -1,5 +1,4 @@
 D:\Users\DenMax\git\oopWork14\client\ReportCreator\bin\Debug\ReportCreator.dll
 D:\Users\DenMax\git\oopWork14\client\ReportCreator\bin\Debug\ReportCreator.pdb
-D:\Users\DenMax\git\oopWork14\client\ReportCreator\obj\Debug\ReportCreatorLib.csprojResolveAssemblyReference.cache
 D:\Users\DenMax\git\oopWork14\client\ReportCreator\obj\Debug\ReportCreator.dll
 D:\Users\DenMax\git\oopWork14\client\ReportCreator\obj\Debug\ReportCreator.pdb
