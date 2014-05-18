@@ -51,7 +51,12 @@ namespace Server_2._0
 			try {
 				timerInterval = Convert.ToDouble(tbTimerInterval.Text);
 			} catch { } finally { tbTimerInterval.Text = timerInterval.ToString() + " сек."; }
-			Program.server.Start(tbHostAddress.Text, tbDBPath.Text, new PostmanLib.PostmanConnectionInfo(emailSettingsForm.tbUserName.Text, emailSettingsForm.tbHostName.Text, emailSettingsForm.tbPassword.Text, emailSettingsForm.tbPOPAddress.Text, Convert.ToInt32(emailSettingsForm.tbPOPPort.Text), emailSettingsForm.tbSMTPAddress.Text, Convert.ToInt32(emailSettingsForm.tbSMTPPort.Text)), timerInterval);
+
+            string strTempForInstance = ";Integrated Security=True;Connect Timeout=30;";
+            if (checkBox1userInstance.Checked) strTempForInstance += "User Instance=True";
+            string[] connectionStrings = { "Data Source=" + textBox1conStr1.Text + ";AttachDbFilename=", strTempForInstance };
+
+			Program.server.Start(tbHostAddress.Text, tbDBPath.Text, connectionStrings, new PostmanLib.PostmanConnectionInfo(emailSettingsForm.tbUserName.Text, emailSettingsForm.tbHostName.Text, emailSettingsForm.tbPassword.Text, emailSettingsForm.tbPOPAddress.Text, Convert.ToInt32(emailSettingsForm.tbPOPPort.Text), emailSettingsForm.tbSMTPAddress.Text, Convert.ToInt32(emailSettingsForm.tbSMTPPort.Text)), timerInterval);
 
 			bStartServer.Text = "Сервер запущен";
         }

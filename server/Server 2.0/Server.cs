@@ -20,11 +20,12 @@ namespace Server_2._0 {
 
 		public Server(StringHandler log = null)
 			: base(null, log) {	}
-		public void Start(string baseAddress, string dbPath, PostmanConnectionInfo connectionInfo, double timerInterval = 10.0) {
+		public void Start(string baseAddress, string dbPath, string[] connectionStr, PostmanConnectionInfo connectionInfo, double timerInterval = 10.0) {
 			this.host = new ServiceHost(this, new Uri(baseAddress));
 			this.host.AddServiceEndpoint(typeof(ICommandHandler), new BasicHttpBinding(), "");
 			this.host.Open();
-			this.db = new dbBind(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=" + dbPath + ";Integrated Security=True;Connect Timeout=30");
+            //Data Source=.\SQLEXPRESS;AttachDbFilename="C:\Users\user\Documents\Visual Studio 2010\Projects\oopWork14\server\Server 2.0\bin\Debug\db\oopDB.mdf";Integrated Security=True;Connect Timeout=30;User Instance=True
+            this.db = new dbBind(connectionStr[0] + dbPath + connectionStr[1]);
 			this.mailTimer = new System.Timers.Timer(timerInterval * 1000.0);
 			this.analyzer = new Analyzer(this.db, 60, 1, this.log);
 			this.postman = new Postman("Вопрос_", this.db, connectionInfo, this.mailTimer, this.analyzer.HandleNewMessages, this.log);
