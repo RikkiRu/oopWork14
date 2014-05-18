@@ -30,7 +30,7 @@ namespace Server_2._0 {
 			this.postman = new Postman("Вопрос_", this.db, connectionInfo, this.mailTimer, this.analyzer.HandleNewMessages, this.log);
 			this.questionHandler = new QuestionHandler(this.db, this.analyzer, this.postman.SendAnswer, this.log);
 			mailTimer.Start();
-			db.getStringTable(db.tConsulters);
+			//db.getStringTable(db.tConsulters);
 			Log("Сервер запущен");
 		}
 		public void Stop() {
@@ -66,6 +66,8 @@ namespace Server_2._0 {
 					return db.getStringTable(db.tFAQ);
 				case Commands.SHOW_THEME:
 					return db.getStringTable(db.tThemes);
+				case Commands.QUESTION_CHART:
+					//var questincounts = from theme in db.tThemes select 
 				/*case Commands.ADD_FAQ:
 					try {
 						var faq = db.tFAQ.Where(c => c.Id == Convert.ToInt32(s[1])).FirstOrDefault();

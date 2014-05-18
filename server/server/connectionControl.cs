@@ -89,7 +89,7 @@ namespace server
                         }
 
                         con.Id = Convert.ToInt32(s[1]);
-                        con.firstname = s[2];
+						con.firstname = s[2];
                         con.lastname = s[3];
                         con.login = s[4];
                         con.password = s[5];
@@ -222,7 +222,7 @@ namespace server
                     res = "";
                     foreach (var a in db.tConsulters)
                     {
-                        res += a.Id.ToString() + "|" + a.firstname + "|" + a.lastname + "|" + a.login + "|" + a.password + "|" + a.isBoss + "|" + a.salary;
+						res += a.Id.ToString() + "|" + a.firstname + "|" + a.lastname + "|" + a.login + "|" + a.password + "|" + a.isBoss + "|" + a.salary;
                         res += "~";
                     }
                     return res; 

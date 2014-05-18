@@ -14,11 +14,11 @@ namespace dbLib
 			get { return base.GetTable<Consulters>(); }
 		}
 
-		public string getStringTable(ITable table) {
-			string stringTable = string.Empty;
+		public string getStringTable<TEntity>(Table<TEntity> table) where TEntity : class {
+			string stringTable = typeof(TEntity).Name + Environment.NewLine;			
 			var columns = this.Mapping.MappingSource
 					  .GetModel(typeof(DataContext))
-					  .GetMetaType(table.ElementType)
+					  .GetMetaType(typeof(TEntity))
 					  .DataMembers;
 			for(int i = 0; i < columns.Count -1 ; ++i) {
 				stringTable += columns[i].Name + '~';
@@ -54,10 +54,13 @@ namespace dbLib
             get { return this.GetTable<Themes>(); }
         }
     }
+	
+	[Serializable]
 	public abstract class Table {
 		public char concatSymbol = '~';
 	}
-    [Table]
+    
+	[Table]
     public class consulter_salary : Table
     {
         [Column(DbType = "INT")]
@@ -66,10 +69,9 @@ namespace dbLib
         public DateTime date;
         [Column(DbType = "INT")]
         public int overal_salary;
-
-        public consulter_salary() { }
     }
-
+	
+	[Serializable]
     [Table]
     public class Consulters : Table
     {
@@ -79,8 +81,8 @@ namespace dbLib
         public string login;
         [Column(DbType = "NVARCHAR(50)")]
         public string password;
-        [Column(DbType = "NVARCHAR(50)")]
-        public string firstname;
+        [Column(Name="firstname", DbType = "NVARCHAR(50)")]
+		public string firstname;
         [Column(DbType = "NVARCHAR(50)")]
         public string lastname;
         [Column(DbType = "INT")]
@@ -89,16 +91,14 @@ namespace dbLib
         public int isBoss;
 
         public Consulters() {}
-
-        public Consulters(int id, string login, string password, string firstname, string lastname, int salary,int IsBoss)
-        {
+		public Consulters(int id, string login, string password, string firstname, string lastname, int salary, int IsBoss) {
 			this.Set(id, login, password, firstname, lastname, salary, IsBoss);
-        }
+		}
 		public void Set(int id, string login, string password, string firstname, string lastname, int salary,int IsBoss){
 			this.Id = id;
             this.login = login;
             this.password = password;
-            this.firstname = firstname;
+			this.firstname = firstname;
             this.lastname = lastname;
             this.salary = salary;
             this.isBoss = IsBoss;
