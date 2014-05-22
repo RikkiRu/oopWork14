@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Client_2._0</RootNamespace>
     <AssemblyName>Client 2.0</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -32,6 +33,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CommandsLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\server\CommandsLib\bin\Debug\CommandsLib.dll</HintPath>
+    </Reference>
     <Reference Include="security">
       <HintPath>..\client\bin\Debug\dll\security.dll</HintPath>
     </Reference>
@@ -49,6 +54,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ItemForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ItemForm.Designer.cs">
+      <DependentUpon>ItemForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Client.cs" />
     <Compile Include="AuthorizationForm.cs">
       <SubType>Form</SubType>
@@ -82,6 +93,9 @@
     <Compile Include="ThemePopularityChartForm.Designer.cs">
       <DependentUpon>ThemePopularityChartForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ItemForm.resx">
+      <DependentUpon>ItemForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AuthorizationForm.resx">
       <DependentUpon>AuthorizationForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -102,6 +116,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="ThemePopularityChartForm.resx">
       <DependentUpon>ThemePopularityChartForm.cs</DependentUpon>
@@ -123,10 +138,6 @@
     <ProjectReference Include="..\..\server\CommunicationInterface\CommunicationInterface.csproj">
       <Project>{c7aeb2db-8504-45e9-b231-e9ba0fd51df6}</Project>
       <Name>CommunicationInterface</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\server\dbLib\dbLib.csproj">
-      <Project>{c0cd0370-7f5b-4998-baf5-cbcb34e7be9f}</Project>
-      <Name>dbLib</Name>
     </ProjectReference>
     <ProjectReference Include="..\ReportCreator\ReportCreatorLib.csproj">
       <Project>{f1d84af2-2de2-47ff-8cdb-3c35d771803e}</Project>

@@ -1,5 +1,12 @@
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\server\CommunicationInterface\bin\Debug\CommunicationInterface.dll
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\server\CommunicationInterface\bin\Debug\CommunicationInterface.pdb
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\server\CommunicationInterface\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\server\CommunicationInterface\obj\Debug\CommunicationInterface.dll
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\server\CommunicationInterface\obj\Debug\CommunicationInterface.pdb
 D:\Users\DenMax\git\oopWork14\server\CommunicationInterface\bin\Debug\CommunicationInterface.dll
 D:\Users\DenMax\git\oopWork14\server\CommunicationInterface\bin\Debug\CommunicationInterface.pdb
+D:\Users\DenMax\git\oopWork14\server\CommunicationInterface\bin\Debug\CommandsLib.dll
+D:\Users\DenMax\git\oopWork14\server\CommunicationInterface\bin\Debug\CommandsLib.pdb
+D:\Users\DenMax\git\oopWork14\server\CommunicationInterface\obj\Debug\CommunicationInterface.csprojResolveAssemblyReference.cache
 D:\Users\DenMax\git\oopWork14\server\CommunicationInterface\obj\Debug\CommunicationInterface.dll
 D:\Users\DenMax\git\oopWork14\server\CommunicationInterface\obj\Debug\CommunicationInterface.pdb
-D:\Users\DenMax\git\oopWork14\server\CommunicationInterface\obj\Debug\CommunicationInterface.csprojResolveAssemblyReference.cache

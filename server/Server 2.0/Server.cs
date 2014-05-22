@@ -1,6 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ServiceModel;
+using System.ServiceModel.Description;
 using System.Linq;
 using CommunicationInterface;
 using dbLib;
@@ -8,6 +9,7 @@ using PostmanLib;
 using AnalyzerLib;
 using QuestionHandlerLib;
 using HelpersLib;
+//using CommandsLib;
 
 namespace Server_2._0 {
 	[ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, ConcurrencyMode = ConcurrencyMode.Multiple)]
@@ -18,7 +20,6 @@ namespace Server_2._0 {
 		private Analyzer analyzer;
 		private Postman postman;
 		private QuestionHandler questionHandler;
-		public enum Commands { LOGIN, ADD_CONSULTER, SHOW_CONSULTER, ADD_FAQ, EDIT_FAQ, SHOW_FAQ, ADD_THEME, EDIT_THEME, SHOW_THEME, ADD_TARIF, EDIT_TARIF, SHOW_TARIF, GET_QUESTION, SET_ANSWER, GET_SOME_QUESTIONS, QUESTION_CHART, EFFICIENCY_CHART, REPORT }
 
 		public Server(StringHandler log = null)
 			: base(null, log) {	}
@@ -39,12 +40,11 @@ namespace Server_2._0 {
 			mailTimer.Stop();
 			host.Close();
 		}
-		public object GetCommandString(object query, string data = null) {
-			var command = (Commands)query;
+		public object GetCommandString(Commands query, string data = null) {
 			string[] processedData = null;
 			if(data != null)
 				processedData = data.Split('~');
-			switch (command) {
+			switch (query) {
 				case Commands.LOGIN:
 					var a = db.tConsulters.Where(c => c.login == processedData[0]).FirstOrDefault();
 					if (a != null && a.password == processedData[1]) return a.ToString();
@@ -55,7 +55,7 @@ namespace Server_2._0 {
 							db.tConsulters.InsertOnSubmit(new Consulters(processedData[0], processedData[1], processedData[2], processedData[3], Convert.ToInt32(processedData[4]), Convert.ToInt32(processedData[5])));
 							db.SubmitChanges();
 						} else
-							return "Такой пользователь уже существует";
+							throw new Exception("Такой пользователь уже существует");
 						return "Добавлено";
 					} catch (Exception ex) { return ex.Message; }
 				case Commands.SHOW_CONSULTER:
@@ -77,20 +77,20 @@ namespace Server_2._0 {
 						else{
 							db.tFAQ.InsertOnSubmit(new FAQ(processedData[0], processedData[1], Convert.ToInt32(processedData[2])));
 							db.SubmitChanges();
-						}
-						/*var faq = new FAQ(processedData[0], processedData[1], Convert.ToInt32(processedData[2]));
-						faq.Id = Convert.ToInt32(s[1]);
-						faq.question = s[2];
-						faq.answer = s[3];
-						faq.theme_id = Convert.ToInt32(s[4]);
-						var test = 
-						if (test == null) throw new Exception("Нет такой темы");
-						if (add) db.tFAQ.InsertOnSubmit(faq);
-						*/
-						return "Добавлено";
+							return "Добавлено";
+						}						
 					} catch (Exception ex) { return ex.Message; }
 				case Commands.EDIT_FAQ:
-
+					try {
+						var faq = db.tFAQ.Where(c => c.Id == Convert.ToInt32(processedData[0])).FirstOrDefault();
+						if(faq != null) {
+							faq.Set(processedData[0], processedData[1], Convert.ToInt32(processedData[2]));
+							return "Добавлено";
+						} else
+							throw new Exception("Такого стандартного вопроса не существует");
+					} catch(Exception exc) {
+						return exc.Message;
+					}
 				case Commands.SHOW_FAQ:
 					return db.getStringTable(db.tFAQ);
 				case Commands.ADD_TARIF:
@@ -108,13 +108,11 @@ namespace Server_2._0 {
 					} catch (Exception ex) { return ex.Message; }
 				case Commands.EDIT_TARIF:
 					try {
-						var con = db.tTarif.Where(c => c.Id == Convert.ToInt32(s[1])).FirstOrDefault();
-						con.Id = Convert.ToInt32(s[1]);
-						con.cost = Convert.ToInt32(s[2]);
-						con.multipiller = Convert.ToInt32(s[3]);
-
-						db.tTarif.InsertOnSubmit(con);
-						db.SubmitChanges();
+						var tarif = db.tTarif.Where(c => c.Id == Convert.ToInt32(processedData[0])).FirstOrDefault();
+						if(tarif != null) {
+							tarif.Set(Convert.ToInt32(processedData[0]), Convert.ToInt32(processedData[1]));
+						}else
+							throw new Exception("Такого тарифа не существует");
 						return "Добавлено";
 					} catch (Exception ex) { return ex.Message; }
 				case Commands.SHOW_TARIF:

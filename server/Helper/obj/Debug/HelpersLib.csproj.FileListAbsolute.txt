@@ -1,3 +1,10 @@
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\server\Helper\bin\Debug\Helper.dll
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\server\Helper\bin\Debug\Helper.pdb
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\server\Helper\bin\Debug\dbLib.dll
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\server\Helper\bin\Debug\dbLib.pdb
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\server\Helper\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\server\Helper\obj\Debug\Helper.dll
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\server\Helper\obj\Debug\Helper.pdb
 D:\Users\DenMax\git\oopWork14\server\Helper\bin\Debug\Helper.dll
 D:\Users\DenMax\git\oopWork14\server\Helper\bin\Debug\Helper.pdb
 D:\Users\DenMax\git\oopWork14\server\Helper\bin\Debug\dbLib.dll

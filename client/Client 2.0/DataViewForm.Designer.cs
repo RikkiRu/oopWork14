@@ -68,6 +68,7 @@
 			this.bAdd.TabIndex = 2;
 			this.bAdd.Text = "Добавить";
 			this.bAdd.UseVisualStyleBackColor = true;
+			this.bAdd.Click += new System.EventHandler(this.bAdd_Click);
 			// 
 			// bSave
 			// 

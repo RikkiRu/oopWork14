@@ -8,6 +8,8 @@ using System.Text;
 using System.Windows.Forms;
 using ReportCreatorLib;
 using System.Diagnostics;
+using CommunicationInterface;
+//using CommandsLib;
 
 namespace Client_2._0
 {
@@ -15,19 +17,19 @@ namespace Client_2._0
 
 		private int consId;
 		private int tempQid;
-		private Client client;
+		private ICommandHandler service;
 		private Form parent;
 		private DataViewForm dataViewForm;
 		private ThemePopularityChartForm themePopularityChartForm;
 
-        public MainForm(string[] loginInfo, Client client, Form parent)
+		public MainForm(string[] loginInfo, ICommandHandler service, Form parent)
         {
             InitializeComponent();
 			bool admin = Convert.ToBoolean(Convert.ToInt32(loginInfo[5]));
 			if (!admin)
 				tabControl.TabPages.RemoveAt(0);
 			this.consId = Convert.ToInt32(loginInfo[0]);
-			this.client = client;
+			this.service = service;
 			this.parent = parent;
 			this.Text = "Пользователь: " + loginInfo[3] + ' ' + loginInfo[4];
             this.tempQid = -1;
@@ -43,28 +45,28 @@ namespace Client_2._0
 
 		private void bCreateExcel_Click(object sender, EventArgs e) {
 			ReportCreatorLib.ReportCreator.CreateExcelReport("1.xls");
-			ProcessStartInfo process = new ProcessStartInfo(@"EXCEL.EXE", "1.xls");
+			ProcessStartInfo process = new ProcessStartInfo("EXCEL.EXE", "1.xls");
 			Process.Start(process);
 		}
 
 		private void bShowTarif_Click(object sender, EventArgs e) {
-			dataViewForm.LoadItems(client, CommunicationInterface.Commands.SHOW_TARIF).Show();
+			dataViewForm.LoadItems(service, Commands.SHOW_TARIF).Show();
 		}
 
 		private void bShowFAQ_Click(object sender, EventArgs e) {
-			dataViewForm.LoadItems(client, CommunicationInterface.Commands.SHOW_FAQ).Show();
+			dataViewForm.LoadItems(service, Commands.SHOW_FAQ).Show();
 		}
 
 		private void bShowTheme_Click(object sender, EventArgs e) {
-			dataViewForm.LoadItems(client, CommunicationInterface.Commands.SHOW_THEME).Show();
+			dataViewForm.LoadItems(service, Commands.SHOW_THEME).Show();
 		}
 
 		private void bShowWorkers_Click(object sender, EventArgs e) {
-			dataViewForm.LoadItems(client, CommunicationInterface.Commands.SHOW_CONSULTER).Show();
+			dataViewForm.LoadItems(service, Commands.SHOW_CONSULTER).Show();
 		}
 
 		private void bCreateQuestionChart_Click(object sender, EventArgs e) {
-			string[] unformattedData = (client.Service.GetCommandString(CommunicationInterface.Commands.QUESTION_CHART) as string).Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+			string[] unformattedData = (service.GetCommandString(Commands.QUESTION_CHART) as string).Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
 			Dictionary<string, string> pairs = new Dictionary<string,string>();
 			foreach(string row in unformattedData){
 				string[] pair = row.Split('~');

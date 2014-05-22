@@ -1,3 +1,12 @@
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\server\analizator\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\server\analizator\obj\Debug\analizator.dll
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\server\analizator\bin\Debug\analizator.dll
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\server\analizator\bin\Debug\analizator.pdb
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\server\analizator\bin\Debug\dbLib.dll
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\server\analizator\bin\Debug\Helper.dll
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\server\analizator\bin\Debug\Helper.pdb
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\server\analizator\bin\Debug\dbLib.pdb
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\server\analizator\obj\Debug\analizator.pdb
 D:\Users\DenMax\git\oopWork14\server\analizator\bin\Debug\analizator.dll
 D:\Users\DenMax\git\oopWork14\server\analizator\bin\Debug\analizator.pdb
 D:\Users\DenMax\git\oopWork14\server\analizator\bin\Debug\dbLib.dll

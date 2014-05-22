@@ -8,16 +8,23 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CommunicationInterface;
+//using CommandsLib;
 
 namespace Client_2._0 {
 	public partial class DataViewForm : Form {
+		private Commands currentCommand;
+		private ICommandHandler service;
+		private ItemForm itemForm;
+
 		public DataViewForm() {
 			InitializeComponent();
 		}
-		public Form LoadItems(Client client, Commands command) {
+		public Form LoadItems(ICommandHandler service, Commands command) {
+			this.service = service;
+			this.currentCommand = command;
 			this.dgItemList.Rows.Clear();
 			this.dgItemList.Columns.Clear();
-			string[] Table = (client.Service.GetCommandString(command) as string).Split(new string[]{Environment.NewLine}, StringSplitOptions.RemoveEmptyEntries);
+			string[] Table = (service.GetCommandString(command) as string).Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
 			this.Text = Table[0];
 			for (int i = 1; i<Table.GetLength(0); ++i) {
 				string[] row = Table[i].Split(new char[]{'~'}, StringSplitOptions.RemoveEmptyEntries);
@@ -49,6 +56,12 @@ namespace Client_2._0 {
 			for(int i = 0; i < this.dgItemList.Rows[e.RowIndex].Cells.Count; ++i) {
 				dgCurrentItem.Rows[0].Cells[i].Value = this.dgItemList.Rows[e.RowIndex].Cells[i].Value;
 			}
+		}
+
+		private void bAdd_Click(object sender, EventArgs e) {
+			if(this.itemForm == null || this.itemForm.IsDisposed)
+				this.itemForm = new ItemForm(this.service, this.currentCommand, this.dgCurrentItem);
+			this.itemForm.Show();
 		}
 	}
 }

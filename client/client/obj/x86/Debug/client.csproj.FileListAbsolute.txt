@@ -51,6 +51,24 @@ C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14_2\oopWo
 C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14_2\oopWork14\client\client\obj\x86\Debug\client.FormMain.resources
 C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14_2\oopWork14\client\client\obj\x86\Debug\client.Properties.Resources.resources
 C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14_2\oopWork14\client\client\obj\x86\Debug\client.csproj.GenerateResource.Cache
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\client\client\bin\Debug\client.exe.config
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\client\client\obj\x86\Debug\client.exe
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\client\client\obj\x86\Debug\client.pdb
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\client\client\bin\Debug\client.exe
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\client\client\bin\Debug\client.pdb
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\client\client\bin\Debug\ConnectLib.dll
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\client\client\bin\Debug\ReportCreator.dll
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\client\client\bin\Debug\security.dll
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\client\client\bin\Debug\ReportCreator.pdb
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\client\client\bin\Debug\ConnectLib.pdb
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\client\client\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\client\client\obj\x86\Debug\client.FormAutorisation.resources
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\client\client\obj\x86\Debug\client.FormDataGrid.resources
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\client\client\obj\x86\Debug\client.FormError.resources
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\client\client\obj\x86\Debug\client.FormMain.resources
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\client\client\obj\x86\Debug\client.Properties.Resources.resources
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\client\client\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\client\client\obj\x86\Debug\GenerateResource.write.1.tlog
 D:\Users\DenMax\git\oopWork14\client\client\bin\Debug\client.exe.config
 D:\Users\DenMax\git\oopWork14\client\client\bin\Debug\client.exe
 D:\Users\DenMax\git\oopWork14\client\client\bin\Debug\client.pdb

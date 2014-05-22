@@ -1,26 +1,3 @@
-D:\Users\DenMax\git\oopWork14\server\Server 2.0\bin\Debug\Server 2.0.exe.config
-D:\Users\DenMax\git\oopWork14\server\Server 2.0\bin\Debug\Server 2.0.exe
-D:\Users\DenMax\git\oopWork14\server\Server 2.0\bin\Debug\Server 2.0.pdb
-D:\Users\DenMax\git\oopWork14\server\Server 2.0\bin\Debug\analizator.dll
-D:\Users\DenMax\git\oopWork14\server\Server 2.0\bin\Debug\CommunicationInterface.dll
-D:\Users\DenMax\git\oopWork14\server\Server 2.0\bin\Debug\dbLib.dll
-D:\Users\DenMax\git\oopWork14\server\Server 2.0\bin\Debug\Helper.dll
-D:\Users\DenMax\git\oopWork14\server\Server 2.0\bin\Debug\postman.dll
-D:\Users\DenMax\git\oopWork14\server\Server 2.0\bin\Debug\QuestionHandler.dll
-D:\Users\DenMax\git\oopWork14\server\Server 2.0\bin\Debug\OpenPop.dll
-D:\Users\DenMax\git\oopWork14\server\Server 2.0\bin\Debug\analizator.pdb
-D:\Users\DenMax\git\oopWork14\server\Server 2.0\bin\Debug\CommunicationInterface.pdb
-D:\Users\DenMax\git\oopWork14\server\Server 2.0\bin\Debug\dbLib.pdb
-D:\Users\DenMax\git\oopWork14\server\Server 2.0\bin\Debug\Helper.pdb
-D:\Users\DenMax\git\oopWork14\server\Server 2.0\bin\Debug\postman.pdb
-D:\Users\DenMax\git\oopWork14\server\Server 2.0\bin\Debug\QuestionHandler.pdb
-D:\Users\DenMax\git\oopWork14\server\Server 2.0\obj\Debug\Server 2.0.csprojResolveAssemblyReference.cache
-D:\Users\DenMax\git\oopWork14\server\Server 2.0\obj\Debug\Server_2._0.EmailSettingsForm.resources
-D:\Users\DenMax\git\oopWork14\server\Server 2.0\obj\Debug\Server_2._0.StartForm.resources
-D:\Users\DenMax\git\oopWork14\server\Server 2.0\obj\Debug\Server_2._0.Properties.Resources.resources
-D:\Users\DenMax\git\oopWork14\server\Server 2.0\obj\Debug\Server 2.0.csproj.GenerateResource.Cache
-D:\Users\DenMax\git\oopWork14\server\Server 2.0\obj\Debug\Server 2.0.exe
-D:\Users\DenMax\git\oopWork14\server\Server 2.0\obj\Debug\Server 2.0.pdb
 C:\Users\user\Documents\Visual Studio 2010\Projects\oopWork14\server\Server 2.0\bin\Debug\Server 2.0.exe.config
 C:\Users\user\Documents\Visual Studio 2010\Projects\oopWork14\server\Server 2.0\obj\Debug\Server 2.0.exe
 C:\Users\user\Documents\Visual Studio 2010\Projects\oopWork14\server\Server 2.0\obj\Debug\Server 2.0.pdb
@@ -44,3 +21,54 @@ C:\Users\user\Documents\Visual Studio 2010\Projects\oopWork14\server\Server 2.0\
 C:\Users\user\Documents\Visual Studio 2010\Projects\oopWork14\server\Server 2.0\obj\Debug\Server_2._0.StartForm.resources
 C:\Users\user\Documents\Visual Studio 2010\Projects\oopWork14\server\Server 2.0\obj\Debug\Server_2._0.Properties.Resources.resources
 C:\Users\user\Documents\Visual Studio 2010\Projects\oopWork14\server\Server 2.0\obj\Debug\Server 2.0.csproj.GenerateResource.Cache
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\server\Server 2.0\bin\Debug\Server 2.0.exe.config
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\server\Server 2.0\obj\Debug\Server 2.0.exe
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\server\Server 2.0\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\server\Server 2.0\obj\Debug\Server_2._0.EmailSettingsForm.resources
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\server\Server 2.0\obj\Debug\Server_2._0.StartForm.resources
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\server\Server 2.0\obj\Debug\Server_2._0.Properties.Resources.resources
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\server\Server 2.0\obj\Debug\GenerateResource.read.1.tlog
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\server\Server 2.0\obj\Debug\GenerateResource.write.1.tlog
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\server\Server 2.0\bin\Debug\Server 2.0.exe
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\server\Server 2.0\bin\Debug\Server 2.0.pdb
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\server\Server 2.0\bin\Debug\analizator.dll
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\server\Server 2.0\bin\Debug\CommunicationInterface.dll
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\server\Server 2.0\bin\Debug\dbLib.dll
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\server\Server 2.0\bin\Debug\Helper.dll
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\server\Server 2.0\bin\Debug\postman.dll
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\server\Server 2.0\bin\Debug\QuestionHandler.dll
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\server\Server 2.0\bin\Debug\OpenPop.dll
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\server\Server 2.0\bin\Debug\analizator.pdb
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\server\Server 2.0\bin\Debug\CommunicationInterface.pdb
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\server\Server 2.0\bin\Debug\dbLib.pdb
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\server\Server 2.0\bin\Debug\Helper.pdb
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\server\Server 2.0\bin\Debug\postman.pdb
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\server\Server 2.0\bin\Debug\QuestionHandler.pdb
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\server\Server 2.0\obj\Debug\Server 2.0.pdb
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\server\Server 2.0\bin\Debug\CommandsLib.dll
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\server\Server 2.0\bin\Debug\CommandsLib.pdb
+D:\Users\DenMax\git\oopWork14\server\Server 2.0\bin\Debug\Server 2.0.exe.config
+D:\Users\DenMax\git\oopWork14\server\Server 2.0\bin\Debug\Server 2.0.exe
+D:\Users\DenMax\git\oopWork14\server\Server 2.0\bin\Debug\Server 2.0.pdb
+D:\Users\DenMax\git\oopWork14\server\Server 2.0\bin\Debug\analizator.dll
+D:\Users\DenMax\git\oopWork14\server\Server 2.0\bin\Debug\CommandsLib.dll
+D:\Users\DenMax\git\oopWork14\server\Server 2.0\bin\Debug\CommunicationInterface.dll
+D:\Users\DenMax\git\oopWork14\server\Server 2.0\bin\Debug\dbLib.dll
+D:\Users\DenMax\git\oopWork14\server\Server 2.0\bin\Debug\Helper.dll
+D:\Users\DenMax\git\oopWork14\server\Server 2.0\bin\Debug\postman.dll
+D:\Users\DenMax\git\oopWork14\server\Server 2.0\bin\Debug\QuestionHandler.dll
+D:\Users\DenMax\git\oopWork14\server\Server 2.0\bin\Debug\OpenPop.dll
+D:\Users\DenMax\git\oopWork14\server\Server 2.0\bin\Debug\analizator.pdb
+D:\Users\DenMax\git\oopWork14\server\Server 2.0\bin\Debug\CommandsLib.pdb
+D:\Users\DenMax\git\oopWork14\server\Server 2.0\bin\Debug\CommunicationInterface.pdb
+D:\Users\DenMax\git\oopWork14\server\Server 2.0\bin\Debug\dbLib.pdb
+D:\Users\DenMax\git\oopWork14\server\Server 2.0\bin\Debug\Helper.pdb
+D:\Users\DenMax\git\oopWork14\server\Server 2.0\bin\Debug\postman.pdb
+D:\Users\DenMax\git\oopWork14\server\Server 2.0\bin\Debug\QuestionHandler.pdb
+D:\Users\DenMax\git\oopWork14\server\Server 2.0\obj\Debug\Server 2.0.csprojResolveAssemblyReference.cache
+D:\Users\DenMax\git\oopWork14\server\Server 2.0\obj\Debug\Server_2._0.EmailSettingsForm.resources
+D:\Users\DenMax\git\oopWork14\server\Server 2.0\obj\Debug\Server_2._0.StartForm.resources
+D:\Users\DenMax\git\oopWork14\server\Server 2.0\obj\Debug\Server_2._0.Properties.Resources.resources
+D:\Users\DenMax\git\oopWork14\server\Server 2.0\obj\Debug\Server 2.0.csproj.GenerateResource.Cache
+D:\Users\DenMax\git\oopWork14\server\Server 2.0\obj\Debug\Server 2.0.exe
+D:\Users\DenMax\git\oopWork14\server\Server 2.0\obj\Debug\Server 2.0.pdb

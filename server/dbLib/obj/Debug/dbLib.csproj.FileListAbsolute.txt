@@ -8,8 +8,13 @@ C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14_2\oopWo
 C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14_2\oopWork14\server\dbLib\obj\Debug\dbLib.csprojResolveAssemblyReference.cache
 C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14_2\oopWork14\server\dbLib\obj\Debug\dbLib.dll
 C:\Users\www.mobilkom.ru\Documents\Visual Studio 2010\Projects\oopWork14_2\oopWork14\server\dbLib\obj\Debug\dbLib.pdb
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\server\dbLib\bin\Debug\dbLib.dll
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\server\dbLib\bin\Debug\dbLib.pdb
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\server\dbLib\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\server\dbLib\obj\Debug\dbLib.dll
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\server\dbLib\obj\Debug\dbLib.pdb
 D:\Users\DenMax\git\oopWork14\server\dbLib\bin\Debug\dbLib.dll
 D:\Users\DenMax\git\oopWork14\server\dbLib\bin\Debug\dbLib.pdb
+D:\Users\DenMax\git\oopWork14\server\dbLib\obj\Debug\dbLib.csprojResolveAssemblyReference.cache
 D:\Users\DenMax\git\oopWork14\server\dbLib\obj\Debug\dbLib.dll
 D:\Users\DenMax\git\oopWork14\server\dbLib\obj\Debug\dbLib.pdb
-D:\Users\DenMax\git\oopWork14\server\dbLib\obj\Debug\dbLib.csprojResolveAssemblyReference.cache

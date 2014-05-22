@@ -1,3 +1,14 @@
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\server\QuestionHandler\bin\Debug\QuestionHandler.dll
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\server\QuestionHandler\bin\Debug\QuestionHandler.pdb
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\server\QuestionHandler\bin\Debug\analizator.dll
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\server\QuestionHandler\bin\Debug\dbLib.dll
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\server\QuestionHandler\bin\Debug\Helper.dll
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\server\QuestionHandler\bin\Debug\analizator.pdb
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\server\QuestionHandler\bin\Debug\dbLib.pdb
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\server\QuestionHandler\bin\Debug\Helper.pdb
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\server\QuestionHandler\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\server\QuestionHandler\obj\Debug\QuestionHandler.dll
+C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\server\QuestionHandler\obj\Debug\QuestionHandler.pdb
 D:\Users\DenMax\git\oopWork14\server\QuestionHandler\bin\Debug\QuestionHandler.dll
 D:\Users\DenMax\git\oopWork14\server\QuestionHandler\bin\Debug\QuestionHandler.pdb
 D:\Users\DenMax\git\oopWork14\server\QuestionHandler\bin\Debug\analizator.dll

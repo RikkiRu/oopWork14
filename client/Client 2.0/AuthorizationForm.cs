@@ -7,72 +7,66 @@ using System.Collections.Generic;
 using System.ServiceModel;
 using ReportCreatorLib;
 using CommunicationInterface;
+//using CommandsLib;
 
-namespace Client_2._0
-{
-    public partial class AuthorizationForm : Form
-    {
+namespace Client_2._0 {
+	public partial class AuthorizationForm : Form {
 		private MainForm mainForm;
 		private Client client;
-        private TripleDESCryptoServiceProvider myTripleDES = new TripleDESCryptoServiceProvider();
+		private TripleDESCryptoServiceProvider myTripleDES = new TripleDESCryptoServiceProvider();
 
-		public AuthorizationForm(Client client = null)
-        {
-            InitializeComponent();
-            //byte[] iv = new byte[] { 76, 32, 231, 33, 42, 150, 95, 254 };
-            //byte[] key = new byte[] { 206, 22, 190, 115, 195, 38, 146, 133, 220, 150, 113, 104, 122, 80, 221, 43, 40, 4, 28, 211, 248, 217, 140, 80 };
-			myTripleDES.IV = new byte[] { 76, 32, 231, 33, 42, 150, 95, 254 }; ;
+		public AuthorizationForm(Client client = null) {
+			InitializeComponent();
+			//byte[] iv = new byte[] { 76, 32, 231, 33, 42, 150, 95, 254 };
+			//byte[] key = new byte[] { 206, 22, 190, 115, 195, 38, 146, 133, 220, 150, 113, 104, 122, 80, 221, 43, 40, 4, 28, 211, 248, 217, 140, 80 };
+			myTripleDES.IV = new byte[] { 76, 32, 231, 33, 42, 150, 95, 254 };
 			myTripleDES.Key = new byte[] { 206, 22, 190, 115, 195, 38, 146, 133, 220, 150, 113, 104, 122, 80, 221, 43, 40, 4, 28, 211, 248, 217, 140, 80 };
 			this.client = client;
-        }
+		}
 
-        private void buttonConnect_Click(object sender, EventArgs e)
-        {
+		private void buttonConnect_Click(object sender, EventArgs e) {
 			try {
-				if (textBoxLogin.Text == "" || textBoxPassw.Text == "") {
+				if(textBoxLogin.Text == "" || textBoxPassw.Text == "") {
 					throw new Exception("Заполните поля");
 				}
-				if (checkBoxSaveLP.Checked) {
+				if(checkBoxSaveLP.Checked) {
 					FileStream fs = new FileStream(@"Config/lastLogin.cfg", FileMode.Create);
-					using (StreamWriter sw = new StreamWriter(fs)) {
+					using(StreamWriter sw = new StreamWriter(fs)) {
 						sw.WriteLine(Crypt.EncryptStringToBytes(textBoxLogin.Text, myTripleDES.Key, myTripleDES.IV));
 						sw.WriteLine(Crypt.EncryptStringToBytes(textBoxPassw.Text, myTripleDES.Key, myTripleDES.IV));
 						sw.WriteLine(Crypt.EncryptStringToBytes(tbServerAddress.Text, myTripleDES.Key, myTripleDES.IV));
 					}
 				}
 				//тут пойдет подключение
-				if (client == null)
+				if(client == null)
 					client = new Client(tbServerAddress.Text);
 				object res = client.Service.GetCommandString(Commands.LOGIN, textBoxLogin.Text + '~' + textBoxPassw.Text);
-				if (res is int) throw new Exception("Авторизация не удалась");
+				if(res is int)
+					throw new Exception("Авторизация не удалась");
 				else {
 					this.Hide();
 					string[] loginInfo = (res as string).Split('~');
 					MessageBox.Show("Добро пожаловать " + loginInfo[3] + ' ' + loginInfo[4]);
-					if (mainForm == null || mainForm.IsDisposed)
-						mainForm = new MainForm(loginInfo, client, this);
+					if(mainForm == null || mainForm.IsDisposed)
+						mainForm = new MainForm(loginInfo, client.Service, this);
 					mainForm.Show();
 				}
-			} catch (Exception ex) {
+			} catch(Exception ex) {
 				new FormError(ex.Message);
 			}
-        }
+		}
 
-        private void FormAutorisation_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                FileStream fs = new FileStream(@"Config/lastLogin.cfg", FileMode.Open);
-                using (StreamReader sr = new StreamReader(fs)) {
-                    textBoxLogin.Text = Crypt.DecryptStringFromBytes(sr.ReadLine(), myTripleDES.Key, myTripleDES.IV);
-                    textBoxPassw.Text = Crypt.DecryptStringFromBytes(sr.ReadLine(), myTripleDES.Key, myTripleDES.IV);
-                    tbServerAddress.Text = Crypt.DecryptStringFromBytes(sr.ReadLine(), myTripleDES.Key, myTripleDES.IV);
-                }
-            }
-            catch (Exception ex)
-            {
-                new FormError(ex.Message);
-            }
-        }
-    }
+		private void FormAutorisation_Load(object sender, EventArgs e) {
+			try {
+				FileStream fs = new FileStream(@"Config/lastLogin.cfg", FileMode.Open);
+				using(StreamReader sr = new StreamReader(fs)) {
+					textBoxLogin.Text = Crypt.DecryptStringFromBytes(sr.ReadLine(), myTripleDES.Key, myTripleDES.IV);
+					textBoxPassw.Text = Crypt.DecryptStringFromBytes(sr.ReadLine(), myTripleDES.Key, myTripleDES.IV);
+					tbServerAddress.Text = Crypt.DecryptStringFromBytes(sr.ReadLine(), myTripleDES.Key, myTripleDES.IV);
+				}
+			} catch(Exception ex) {
+				new FormError(ex.Message);
+			}
+		}
+	}
 }
