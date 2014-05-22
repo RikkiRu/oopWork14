@@ -18,6 +18,7 @@ namespace Client_2._0
 		private Client client;
 		private Form parent;
 		private DataViewForm dataViewForm;
+		private ThemePopularityChartForm themePopularityChartForm;
 
         public MainForm(string[] loginInfo, Client client, Form parent)
         {
@@ -31,9 +32,12 @@ namespace Client_2._0
 			this.Text = "Пользователь: " + loginInfo[3] + ' ' + loginInfo[4];
             this.tempQid = -1;
 			this.dataViewForm = new DataViewForm();
+			this.themePopularityChartForm = new ThemePopularityChartForm();
         }
 
 		private void MainForm_FormClosed(object sender, FormClosedEventArgs e) {
+			dataViewForm.Close();
+			themePopularityChartForm.Close();
 			parent.Show();
 		}
 
@@ -57,6 +61,16 @@ namespace Client_2._0
 
 		private void bShowWorkers_Click(object sender, EventArgs e) {
 			dataViewForm.LoadItems(client, CommunicationInterface.Commands.SHOW_CONSULTER).Show();
+		}
+
+		private void bCreateQuestionChart_Click(object sender, EventArgs e) {
+			string[] unformattedData = (client.Service.GetCommandString(CommunicationInterface.Commands.QUESTION_CHART) as string).Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+			Dictionary<string, string> pairs = new Dictionary<string,string>();
+			foreach(string row in unformattedData){
+				string[] pair = row.Split('~');
+				pairs.Add(pair[0], pair[1]);
+			}
+			this.themePopularityChartForm.LoadChart(pairs).Show();
 		}
         /*private void button3FAQ_Click(object sender, EventArgs e)
         {

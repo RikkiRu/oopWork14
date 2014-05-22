@@ -92,6 +92,7 @@
 			this.bCreateQuestionChart.TabIndex = 9;
 			this.bCreateQuestionChart.Text = "График вопросов";
 			this.bCreateQuestionChart.UseVisualStyleBackColor = true;
+			this.bCreateQuestionChart.Click += new System.EventHandler(this.bCreateQuestionChart_Click);
 			// 
 			// bCreateODFReport
 			// 

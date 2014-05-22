@@ -136,8 +136,8 @@ namespace server
                         }
                         con.Id = Convert.ToInt32(s[1]);
                         con.Theme = s[2];
-                        con.difficulity = Convert.ToInt32(s[3]);
-                        if (con.difficulity < 0) throw new Exception("Сложность должна быть >0");
+                        con.difficulty = Convert.ToInt32(s[3]);
+                        if (con.difficulty < 0) throw new Exception("Сложность должна быть >0");
                         con.standart_time = s[4];
                         string[] testN = s[4].Split('.');
                         if (testN.GetLength(0) != 3) throw new Exception("Формат срока не верен");
@@ -231,7 +231,7 @@ namespace server
                     res = "";
                     foreach (var a in db.tThemes)
                     {
-                        res += a.Id.ToString() + "|" + a.Theme + "|" + a.difficulity.ToString() + "|" + a.standart_time.ToString() + "|" + a.tarif_id.ToString();
+                        res += a.Id.ToString() + "|" + a.Theme + "|" + a.difficulty.ToString() + "|" + a.standart_time.ToString() + "|" + a.tarif_id.ToString();
                         res += "~";
                     }
                     return res;

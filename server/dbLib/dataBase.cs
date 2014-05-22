@@ -91,11 +91,10 @@ namespace dbLib
         public int isBoss;
 
         public Consulters() {}
-		public Consulters(int id, string login, string password, string firstname, string lastname, int salary, int IsBoss) {
-			this.Set(id, login, password, firstname, lastname, salary, IsBoss);
+		public Consulters(string login, string password, string firstname, string lastname, int salary, int IsBoss) {
+			this.Set(login, password, firstname, lastname, salary, IsBoss);
 		}
-		public void Set(int id, string login, string password, string firstname, string lastname, int salary,int IsBoss){
-			this.Id = id;
+		public void Set(string login, string password, string firstname, string lastname, int salary,int IsBoss){
             this.login = login;
             this.password = password;
 			this.firstname = firstname;
@@ -120,6 +119,15 @@ namespace dbLib
         [Column(DbType = "INT")]
         public int theme_id;
 
+		public FAQ() { }
+		public FAQ(string question, string answer, int theme_id) {
+			this.Set(question, answer, theme_id);
+		}
+		public void Set(string question, string answer, int theme_id) {
+			this.question = question;
+			this.answer = answer;
+			this.theme_id = theme_id;
+		}
 		public override string ToString() {
 			return this.Id.ToString() + concatSymbol + this.question + concatSymbol + this.answer + concatSymbol + this.theme_id;
 		}
@@ -145,6 +153,8 @@ namespace dbLib
         [Column(DbType = "NVARCHAR(MAX)")]
         public string email;
 
+		public QA() { }
+
 		public QA(string question, string answer, int theme_id, int consulter_id, DateTime start_time, DateTime end_time, string email) {
 			this.question = question;
 			this.answer = answer;
@@ -166,6 +176,14 @@ namespace dbLib
         [Column(DbType = "INT")]
         public int multipiller;
 
+		public Tarif() { }
+		public Tarif(int cost, int multipiller) {
+			this.Set(cost, multipiller);
+		}
+		public void Set(int cost, int multipiller) {
+			this.cost = cost;
+			this.multipiller = multipiller;
+		}
 		public override string ToString() {
 			return this.Id.ToString() + concatSymbol + this.cost + concatSymbol + this.multipiller;
 		}
@@ -179,14 +197,25 @@ namespace dbLib
         [Column(DbType = "NVARCHAR(50)")]
         public string Theme;
         [Column(DbType = "INT")]
-        public int difficulity;
+        public int difficulty;
         [Column(DbType = "INT")]
         public int tarif_id;
         [Column(DbType = "NVARCHAR(50)")]
         public string standart_time;
 
+		public Themes() { }
+		public Themes(string Theme, int difficulty, int tarif_id, string standart_time) {
+			this.Set(Theme, difficulty, tarif_id, standart_time);
+		}
+		public void Set(string Theme, int difficulty, int tarif_id, string standart_time) {
+			this.Theme = Theme;
+			this.difficulty = difficulty;
+			this.tarif_id = tarif_id;
+			this.standart_time = standart_time;
+		}
+
 		public override string ToString() {
-			return this.Id.ToString() + concatSymbol + this.Theme + concatSymbol + this.difficulity + concatSymbol + this.tarif_id;
+			return this.Id.ToString() + concatSymbol + this.Theme + concatSymbol + this.difficulty + concatSymbol + this.tarif_id;
 		}
     }
 }

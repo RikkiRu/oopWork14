@@ -17,3 +17,4 @@ D:\Users\DenMax\git\oopWork14\client\Client 2.0\obj\Debug\Client_2._0.Properties
 D:\Users\DenMax\git\oopWork14\client\Client 2.0\obj\Debug\Client 2.0.csproj.GenerateResource.Cache
 D:\Users\DenMax\git\oopWork14\client\Client 2.0\obj\Debug\Client 2.0.exe
 D:\Users\DenMax\git\oopWork14\client\Client 2.0\obj\Debug\Client 2.0.pdb
+D:\Users\DenMax\git\oopWork14\client\Client 2.0\obj\Debug\Client_2._0.ThemePopularityChartForm.resources

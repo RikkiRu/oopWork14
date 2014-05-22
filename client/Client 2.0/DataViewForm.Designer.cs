@@ -35,11 +35,15 @@
 			// 
 			// dgItemList
 			// 
-			this.dgItemList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+			this.dgItemList.AllowUserToAddRows = false;
+			this.dgItemList.AllowUserToDeleteRows = false;
+			this.dgItemList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.dgItemList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dgItemList.Location = new System.Drawing.Point(12, 12);
+			this.dgItemList.MultiSelect = false;
 			this.dgItemList.Name = "dgItemList";
 			this.dgItemList.ReadOnly = true;
+			this.dgItemList.RowHeadersVisible = false;
 			this.dgItemList.Size = new System.Drawing.Size(535, 207);
 			this.dgItemList.TabIndex = 0;
 			this.dgItemList.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgItemList_RowEnter);
@@ -48,7 +52,8 @@
 			// 
 			this.dgCurrentItem.AllowUserToAddRows = false;
 			this.dgCurrentItem.AllowUserToDeleteRows = false;
-			this.dgCurrentItem.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+			this.dgCurrentItem.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+			this.dgCurrentItem.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
 			this.dgCurrentItem.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dgCurrentItem.Location = new System.Drawing.Point(12, 225);
 			this.dgCurrentItem.Name = "dgCurrentItem";
