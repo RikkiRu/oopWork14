@@ -42,6 +42,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
@@ -138,6 +139,10 @@
     <ProjectReference Include="..\..\server\CommunicationInterface\CommunicationInterface.csproj">
       <Project>{c7aeb2db-8504-45e9-b231-e9ba0fd51df6}</Project>
       <Name>CommunicationInterface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\server\dbLib\dbLib.csproj">
+      <Project>{c0cd0370-7f5b-4998-baf5-cbcb34e7be9f}</Project>
+      <Name>dbLib</Name>
     </ProjectReference>
     <ProjectReference Include="..\ReportCreator\ReportCreatorLib.csproj">
       <Project>{f1d84af2-2de2-47ff-8cdb-3c35d771803e}</Project>

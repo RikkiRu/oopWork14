@@ -46,7 +46,7 @@
 			this.dgItemList.RowHeadersVisible = false;
 			this.dgItemList.Size = new System.Drawing.Size(535, 207);
 			this.dgItemList.TabIndex = 0;
-			this.dgItemList.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgItemList_RowEnter);
+			this.dgItemList.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgItemList_RowClick);
 			// 
 			// dgCurrentItem
 			// 
@@ -57,6 +57,7 @@
 			this.dgCurrentItem.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dgCurrentItem.Location = new System.Drawing.Point(12, 225);
 			this.dgCurrentItem.Name = "dgCurrentItem";
+			this.dgCurrentItem.RowHeadersVisible = false;
 			this.dgCurrentItem.Size = new System.Drawing.Size(535, 48);
 			this.dgCurrentItem.TabIndex = 1;
 			// 
@@ -78,6 +79,7 @@
 			this.bSave.TabIndex = 4;
 			this.bSave.Text = "Изменить";
 			this.bSave.UseVisualStyleBackColor = true;
+			this.bSave.Click += new System.EventHandler(this.bEdit_Click);
 			// 
 			// bReturn
 			// 
@@ -97,6 +99,7 @@
 			this.bDelete.TabIndex = 6;
 			this.bDelete.Text = "Удалить";
 			this.bDelete.UseVisualStyleBackColor = true;
+			this.bDelete.Click += new System.EventHandler(this.bDelete_Click);
 			// 
 			// DataViewForm
 			// 

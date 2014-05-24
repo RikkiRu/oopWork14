@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using CommunicationInterface;
+using dbLib;
 
 namespace Client_2._0 {
 	public partial class ItemForm : Form {
@@ -14,36 +15,47 @@ namespace Client_2._0 {
 		private ICommandHandler service;
 		private Commands currentCommand;
 
-		public ItemForm(ICommandHandler service, Commands command, DataGridView item) {
+		public ItemForm(ICommandHandler service, Commands command, object dataSource) {
 			InitializeComponent();
-			this.dgCurrentItem = item;
-			dgCurrentItem.Refresh();
 			this.service = service;
 			this.currentCommand = command;
+			this.dgCurrentItem.DataSource = dataSource;
+			this.dgCurrentItem.Columns["ID"].Visible = false;
 		}
 
 		private void bSave_Click(object sender, EventArgs e) {
 			try {
-				foreach (DataGridViewCell cell in this.dgCurrentItem.Rows[0].Cells) {
-					if (cell.Value == null)
+				object[] item = new object[this.dgCurrentItem.ColumnCount];
+				for (int i = 0; i < this.dgCurrentItem.Rows[0].Cells.Count; ++i) {
+					if (this.dgCurrentItem.Rows[0].Cells[i].Value == null)
 						throw new Exception("Заполните все поля");
-				}
-				string item = string.Empty, resultMessage = string.Empty;
-				foreach (DataGridViewCell cell in this.dgCurrentItem.Rows[0].Cells) {
-					item += cell.Value;
+					else
+						item[i] = this.dgCurrentItem.Rows[0].Cells[i].Value;
 				}
 				switch (currentCommand) {
-					case Commands.SHOW_CONSULTER:
-						resultMessage = service.GetCommandString(Commands.ADD_CONSULTER, item).ToString();
+					case Commands.EDIT_CONSULTER:
+						service.editConsulter(new Consulters(item[1].ToString(),item[2].ToString(), item[3].ToString(), item[4].ToString(), Convert.ToInt32(item[5]), Convert.ToInt32(item[6]), Convert.ToInt32(item[0])));
 						break;
-					case Commands.SHOW_FAQ:
-						resultMessage = service.GetCommandString(Commands.ADD_FAQ, item).ToString();
+					case Commands.EDIT_FAQ:
+						service.editFAQ(new FAQ(item[1].ToString(), item[2].ToString(), Convert.ToInt32(item[3]), Convert.ToInt32(item[0])));
 						break;
-					case Commands.SHOW_TARIF:
-						resultMessage = service.GetCommandString(Commands.ADD_TARIF, item).ToString();
+					case Commands.EDIT_TARIF:
+						service.editTarif(new Tarif(Convert.ToInt32(item[1]), Convert.ToInt32(item[2]), Convert.ToInt32(item[0])));
 						break;
-					case Commands.SHOW_THEME:
-						resultMessage = service.GetCommandString(Commands.ADD_THEME, item).ToString();
+					case Commands.EDIT_THEME:
+						service.editTheme(new Themes(item[1].ToString(), Convert.ToInt32(item[2]), Convert.ToInt32(item[3]), item[4].ToString(), Convert.ToInt32(item[0])));
+						break;
+					case Commands.ADD_CONSULTER:
+						service.addConsulter(new Consulters(item[1].ToString(), item[2].ToString(), item[3].ToString(), item[4].ToString(), Convert.ToInt32(item[5]), Convert.ToInt32(item[6])));
+						break;
+					case Commands.ADD_FAQ:
+						service.addFAQ(new FAQ(item[1].ToString(), item[2].ToString(), Convert.ToInt32(item[3])));
+						break;
+					case Commands.ADD_TARIF:
+						service.addTarif(new Tarif(Convert.ToInt32(item[1]), Convert.ToInt32(item[2])));
+						break;
+					case Commands.ADD_THEME:
+						service.addTheme(new Themes(item[1].ToString(), Convert.ToInt32(item[2]), Convert.ToInt32(item[3]), item[4].ToString()));
 						break;
 				}
 			} catch (Exception exc) {
@@ -52,7 +64,7 @@ namespace Client_2._0 {
 		}
 
 		private void bCancel_Click(object sender, EventArgs e) {
-
+			this.Close();
 		}
 	}
 }

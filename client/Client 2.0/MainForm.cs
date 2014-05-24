@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using ReportCreatorLib;
 using System.Diagnostics;
 using CommunicationInterface;
+using dbLib;
 //using CommandsLib;
 
 namespace Client_2._0
@@ -33,7 +34,7 @@ namespace Client_2._0
 			this.parent = parent;
 			this.Text = "Пользователь: " + loginInfo[3] + ' ' + loginInfo[4];
             this.tempQid = -1;
-			this.dataViewForm = new DataViewForm();
+			this.dataViewForm = new DataViewForm(this.service);
 			this.themePopularityChartForm = new ThemePopularityChartForm();
         }
 
@@ -50,19 +51,19 @@ namespace Client_2._0
 		}
 
 		private void bShowTarif_Click(object sender, EventArgs e) {
-			dataViewForm.LoadItems(service, Commands.SHOW_TARIF).Show();
+			dataViewForm.LoadItems<Tarif>(service.getTarifs(), Commands.SHOW_TARIF).Show();
 		}
 
 		private void bShowFAQ_Click(object sender, EventArgs e) {
-			dataViewForm.LoadItems(service, Commands.SHOW_FAQ).Show();
+			dataViewForm.LoadItems<FAQ>(service.getFAQ(), Commands.SHOW_FAQ).Show();
 		}
 
 		private void bShowTheme_Click(object sender, EventArgs e) {
-			dataViewForm.LoadItems(service, Commands.SHOW_THEME).Show();
+			dataViewForm.LoadItems<Themes>(service.getThemes(), Commands.SHOW_THEME).Show();
 		}
 
 		private void bShowWorkers_Click(object sender, EventArgs e) {
-			dataViewForm.LoadItems(service, Commands.SHOW_CONSULTER).Show();
+			dataViewForm.LoadItems<Consulters>(service.getConsulters(), Commands.SHOW_CONSULTER).Show();
 		}
 
 		private void bCreateQuestionChart_Click(object sender, EventArgs e) {

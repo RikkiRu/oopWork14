@@ -24,9 +24,9 @@ namespace QuestionHandlerLib {
         {
             foreach (var ar in db.tFQA)
             {
-                if (ar.answer == null && (ar.consulter_id==-1 || ar.consulter_id==ConsId))
+                if (ar.Answer == null && (ar.CounsulterID==-1 || ar.CounsulterID==ConsId))
                 {
-                    ar.consulter_id = ConsId;
+                    ar.CounsulterID = ConsId;
                     db.SubmitChanges();
                     return ar;
                 }
@@ -36,18 +36,18 @@ namespace QuestionHandlerLib {
 
         public void setQAanswer(int id, string answer, string datetime)
         {
-            QA x = db.tFQA.Where(c => c.Id == id).FirstOrDefault();
+            QA x = db.tFQA.Where(c => c.ID == id).FirstOrDefault();
             if (x == null) return;
             if (x.answer != null)
             {
                 throw new Exception("Ответ уже задан");
             }
             x.answer = answer;
-            Themes t = db.tThemes.Where(c=>c.Id==x.theme_id).FirstOrDefault();
+            Themes t = db.tThemes.Where(c=>c.ID==x.ThemeID).FirstOrDefault();
             if(t==null) throw new Exception("не найдена тема (serQAanswer -  control)");
             db.SubmitChanges();
 			if(this.SendAnswer != null)
-				this.SendAnswer(x.email, x.answer, "Re: " + t.Theme);
+				this.SendAnswer(x.Email, x.Answer, "Re: " + t.Theme);
         }
 
         public int getDifficulty (QA x)
@@ -67,13 +67,13 @@ namespace QuestionHandlerLib {
 
             foreach (var a in db.tFQA)
             {
-                if (!lq.Contains(a.Id)) continue;
-                res += a.Id.ToString() + "|";
-                res += a.question + "|";
-                Themes t = db.tThemes.Where(c => c.Id == a.theme_id).FirstOrDefault();
+                if (!lq.Contains(a.ID)) continue;
+                res += a.ID.ToString() + "|";
+                res += a.Question + "|";
+                Themes t = db.tThemes.Where(c => c.ID == a.ThemeID).FirstOrDefault();
                 if (t == null) throw new Exception("Не найдена тема getSomeQ control");
                 res += t.Theme + "|";
-                res += a.answer;
+                res += a.Answer;
                 res += "~";
             }
             return res;

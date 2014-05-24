@@ -6,7 +6,9 @@ C:\Documents and Settings\DenMax\Рабочий стол\oopWork14\server\Commun
 D:\Users\DenMax\git\oopWork14\server\CommunicationInterface\bin\Debug\CommunicationInterface.dll
 D:\Users\DenMax\git\oopWork14\server\CommunicationInterface\bin\Debug\CommunicationInterface.pdb
 D:\Users\DenMax\git\oopWork14\server\CommunicationInterface\bin\Debug\CommandsLib.dll
+D:\Users\DenMax\git\oopWork14\server\CommunicationInterface\bin\Debug\dbLib.dll
 D:\Users\DenMax\git\oopWork14\server\CommunicationInterface\bin\Debug\CommandsLib.pdb
+D:\Users\DenMax\git\oopWork14\server\CommunicationInterface\bin\Debug\dbLib.pdb
 D:\Users\DenMax\git\oopWork14\server\CommunicationInterface\obj\Debug\CommunicationInterface.csprojResolveAssemblyReference.cache
 D:\Users\DenMax\git\oopWork14\server\CommunicationInterface\obj\Debug\CommunicationInterface.dll
 D:\Users\DenMax\git\oopWork14\server\CommunicationInterface\obj\Debug\CommunicationInterface.pdb
