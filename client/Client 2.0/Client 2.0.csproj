@@ -33,12 +33,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CommandsLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\server\CommandsLib\bin\Debug\CommandsLib.dll</HintPath>
-    </Reference>
     <Reference Include="security">
-      <HintPath>..\client\bin\Debug\dll\security.dll</HintPath>
+      <HintPath>bin\security.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

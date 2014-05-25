@@ -149,22 +149,22 @@ namespace Client_2._0 {
 			switch (currentCommand) {
 				case Commands.SHOW_CONSULTER: {
 						var selectedItem = ((List<Consulters>)this.dgCurrentItem.DataSource)[0];
-						service.deleteConsulter(selectedItem);
+						MessageBox.Show(service.deleteConsulter(selectedItem));
 						break;
 					}
 				case Commands.SHOW_FAQ: {
 						var selectedItem = ((List<FAQ>)this.dgCurrentItem.DataSource)[0];
-						service.deleteFAQ(selectedItem);
+						MessageBox.Show(service.deleteFAQ(selectedItem));
 						break;
 					}
 				case Commands.SHOW_TARIF: {
 						var selectedItem = ((List<Tarif>)this.dgCurrentItem.DataSource)[0];
-						service.deleteTarif(selectedItem);
+						MessageBox.Show(service.deleteTarif(selectedItem));
 						break;
 					}
 				case Commands.SHOW_THEME: {
 					var selectedItem = ((List<Themes>)this.dgCurrentItem.DataSource)[0];
-					service.deleteTheme(selectedItem);
+					MessageBox.Show(service.deleteTheme(selectedItem));
 						break;
 					}
 			}

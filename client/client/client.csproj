@@ -40,13 +40,8 @@
     <ApplicationIcon>logo.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ConnectLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ConnectLib\ConnectLib\bin\Debug\ConnectLib.dll</HintPath>
-    </Reference>
-    <Reference Include="security, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\dll\security.dll</HintPath>
+    <Reference Include="security">
+      <HintPath>bin\security.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -125,6 +120,10 @@
     <None Include="Resources\error.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\ConnectLib\ConnectLib\ConnectLib.csproj">
+      <Project>{3e9a0c82-2bd0-4a6e-a562-d8173e012073}</Project>
+      <Name>ConnectLib</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ReportCreator\ReportCreatorLib.csproj">
       <Project>{f1d84af2-2de2-47ff-8cdb-3c35d771803e}</Project>
       <Name>ReportCreatorLib</Name>

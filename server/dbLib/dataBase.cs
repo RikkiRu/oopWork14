@@ -9,33 +9,47 @@ namespace dbLib {
 	[Database]
 	public class dbBind : DataContext {
 
+		private System.Data.Linq.Table<Consulters> consulters;
+		private System.Data.Linq.Table<consulter_salary> consulters_salary;
+		private System.Data.Linq.Table<FAQ> faq;
+		private System.Data.Linq.Table<QA> qa;
+		private System.Data.Linq.Table<Tarif> tarif;
+		private System.Data.Linq.Table<Themes> themes;
+
 		[DataMember]
 		public System.Data.Linq.Table<Consulters> tConsulters {
-			get { return base.GetTable<Consulters>(); }
+			get { return consulters; }
 		}
 		[DataMember]
 		public System.Data.Linq.Table<consulter_salary> tConsultersSalary {
-			get { return base.GetTable<consulter_salary>(); }
+			get { return consulters_salary; }
 		}
 		[DataMember]
 		public System.Data.Linq.Table<FAQ> tFAQ {
-			get { return base.GetTable<FAQ>(); }
+			get { return faq; }
 		}
 		[DataMember]
 		public System.Data.Linq.Table<QA> tFQA {
-			get { return base.GetTable<QA>(); }
+			get { return qa; }
 		}
 		[DataMember]
 		public System.Data.Linq.Table<Tarif> tTarif {
-			get { return base.GetTable<Tarif>(); }
+			get { return tarif; }
 		}
 		[DataMember]
 		public System.Data.Linq.Table<Themes> tThemes {
-			get { return base.GetTable<Themes>(); }
+			get { return themes; }
 		}
 
 		public dbBind(string connection)
-			: base(connection) { }
+			: base(connection) {
+				this.consulters = base.GetTable<Consulters>();
+				this.consulters_salary = base.GetTable<consulter_salary>();
+				this.faq = base.GetTable<FAQ>();
+				this.qa = base.GetTable<QA>();
+				this.tarif = base.GetTable<Tarif>();
+				this.themes = base.GetTable<Themes>();
+		}
 		public string getStringTable<TEntity>(Table<TEntity> table) where TEntity : class {
 			string stringTable = typeof(TEntity).Name + Environment.NewLine;
 			var columns = this.Mapping.MappingSource
@@ -66,7 +80,7 @@ namespace dbLib {
 		public char concatSymbol = '~';
 	}
 	[DataContract]
-	[Table]
+	[Table(Name="consulter_salary")]
 	public class consulter_salary : Table {
 
 		private int consulter_Id;
@@ -101,7 +115,7 @@ namespace dbLib {
 
 	}
 	[DataContract]
-	[Table]
+	[Table(Name="Consulters")]
 	public class Consulters : Table {
 
 		private int Id;
@@ -173,7 +187,7 @@ namespace dbLib {
 		}
 	}
 	[DataContract]
-	[Table]
+	[Table(Name="FAQ")]
 	public class FAQ : Table {
 
 		private int Id;
@@ -221,7 +235,7 @@ namespace dbLib {
 		}
 	}
 	[DataContract]
-	[Table]
+	[Table(Name="QA")]
 	public class QA : Table {
 
 		private int Id;
@@ -295,7 +309,7 @@ namespace dbLib {
 		}
 	}
 	[DataContract]
-	[Table]
+	[Table(Name="Tarif")]
 	public class Tarif : Table {
 		private int Id;
 		private int cost;
@@ -334,7 +348,7 @@ namespace dbLib {
 		}
 	}
 	[DataContract]
-	[Table]
+	[Table(Name="Themes")]
 	public class Themes : Table {
 		private int Id;
 		private string theme;

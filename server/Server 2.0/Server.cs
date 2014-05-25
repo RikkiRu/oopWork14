@@ -15,12 +15,12 @@ using System.Collections.Generic;
 
 namespace Server_2._0 {
 	[ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, ConcurrencyMode = ConcurrencyMode.Multiple)]
-	[ServiceKnownType("GetKnownTypes")]
+	//[ServiceKnownType("GetKnownTypes")]
 	public class Server : Helper, ICommandHandler {
 
-		static IEnumerable<Type> GetKnownTypes(ICustomAttributeProvider provider) {
+		/*static IEnumerable<Type> GetKnownTypes(ICustomAttributeProvider provider) {
 			return new Type[] { typeof(Type), typeof(List<consulter_salary>), typeof(List<Consulters>), typeof(List<FAQ>), typeof(List<QA>), typeof(List<Tarif>), typeof(List<Themes>), typeof(List<Table>) };
-		}
+		}*/
 
 		private ServiceHost host;
 		private System.Timers.Timer mailTimer;
@@ -28,7 +28,7 @@ namespace Server_2._0 {
 		private Postman postman;
 		private QuestionHandler questionHandler;
 
-		public Server(StringHandler log = null) : base(null, log) {	}
+		public Server(StringHandler log = null) : base(null, log) { }
 
 		public void Start(string baseAddress, string dbPath, PostmanConnectionInfo connectionInfo, double timerInterval = 360.0) {
 			this.host = new ServiceHost(this, new Uri(baseAddress));
@@ -39,23 +39,21 @@ namespace Server_2._0 {
 			this.analyzer = new Analyzer(this.db, 60, 1, this.log);
 			this.postman = new Postman("Вопрос_", this.db, connectionInfo, this.mailTimer, this.analyzer.HandleNewMessages, this.log);
 			this.questionHandler = new QuestionHandler(this.db, this.analyzer, this.postman.SendAnswer, this.log);
-            this.analyzer.QAGenerated += this.questionHandler.QAaddToDataBase;
+			this.analyzer.QAGenerated += this.questionHandler.QAaddToDataBase;
 			mailTimer.Start();
 			//db.getStringTable(db.tConsulters);
 			Log("Сервер запущен");
 		}
 		public void Stop() {
-            try
-            {
-                host.Close();
-                mailTimer.Stop();
-            }
-            catch { }
+			try {
+				host.Close();
+				mailTimer.Stop();
+			} catch { }
 		}
 		/* Service methods */
 		public object GetCommandString(Commands query, string data = null) {
 			string[] processedData = null;
-			if(data != null)
+			if (data != null)
 				processedData = data.Split('~');
 			switch (query) {
 				case Commands.LOGIN:
@@ -85,23 +83,23 @@ namespace Server_2._0 {
 					return themePopularity;
 				case Commands.ADD_FAQ:
 					try {
-						if(db.tThemes.Where(c => c.ID == Convert.ToInt32(processedData[2])).FirstOrDefault() == null)
+						if (db.tThemes.Where(c => c.ID == Convert.ToInt32(processedData[2])).FirstOrDefault() == null)
 							throw new Exception("Нет такой темы");
-						else{
+						else {
 							db.tFAQ.InsertOnSubmit(new FAQ(processedData[0], processedData[1], Convert.ToInt32(processedData[2])));
 							db.SubmitChanges();
 							return "Добавлено";
-						}						
+						}
 					} catch (Exception ex) { return ex.Message; }
 				case Commands.EDIT_FAQ:
 					try {
 						var faq = db.tFAQ.Where(c => c.ID == Convert.ToInt32(processedData[0])).FirstOrDefault();
-						if(faq != null) {
+						if (faq != null) {
 							faq.Set(processedData[0], processedData[1], Convert.ToInt32(processedData[2]));
 							return "Добавлено";
 						} else
 							throw new Exception("Такого стандартного вопроса не существует");
-					} catch(Exception exc) {
+					} catch (Exception exc) {
 						return exc.Message;
 					}
 				case Commands.SHOW_FAQ:
@@ -121,9 +119,9 @@ namespace Server_2._0 {
 				case Commands.EDIT_TARIF:
 					try {
 						var tarif = db.tTarif.Where(c => c.ID == Convert.ToInt32(processedData[0])).FirstOrDefault();
-						if(tarif != null) {
+						if (tarif != null) {
 							tarif.Set(Convert.ToInt32(processedData[0]), Convert.ToInt32(processedData[1]));
-						}else
+						} else
 							throw new Exception("Такого тарифа не существует");
 						return "Добавлено";
 					} catch (Exception ex) { return ex.Message; }
@@ -175,78 +173,143 @@ namespace Server_2._0 {
 			return this.db.getTable<Tarif>().ToList<Tarif>();
 		}
 		/* Add */
-		public void addConsulter(Consulters consulter) {
-			this.db.tConsulters.InsertOnSubmit(consulter);
-			this.db.SubmitChanges();
+		public string addConsulter(Consulters consulter) {
+			try {
+				this.db.tConsulters.InsertOnSubmit(consulter);
+				this.db.SubmitChanges();
+				return "Добавлено";
+			} catch (Exception exc) {
+				return exc.Message;
+			}
 		}
-		public void addFAQ(FAQ faq) {
-			this.db.tFAQ.InsertOnSubmit(faq);
-			this.db.SubmitChanges();
+		public string addFAQ(FAQ faq) {
+			try {
+				this.db.tFAQ.InsertOnSubmit(faq);
+				this.db.SubmitChanges();
+				return "Добавлено";
+			} catch (Exception exc) {
+				return exc.Message;
+			}
 		}
-		public void addTheme(Themes theme) {
-			this.db.tThemes.InsertOnSubmit(theme);
-			this.db.SubmitChanges();
+		public string addTheme(Themes theme) {
+			try {
+				this.db.tThemes.InsertOnSubmit(theme);
+				this.db.SubmitChanges();
+				return "Добавлено";
+			} catch (Exception exc) {
+				return exc.Message;
+			}
 		}
-		public void addTarif(Tarif tarif) {
-			this.db.tTarif.InsertOnSubmit(tarif);
-			this.db.SubmitChanges();
+		public string addTarif(Tarif tarif) {
+			try {
+				this.db.tTarif.InsertOnSubmit(tarif);
+				this.db.SubmitChanges();
+				return "Добавлено";
+			} catch (Exception exc) {
+				return exc.Message;
+			}
 		}
 		/* Delete */
-		public void deleteConsulter(Consulters consulter) {
-			this.db.tConsulters.DeleteOnSubmit(consulter);
-			this.db.SubmitChanges();
+		public string deleteConsulter(Consulters consulter) {
+			try {
+				this.db.tConsulters.DeleteOnSubmit(consulter);
+				this.db.SubmitChanges();
+				return "Добавлено";
+			} catch (Exception exc) {
+				return exc.Message;
+			}
 		}
-		public void deleteFAQ(FAQ faq) {
-			this.db.tFAQ.DeleteOnSubmit(faq);
-			this.db.SubmitChanges();
+		public string deleteFAQ(FAQ faq) {
+			try {
+				this.db.tFAQ.DeleteOnSubmit(faq);
+				this.db.SubmitChanges();
+				return "Добавлено";
+			} catch (Exception exc) {
+				return exc.Message;
+			}
 		}
-		public void deleteTheme(Themes theme) {
-			this.db.tThemes.DeleteOnSubmit(theme);
-			this.db.SubmitChanges();
+		public string deleteTheme(Themes theme) {
+			try {
+				this.db.tThemes.DeleteOnSubmit(theme);
+				this.db.SubmitChanges();
+				return "Добавлено";
+			} catch (Exception exc) {
+				return exc.Message;
+			}
 		}
-		public void deleteTarif(Tarif tarif) {
-			this.db.tTarif.DeleteOnSubmit(tarif);
-			this.db.SubmitChanges();
+		public string deleteTarif(Tarif tarif) {
+			try {
+				this.db.tTarif.DeleteOnSubmit(tarif);
+				this.db.SubmitChanges();
+				return "Добавлено";
+			} catch (Exception exc) {
+				return exc.Message;
+			}
 		}
 		/* Edit */
-		public void editConsulter(Consulters newConsulter) {
-			var oldConsulter = this.db.tConsulters.Where(old => old.ID == newConsulter.ID).First();
-            oldConsulter.Set(newConsulter.Login, newConsulter.Password, newConsulter.Firstname, newConsulter.Lastname, newConsulter.Salary, newConsulter.IsBoss, oldConsulter.ID);
-			this.db.SubmitChanges();
+		public string editConsulter(Consulters newConsulter) {
+			try {
+				var oldConsulter = this.db.tConsulters.Where(old => old.ID == newConsulter.ID).First();
+				oldConsulter.Set(newConsulter.Login, newConsulter.Password, newConsulter.Firstname, newConsulter.Lastname, newConsulter.Salary, newConsulter.IsBoss, oldConsulter.ID);
+				this.db.SubmitChanges();
+				return "Изменено";
+			} catch (Exception exc) {
+				return exc.Message;
+			}
 		}
-		public void editFAQ(FAQ newFAQ) {
-			var oldFAQ = this.db.tFAQ.Where(old => old.ID == newFAQ.ID).First();
-            oldFAQ.Set(newFAQ.Question, newFAQ.Answer, newFAQ.ThemeID, oldFAQ.ID);
-			this.db.SubmitChanges();
+		public string editFAQ(FAQ newFAQ) {
+			try {
+				var oldFAQ = this.db.tFAQ.Where(old => old.ID == newFAQ.ID).First();
+				oldFAQ.Set(newFAQ.Question, newFAQ.Answer, newFAQ.ThemeID, oldFAQ.ID);
+				this.db.SubmitChanges();
+				return "Изменено";
+			} catch (Exception exc) {
+				return exc.Message;
+			}
 		}
-		public void editTheme(Themes newTheme) {
-			var oldTheme = this.db.tThemes.Where(old => old.ID == newTheme.ID).First();
-            oldTheme.Set(newTheme.Theme, newTheme.Difficulty, newTheme.TarifID, newTheme.StandartTime, oldTheme.ID);
-			this.db.SubmitChanges();
+		public string editTheme(Themes newTheme) {
+			try {
+				var oldTheme = this.db.tThemes.Where(old => old.ID == newTheme.ID).First();
+				oldTheme.Set(newTheme.Theme, newTheme.Difficulty, newTheme.TarifID, newTheme.StandartTime, oldTheme.ID);
+				this.db.SubmitChanges();
+				return "Изменено";
+			} catch (Exception exc) {
+				return exc.Message;
+			}
 		}
-		public void editTarif(Tarif newTarif) {
-			var oldTarif = this.db.tTarif.Where(old => old.ID == newTarif.ID).First();
-            oldTarif.Set(newTarif.Cost, newTarif.Multipiller, oldTarif.ID);
-			this.db.SubmitChanges();
+		public string editTarif(Tarif newTarif) {
+			try {
+				var oldTarif = this.db.tTarif.Where(old => old.ID == newTarif.ID).First();
+				oldTarif.Set(newTarif.Cost, newTarif.Multipiller, oldTarif.ID);
+				this.db.SubmitChanges();
+				return "Изменено";
+			} catch (Exception exc) {
+				return exc.Message;
+			}
 		}
 
 
-        public QA getNewQA(int YourID)
-        {
-            return questionHandler.getQA(YourID, DateTime.Now);
-        }
+		public QA getNewQA(int YourID) {
+			return questionHandler.getQA(YourID, DateTime.Now);
+		}
 
-        public string answerQA(QA x)
-        {
-            try
-            {
-                questionHandler.setQAanswer(x, DateTime.Now);
-                return "Отправлено";
-            }
-            catch(Exception ex)
-            {
-                return ex.Message;
-            }
-        }
+		public string answerQA(QA x) {
+			try {
+				questionHandler.setQAanswer(x, DateTime.Now);
+				return "Отправлено";
+			} catch (Exception ex) {
+				return ex.Message;
+			}
+		}
+
+		public Dictionary<string, string> getThemePopularity() {
+			var themes = from theme in db.tThemes select theme;
+			var questions = from question in db.tFQA select question.ThemeID;
+			var themePopularity = new Dictionary<string, string>();
+			foreach (var theme in themes) {
+				themePopularity.Add(theme.Theme, questions.Count<int>(question => question == theme.ID).ToString());
+			}
+			return themePopularity;
+		}
 	}
 }

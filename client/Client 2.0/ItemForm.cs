@@ -27,35 +27,35 @@ namespace Client_2._0 {
 			try {
 				object[] item = new object[this.dgCurrentItem.ColumnCount];
 				for (int i = 0; i < this.dgCurrentItem.Rows[0].Cells.Count; ++i) {
-					if (this.dgCurrentItem.Rows[0].Cells[i].Value == null)
+					if (this.dgCurrentItem.Rows[0].Cells[i].Value.ToString() == string.Empty)
 						throw new Exception("Заполните все поля");
 					else
 						item[i] = this.dgCurrentItem.Rows[0].Cells[i].Value;
 				}
 				switch (currentCommand) {
 					case Commands.EDIT_CONSULTER:
-						service.editConsulter(new Consulters(item[1].ToString(),item[2].ToString(), item[3].ToString(), item[4].ToString(), Convert.ToInt32(item[5]), Convert.ToInt32(item[6]), Convert.ToInt32(item[0])));
+						MessageBox.Show(service.editConsulter(new Consulters(item[1].ToString(),item[2].ToString(), item[3].ToString(), item[4].ToString(), Convert.ToInt32(item[5]), Convert.ToInt32(item[6]), Convert.ToInt32(item[0]))));
 						break;
 					case Commands.EDIT_FAQ:
-						service.editFAQ(new FAQ(item[1].ToString(), item[2].ToString(), Convert.ToInt32(item[3]), Convert.ToInt32(item[0])));
+						MessageBox.Show(service.editFAQ(new FAQ(item[1].ToString(), item[2].ToString(), Convert.ToInt32(item[3]), Convert.ToInt32(item[0]))));
 						break;
 					case Commands.EDIT_TARIF:
-						service.editTarif(new Tarif(Convert.ToInt32(item[1]), Convert.ToInt32(item[2]), Convert.ToInt32(item[0])));
+						MessageBox.Show(service.editTarif(new Tarif(Convert.ToInt32(item[1]), Convert.ToInt32(item[2]), Convert.ToInt32(item[0]))));
 						break;
 					case Commands.EDIT_THEME:
-						service.editTheme(new Themes(item[1].ToString(), Convert.ToInt32(item[2]), Convert.ToInt32(item[3]), item[4].ToString(), Convert.ToInt32(item[0])));
+						MessageBox.Show(service.editTheme(new Themes(item[1].ToString(), Convert.ToInt32(item[2]), Convert.ToInt32(item[3]), item[4].ToString(), Convert.ToInt32(item[0]))));
 						break;
 					case Commands.ADD_CONSULTER:
-						service.addConsulter(new Consulters(item[1].ToString(), item[2].ToString(), item[3].ToString(), item[4].ToString(), Convert.ToInt32(item[5]), Convert.ToInt32(item[6])));
+						MessageBox.Show(service.addConsulter(new Consulters(item[1].ToString(), item[2].ToString(), item[3].ToString(), item[4].ToString(), Convert.ToInt32(item[5]), Convert.ToInt32(item[6]))));
 						break;
 					case Commands.ADD_FAQ:
-						service.addFAQ(new FAQ(item[1].ToString(), item[2].ToString(), Convert.ToInt32(item[3])));
+						MessageBox.Show(service.addFAQ(new FAQ(item[1].ToString(), item[2].ToString(), Convert.ToInt32(item[3]))));
 						break;
 					case Commands.ADD_TARIF:
-						service.addTarif(new Tarif(Convert.ToInt32(item[1]), Convert.ToInt32(item[2])));
+						MessageBox.Show(service.addTarif(new Tarif(Convert.ToInt32(item[1]), Convert.ToInt32(item[2]))));
 						break;
 					case Commands.ADD_THEME:
-						service.addTheme(new Themes(item[1].ToString(), Convert.ToInt32(item[2]), Convert.ToInt32(item[3]), item[4].ToString()));
+						MessageBox.Show(service.addTheme(new Themes(item[1].ToString(), Convert.ToInt32(item[2]), Convert.ToInt32(item[3]), item[4].ToString())));
 						break;
 				}
 			} catch (Exception exc) {

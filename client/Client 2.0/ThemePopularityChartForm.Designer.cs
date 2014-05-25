@@ -35,6 +35,8 @@
 			chartArea1.Name = "ChartArea1";
 			this.chartThemePopularity.ChartAreas.Add(chartArea1);
 			this.chartThemePopularity.Dock = System.Windows.Forms.DockStyle.Fill;
+			legend1.Alignment = System.Drawing.StringAlignment.Center;
+			legend1.HeaderSeparator = System.Windows.Forms.DataVisualization.Charting.LegendSeparatorStyle.Line;
 			legend1.Name = "Legend1";
 			this.chartThemePopularity.Legends.Add(legend1);
 			this.chartThemePopularity.Location = new System.Drawing.Point(0, 0);
@@ -42,7 +44,8 @@
 			this.chartThemePopularity.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Excel;
 			this.chartThemePopularity.RightToLeft = System.Windows.Forms.RightToLeft.No;
 			series1.ChartArea = "ChartArea1";
-			series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+			series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
+			series1.CustomProperties = "PieLineColor=Black, PieDrawingStyle=Concave, PieLabelStyle=Outside";
 			series1.IsValueShownAsLabel = true;
 			series1.Legend = "Legend1";
 			series1.Name = "Series1";

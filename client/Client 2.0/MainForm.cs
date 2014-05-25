@@ -47,8 +47,6 @@ namespace Client_2._0
 
 		private void bCreateExcel_Click(object sender, EventArgs e) {
 			ReportCreatorLib.ReportCreator.CreateExcelReport("1.xls");
-			ProcessStartInfo process = new ProcessStartInfo("EXCEL.EXE", "1.xls");
-			Process.Start(process);
 		}
 
 		private void bShowTarif_Click(object sender, EventArgs e) {
@@ -72,13 +70,17 @@ namespace Client_2._0
 		}
 
 		private void bCreateQuestionChart_Click(object sender, EventArgs e) {
-			string[] unformattedData = (service.GetCommandString(Commands.QUESTION_CHART) as string).Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+			/*string[] unformattedData = (service.GetCommandString(Commands.QUESTION_CHART) as string).Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
 			Dictionary<string, string> pairs = new Dictionary<string,string>();
 			foreach(string row in unformattedData){
 				string[] pair = row.Split('~');
 				pairs.Add(pair[0], pair[1]);
-			}
-			this.themePopularityChartForm.LoadChart(pairs).Show();
+			}*/
+			var data = this.service.getThemePopularity();
+			this.themePopularityChartForm.LoadChart(data).Show();
+			ReportCreator.CreateExcelChart("ThemePopularity.xls", "Популярность тем", new string[] { "Тема", "Кол-во вопросов" }, data);
+			ProcessStartInfo process = new ProcessStartInfo("EXCEL.EXE", "ThemePopularity.xls");
+			Process.Start(process);
 		}
 
 

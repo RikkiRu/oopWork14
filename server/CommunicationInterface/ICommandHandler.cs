@@ -1,6 +1,5 @@
 ﻿using System.ServiceModel;
 using CommunicationInterface;
-using CommandsLib;
 using dbLib;
 using System.Collections;
 using System;
@@ -35,6 +34,7 @@ namespace CommunicationInterface {
 		/* Idk how to make this work, but its awesome!
 		 * [OperationContract]
 		List<T> getTable<T>() where T : Table;*/
+		/* Get */
 		[OperationContract]
 		List<Consulters> getConsulters();
 		[OperationContract]
@@ -43,38 +43,41 @@ namespace CommunicationInterface {
 		List<Themes> getThemes();
 		[OperationContract]
 		List<Tarif> getTarifs();
-
+		/* Add */
 		[OperationContract]
-		void addConsulter(Consulters consulter);
+		string addConsulter(Consulters consulter);
 		[OperationContract]
-		void addFAQ(FAQ faq);
+		string addFAQ(FAQ faq);
 		[OperationContract]
-		void addTheme(Themes theme);
+		string addTheme(Themes theme);
 		[OperationContract]
-		void addTarif(Tarif tarif);
+		string addTarif(Tarif tarif);
 		[OperationContract]
-
-		void deleteConsulter(Consulters consulter);
+		/* Delete */
+		string deleteConsulter(Consulters consulter);
 		[OperationContract]
-		void deleteFAQ(FAQ faq);
+		string deleteFAQ(FAQ faq);
 		[OperationContract]
-		void deleteTheme(Themes theme);
+		string deleteTheme(Themes theme);
 		[OperationContract]
-		void deleteTarif(Tarif tarif);
-
+		string deleteTarif(Tarif tarif);
+		/* Edit */
 		[OperationContract]
-		void editConsulter(Consulters consulter);
+		string editConsulter(Consulters consulter);
 		[OperationContract]
-		void editFAQ(FAQ faq);
+		string editFAQ(FAQ faq);
 		[OperationContract]
-		void editTheme(Themes theme);
+		string editTheme(Themes theme);
 		[OperationContract]
-		void editTarif(Tarif tarif);
+		string editTarif(Tarif tarif);
 		/*[OperationContract]
 		void addItem(Table item);*/
-        [OperationContract]
+        /* Functions */
+		[OperationContract]
         QA getNewQA(int YourID);
         [OperationContract]
-        string answerQA(QA x);
+        string answerQA(QA question);
+		[OperationContract]
+		Dictionary<string, string> getThemePopularity();
 	}
 }

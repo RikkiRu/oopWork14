@@ -97,10 +97,6 @@
       <Project>{f425dff5-3f70-403e-a7fc-dbbf26dc16b6}</Project>
       <Name>AnalyzerLib</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CommandsLib\CommandsLib.csproj">
-      <Project>{41eb5ca8-0f55-498d-92ad-0d4baae96fed}</Project>
-      <Name>CommandsLib</Name>
-    </ProjectReference>
     <ProjectReference Include="..\CommunicationInterface\CommunicationInterface.csproj">
       <Project>{c7aeb2db-8504-45e9-b231-e9ba0fd51df6}</Project>
       <Name>CommunicationInterface</Name>

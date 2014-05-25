@@ -1,7 +1,0 @@
-D:\Users\DenMax\git\oopWork14\server\Helper\bin\Debug\Helper.dll
-D:\Users\DenMax\git\oopWork14\server\Helper\bin\Debug\Helper.pdb
-D:\Users\DenMax\git\oopWork14\server\Helper\bin\Debug\dbLib.dll
-D:\Users\DenMax\git\oopWork14\server\Helper\bin\Debug\dbLib.pdb
-D:\Users\DenMax\git\oopWork14\server\Helper\obj\Debug\Helpers.csprojResolveAssemblyReference.cache
-D:\Users\DenMax\git\oopWork14\server\Helper\obj\Debug\Helper.dll
-D:\Users\DenMax\git\oopWork14\server\Helper\obj\Debug\Helper.pdb
