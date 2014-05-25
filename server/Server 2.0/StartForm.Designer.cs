@@ -144,7 +144,7 @@
             // textBox1conStr1
             // 
             this.textBox1conStr1.Location = new System.Drawing.Point(359, 288);
-            this.textBox1conStr1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox1conStr1.Margin = new System.Windows.Forms.Padding(2);
             this.textBox1conStr1.Name = "textBox1conStr1";
             this.textBox1conStr1.Size = new System.Drawing.Size(118, 20);
             this.textBox1conStr1.TabIndex = 10;
@@ -154,7 +154,7 @@
             // 
             this.checkBox1userInstance.AutoSize = true;
             this.checkBox1userInstance.Location = new System.Drawing.Point(488, 288);
-            this.checkBox1userInstance.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBox1userInstance.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox1userInstance.Name = "checkBox1userInstance";
             this.checkBox1userInstance.Size = new System.Drawing.Size(89, 17);
             this.checkBox1userInstance.TabIndex = 11;
@@ -180,6 +180,7 @@
             this.Controls.Add(this.bStartServer);
             this.Name = "StartForm";
             this.Text = "Server";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.StartForm_FormClosing);
             this.Load += new System.EventHandler(this.emailSettingsForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -28,8 +28,8 @@ namespace Server_2._0 {
 		private Postman postman;
 		private QuestionHandler questionHandler;
 
-		public Server(StringHandler log = null)
-			: base(null, log) {	}
+		public Server(StringHandler log = null) : base(null, log) {	}
+
 		public void Start(string baseAddress, string dbPath, PostmanConnectionInfo connectionInfo, double timerInterval = 360.0) {
 			this.host = new ServiceHost(this, new Uri(baseAddress));
 			this.host.AddServiceEndpoint(typeof(ICommandHandler), new BasicHttpBinding(), "");
@@ -39,13 +39,18 @@ namespace Server_2._0 {
 			this.analyzer = new Analyzer(this.db, 60, 1, this.log);
 			this.postman = new Postman("Вопрос_", this.db, connectionInfo, this.mailTimer, this.analyzer.HandleNewMessages, this.log);
 			this.questionHandler = new QuestionHandler(this.db, this.analyzer, this.postman.SendAnswer, this.log);
+            this.analyzer.QAGenerated += this.questionHandler.QAaddToDataBase;
 			mailTimer.Start();
 			//db.getStringTable(db.tConsulters);
 			Log("Сервер запущен");
 		}
 		public void Stop() {
-			mailTimer.Stop();
-			host.Close();
+            try
+            {
+                host.Close();
+                mailTimer.Stop();
+            }
+            catch { }
 		}
 		/* Service methods */
 		public object GetCommandString(Commands query, string data = null) {
@@ -224,5 +229,24 @@ namespace Server_2._0 {
             oldTarif.Set(newTarif.Cost, newTarif.Multipiller, oldTarif.ID);
 			this.db.SubmitChanges();
 		}
+
+
+        public QA getNewQA(int YourID)
+        {
+            return questionHandler.getQA(YourID, DateTime.Now);
+        }
+
+        public string answerQA(QA x)
+        {
+            try
+            {
+                questionHandler.setQAanswer(x, DateTime.Now);
+                return "Отправлено";
+            }
+            catch(Exception ex)
+            {
+                return ex.Message;
+            }
+        }
 	}
 }

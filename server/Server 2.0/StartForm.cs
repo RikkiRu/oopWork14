@@ -43,10 +43,16 @@ namespace Server_2._0
 
         private void bStartServer_Click(object sender, EventArgs e)
         {
+            bStartServer.Text = "Загрузка...";
             bStartServer.Enabled = false;
             bEmailSettings.Enabled = false;
 			bChooseDBPath.Enabled = false;
-			bStartServer.Text = "Загрузка...";
+            tbDBPath.Enabled = false;
+            tbHostAddress.Enabled = false;
+            tbTimerInterval.Enabled = false;
+            textBox1conStr1.Enabled = false;
+            checkBox1userInstance.Enabled = false;
+
 			double timerInterval = 10.0;
 			try {
 				timerInterval = Convert.ToDouble(tbTimerInterval.Text);
@@ -87,5 +93,11 @@ namespace Server_2._0
 				tbTimerInterval.Text = "Введите интервал проверки почты";
 			}
 		}
+
+        private void StartForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Program.server.Stop();
+            Application.Exit();
+        }
     }
 }

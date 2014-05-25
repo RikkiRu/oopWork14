@@ -58,6 +58,9 @@ namespace dbLib {
 			return this.getTable(TEntity);
 		}*/
 	}
+
+    
+
 	[DataContract]
 	public class Table {
 		public char concatSymbol = '~';
@@ -281,14 +284,14 @@ namespace dbLib {
 
 		public QA() { }
 		public QA(string question, string answer, int theme_id, int consulter_id, DateTime start_time, DateTime end_time, string email, int Id = -1) {
-			this.question = question;
+            this.question = question;
 			this.answer = answer;
 			this.theme_id = theme_id;
 			this.consulter_id = consulter_id;
 			this.start_time = start_time;
 			this.end_time = end_time;
 			this.email = email;
-			this.Id = Id;
+            this.Id = Id;
 		}
 	}
 	[DataContract]

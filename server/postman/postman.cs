@@ -30,9 +30,7 @@ namespace PostmanLib
             this.MessageRecievedEvent = messagesHandler;
             this.db = db;
 			this.connectionInfo = connectionInfo;
-
             client = new Pop3Client();
-
 			mailTimer.Elapsed += new ElapsedEventHandler(CheckMailBox);
         }
 
@@ -78,37 +76,27 @@ namespace PostmanLib
 							message = client.GetMessage(i + 1).ToMailMessage();
 							
 							int questionTagPos = message.Subject.IndexOf(questionTag);
-							if (questionTagPos >= 0) {
+							if (questionTagPos >= 0) 
+                            {
 								message.Subject = message.Subject.Remove(questionTagPos, questionTag.Length);
+                                newMessages.Add(message);
 							}
-                            /*string test = "";
-                          
-                            for (int e1 = 0; e1 < tag.Length; e1++ )
-                            {
-                                test += message.Subject[e1];
-                            }
-                            if (test == tag)
-                            {
-                                test = "";
-                                for (int e1 = tag.Length; e1 < message.Subject.Length; e1++)
-                                {
-                                    test += message.Subject[e1];
-                                }
-                                message.Subject = test;
-                            }*/
+
                             else
                             {
                                 Log("Письмо является спамом(dat spam alert!!!)");
                             }
 
-							newMessages.Add(message);
-							Log(message.Subject);
+							
+							Log("Тема: "+message.Subject);
 						}
 					}
-					if (newMessages.Count != 0 && MessageRecievedEvent != null) {
+					if (newMessages.Count != 0 && MessageRecievedEvent != null) 
+                    {
 						Log("Посылаем письма на обработку...");
 						// Если обработка идет дольше, чем следущее исключение, то клиент не закроется, добавить в отдельный поток (сделано)
 						new System.Threading.Thread(() => MessageRecievedEvent(newMessages)).Start();
+                        //MessageRecievedEvent(newMessages);
 					}
 				}
             } catch (Exception exc) {
@@ -121,7 +109,7 @@ namespace PostmanLib
         {
 			MailMessage answerMail = new MailMessage(this.connectionInfo.hostAddress, address, title, answer);
 			SmtpClient mailer = new SmtpClient(this.connectionInfo.smtpAddress, this.connectionInfo.smtpPort);
-			mailer.Credentials = new NetworkCredential(this.connectionInfo.hostAddress, this.connectionInfo.hostPassword);
+			mailer.Credentials = new NetworkCredential(this.connectionInfo.hostUsername, this.connectionInfo.hostPassword);
             mailer.EnableSsl = true;
             mailer.Send(answerMail);
         }

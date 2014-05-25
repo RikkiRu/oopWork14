@@ -19,8 +19,26 @@ namespace QuestionHandlerLib {
 			this.SendAnswer = sendAnswerHandler;
 			this.analyzer = analyzer;
 		}
+
+        public void QAaddToDataBase(List<QA> newQA)
+        {
+            foreach(var a in newQA)
+            {
+                try
+                {
+                    db.tFQA.InsertOnSubmit(a);
+                    log("Добавляем в бд " + a.Question);
+                    db.SubmitChanges();
+                }
+                catch(Exception ex)
+                {
+                    log("В QAaddToDataBase исключение: " + ex.Message);
+                }
+            }
+        }
+
         //выдать вопрос консультанту (вызывается в конекшонконтроле)
-        public QA getQA (int ConsId)
+        public QA getQA (int ConsId, DateTime start)
         {
             foreach (var ar in db.tFQA)
             {
@@ -28,26 +46,28 @@ namespace QuestionHandlerLib {
                 {
                     ar.CounsulterID = ConsId;
                     db.SubmitChanges();
+                    log("Консультанту выслан вопрос " + ar.Question);
                     return ar;
                 }
             }
+            log("Запрос консультанта на вопрос не выполнен (нет вопросов)");
             return null;
         }
 
-        public void setQAanswer(int id, string answer, string datetime)
+        public void setQAanswer(QA y, DateTime end)
         {
-            QA x = db.tFQA.Where(c => c.ID == id).FirstOrDefault();
+            QA x = db.tFQA.Where(c => c.ID == y.ID).FirstOrDefault();
             if (x == null) return;
             if (x.answer != null)
             {
                 throw new Exception("Ответ уже задан");
             }
-            x.answer = answer;
+            x.answer = y.answer;
+            x.EndTime = end;
             Themes t = db.tThemes.Where(c=>c.ID==x.ThemeID).FirstOrDefault();
             if(t==null) throw new Exception("не найдена тема (serQAanswer -  control)");
             db.SubmitChanges();
-			if(this.SendAnswer != null)
-				this.SendAnswer(x.Email, x.Answer, "Re: " + t.Theme);
+			if(this.SendAnswer != null) this.SendAnswer(x.Email, x.Answer, "Re: " + t.Theme);
         }
 
         public int getDifficulty (QA x)

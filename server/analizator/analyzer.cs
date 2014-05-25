@@ -30,29 +30,18 @@ namespace AnalyzerLib {
 		//обработка сообщений (теги удаляет)
 		public void HandleNewMessages(List<MailMessage> newMessages) {
 			List<QA> newQuestions = new List<QA>();
-			foreach(MailMessage message in newMessages) {
+
+			foreach(MailMessage message in newMessages) 
+            {
 				QA qa = new QA(getBody(message.Body), null, getTheme(message.Subject), -1, DateTime.Now, DateTime.Now, message.From.Address);
 				qa.ThemeID = getTheme(message.Subject);
-
-				/*bool tag = false; //это убирает лишние теги из письма <div></div>
-				for (int i = 0; i < message.Body.Length; i++) {
-					if (message.Body[i] == '<') tag = true;
-
-					if (!tag) {
-						question.question += message.Body[i];
-					}
-
-				if (message.Body[i] == '>') tag = false;
-            }
-
-				question.email = message.From.Address;
-				question.start_time = DateTime.Now;
-				question.end_time = DateTime.Now;*/
-				Log(qa.Question);
 				newQuestions.Add(qa);
 			}
-			if(newQuestions.Count != 0 && QAGenerated != null)
-				QAGenerated(newQuestions);
+
+            if (newQuestions.Count != 0 && QAGenerated != null)
+            {
+                QAGenerated(newQuestions);
+            }
 		}
 
 		//если в FAQ вернет айди FAQ иначе -1

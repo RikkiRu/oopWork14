@@ -43,6 +43,7 @@ namespace CommunicationInterface {
 		List<Themes> getThemes();
 		[OperationContract]
 		List<Tarif> getTarifs();
+
 		[OperationContract]
 		void addConsulter(Consulters consulter);
 		[OperationContract]
@@ -52,6 +53,7 @@ namespace CommunicationInterface {
 		[OperationContract]
 		void addTarif(Tarif tarif);
 		[OperationContract]
+
 		void deleteConsulter(Consulters consulter);
 		[OperationContract]
 		void deleteFAQ(FAQ faq);
@@ -59,6 +61,7 @@ namespace CommunicationInterface {
 		void deleteTheme(Themes theme);
 		[OperationContract]
 		void deleteTarif(Tarif tarif);
+
 		[OperationContract]
 		void editConsulter(Consulters consulter);
 		[OperationContract]
@@ -69,5 +72,9 @@ namespace CommunicationInterface {
 		void editTarif(Tarif tarif);
 		/*[OperationContract]
 		void addItem(Table item);*/
+        [OperationContract]
+        QA getNewQA(int YourID);
+        [OperationContract]
+        string answerQA(QA x);
 	}
 }

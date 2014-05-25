@@ -22,6 +22,7 @@ namespace Client_2._0
 		private Form parent;
 		private DataViewForm dataViewForm;
 		private ThemePopularityChartForm themePopularityChartForm;
+        private QA CurrentQA;
 
 		public MainForm(string[] loginInfo, ICommandHandler service, Form parent)
         {
@@ -79,5 +80,26 @@ namespace Client_2._0
 			}
 			this.themePopularityChartForm.LoadChart(pairs).Show();
 		}
+
+
+
+        //-------------------------------------- КОНСУЛЬТАНТ -------------------------------------
+
+        private void bGetQuestion_Click(object sender, EventArgs e)
+        {
+            CurrentQA = service.getNewQA(consId);
+            if(CurrentQA==null)
+            {
+                rtbQuestion.Text = "Вопросов нету";
+                return;
+            }
+            rtbQuestion.Text = CurrentQA.Question;
+        }
+
+        private void bSetAnswer_Click(object sender, EventArgs e)
+        {
+            CurrentQA.answer = rtbAnswer.Text;
+            MessageBox.Show(service.answerQA(CurrentQA));
+        }
     }
 }

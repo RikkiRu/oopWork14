@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPgAdmin = new System.Windows.Forms.TabPage();
+            this.checkBox1showId = new System.Windows.Forms.CheckBox();
             this.bCreateQuestionChart = new System.Windows.Forms.Button();
             this.bCreateODFReport = new System.Windows.Forms.Button();
             this.bShowSalary = new System.Windows.Forms.Button();
@@ -50,7 +51,6 @@
             this.lQuestion = new System.Windows.Forms.Label();
             this.rtbQuestion = new System.Windows.Forms.RichTextBox();
             this.bGetQuestion = new System.Windows.Forms.Button();
-            this.checkBox1showId = new System.Windows.Forms.CheckBox();
             this.tabControl.SuspendLayout();
             this.tabPgAdmin.SuspendLayout();
             this.tabPgUser.SuspendLayout();
@@ -85,6 +85,16 @@
             this.tabPgAdmin.TabIndex = 0;
             this.tabPgAdmin.Text = "Администратор";
             this.tabPgAdmin.UseVisualStyleBackColor = true;
+            // 
+            // checkBox1showId
+            // 
+            this.checkBox1showId.AutoSize = true;
+            this.checkBox1showId.Location = new System.Drawing.Point(444, 284);
+            this.checkBox1showId.Name = "checkBox1showId";
+            this.checkBox1showId.Size = new System.Drawing.Size(117, 22);
+            this.checkBox1showId.TabIndex = 10;
+            this.checkBox1showId.Text = "Показывать ID";
+            this.checkBox1showId.UseVisualStyleBackColor = true;
             // 
             // bCreateQuestionChart
             // 
@@ -205,7 +215,7 @@
             // 
             // bFindSimularAnswers
             // 
-            this.bFindSimularAnswers.Location = new System.Drawing.Point(400, 147);
+            this.bFindSimularAnswers.Location = new System.Drawing.Point(398, 147);
             this.bFindSimularAnswers.Name = "bFindSimularAnswers";
             this.bFindSimularAnswers.Size = new System.Drawing.Size(141, 53);
             this.bFindSimularAnswers.TabIndex = 7;
@@ -214,7 +224,7 @@
             // 
             // bFindSimularQuestions
             // 
-            this.bFindSimularQuestions.Location = new System.Drawing.Point(401, 82);
+            this.bFindSimularQuestions.Location = new System.Drawing.Point(399, 82);
             this.bFindSimularQuestions.Name = "bFindSimularQuestions";
             this.bFindSimularQuestions.Size = new System.Drawing.Size(141, 53);
             this.bFindSimularQuestions.TabIndex = 6;
@@ -229,6 +239,7 @@
             this.bSetAnswer.TabIndex = 5;
             this.bSetAnswer.Text = "Ответить";
             this.bSetAnswer.UseVisualStyleBackColor = true;
+            this.bSetAnswer.Click += new System.EventHandler(this.bSetAnswer_Click);
             // 
             // rtbAnswer
             // 
@@ -263,26 +274,17 @@
             this.rtbQuestion.ReadOnly = true;
             this.rtbQuestion.Size = new System.Drawing.Size(347, 153);
             this.rtbQuestion.TabIndex = 1;
-            this.rtbQuestion.Text = "Запросите вопрос (или мы это сделаем за вас мвахахахахаха) я тупо угораю";
+            this.rtbQuestion.Text = "Запросите вопрос";
             // 
             // bGetQuestion
             // 
-            this.bGetQuestion.Location = new System.Drawing.Point(399, 23);
+            this.bGetQuestion.Location = new System.Drawing.Point(397, 23);
             this.bGetQuestion.Name = "bGetQuestion";
             this.bGetQuestion.Size = new System.Drawing.Size(142, 53);
             this.bGetQuestion.TabIndex = 0;
             this.bGetQuestion.Text = "Запросить вопрос";
             this.bGetQuestion.UseVisualStyleBackColor = true;
-            // 
-            // checkBox1showId
-            // 
-            this.checkBox1showId.AutoSize = true;
-            this.checkBox1showId.Location = new System.Drawing.Point(444, 284);
-            this.checkBox1showId.Name = "checkBox1showId";
-            this.checkBox1showId.Size = new System.Drawing.Size(117, 22);
-            this.checkBox1showId.TabIndex = 10;
-            this.checkBox1showId.Text = "Показывать ID";
-            this.checkBox1showId.UseVisualStyleBackColor = true;
+            this.bGetQuestion.Click += new System.EventHandler(this.bGetQuestion_Click);
             // 
             // MainForm
             // 
