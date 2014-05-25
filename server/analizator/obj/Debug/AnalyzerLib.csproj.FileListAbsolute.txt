@@ -16,3 +16,12 @@ D:\Users\DenMax\git\oopWork14\server\analizator\bin\Debug\dbLib.pdb
 D:\Users\DenMax\git\oopWork14\server\analizator\obj\Debug\AnalyzerLib.csprojResolveAssemblyReference.cache
 D:\Users\DenMax\git\oopWork14\server\analizator\obj\Debug\analizator.dll
 D:\Users\DenMax\git\oopWork14\server\analizator\obj\Debug\analizator.pdb
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2013\Projects\oopWork14\server\analizator\bin\Debug\analizator.dll
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2013\Projects\oopWork14\server\analizator\bin\Debug\analizator.pdb
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2013\Projects\oopWork14\server\analizator\bin\Debug\dbLib.dll
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2013\Projects\oopWork14\server\analizator\bin\Debug\Helper.dll
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2013\Projects\oopWork14\server\analizator\bin\Debug\Helper.pdb
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2013\Projects\oopWork14\server\analizator\bin\Debug\dbLib.pdb
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2013\Projects\oopWork14\server\analizator\obj\Debug\AnalyzerLib.csprojResolveAssemblyReference.cache
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2013\Projects\oopWork14\server\analizator\obj\Debug\analizator.dll
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2013\Projects\oopWork14\server\analizator\obj\Debug\analizator.pdb

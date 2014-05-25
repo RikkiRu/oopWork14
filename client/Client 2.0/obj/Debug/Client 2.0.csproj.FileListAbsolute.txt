@@ -42,3 +42,26 @@ D:\Users\DenMax\git\oopWork14\client\Client 2.0\obj\Debug\Client_2._0.ThemePopul
 D:\Users\DenMax\git\oopWork14\client\Client 2.0\obj\Debug\Client 2.0.csproj.GenerateResource.Cache
 D:\Users\DenMax\git\oopWork14\client\Client 2.0\obj\Debug\Client 2.0.exe
 D:\Users\DenMax\git\oopWork14\client\Client 2.0\obj\Debug\Client 2.0.pdb
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2013\Projects\oopWork14\client\Client 2.0\bin\Debug\Client 2.0.exe.config
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2013\Projects\oopWork14\client\Client 2.0\obj\Debug\Client 2.0.exe
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2013\Projects\oopWork14\client\Client 2.0\obj\Debug\Client 2.0.pdb
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2013\Projects\oopWork14\client\Client 2.0\bin\Debug\Client 2.0.exe
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2013\Projects\oopWork14\client\Client 2.0\bin\Debug\Client 2.0.pdb
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2013\Projects\oopWork14\client\Client 2.0\bin\Debug\CommandsLib.dll
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2013\Projects\oopWork14\client\Client 2.0\bin\Debug\CommunicationInterface.dll
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2013\Projects\oopWork14\client\Client 2.0\bin\Debug\dbLib.dll
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2013\Projects\oopWork14\client\Client 2.0\bin\Debug\ReportCreator.dll
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2013\Projects\oopWork14\client\Client 2.0\bin\Debug\security.dll
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2013\Projects\oopWork14\client\Client 2.0\bin\Debug\CommunicationInterface.pdb
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2013\Projects\oopWork14\client\Client 2.0\bin\Debug\dbLib.pdb
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2013\Projects\oopWork14\client\Client 2.0\bin\Debug\ReportCreator.pdb
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2013\Projects\oopWork14\client\Client 2.0\bin\Debug\CommandsLib.pdb
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2013\Projects\oopWork14\client\Client 2.0\obj\Debug\Client 2.0.csprojResolveAssemblyReference.cache
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2013\Projects\oopWork14\client\Client 2.0\obj\Debug\Client_2._0.ItemForm.resources
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2013\Projects\oopWork14\client\Client 2.0\obj\Debug\Client_2._0.AuthorizationForm.resources
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2013\Projects\oopWork14\client\Client 2.0\obj\Debug\Client_2._0.DataViewForm.resources
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2013\Projects\oopWork14\client\Client 2.0\obj\Debug\Client_2._0.FormError.resources
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2013\Projects\oopWork14\client\Client 2.0\obj\Debug\Client_2._0.MainForm.resources
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2013\Projects\oopWork14\client\Client 2.0\obj\Debug\Client_2._0.Properties.Resources.resources
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2013\Projects\oopWork14\client\Client 2.0\obj\Debug\Client_2._0.ThemePopularityChartForm.resources
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2013\Projects\oopWork14\client\Client 2.0\obj\Debug\Client 2.0.csproj.GenerateResource.Cache

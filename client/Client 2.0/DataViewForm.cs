@@ -17,39 +17,18 @@ namespace Client_2._0 {
 		private ICommandHandler service;
 		private ItemForm itemForm;
 		public Type tableType;
+        public bool showID;
 
 		public DataViewForm(ICommandHandler service) {
 			InitializeComponent();
 			this.service = service;
 			
 		}
-		/*public Form LoadItems<T>(ICommandHandler service) where T : Table {
-			this.service = service;
-			this.dgItemList.DataSource = service.getTable<T>();
-			this.dgItemList.Rows.Clear();
-			this.dgItemList.Columns.Clear();
-			string[] Table = (service.GetCommandString(command) as string).Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
-			this.Text = Table[0];
-			for (int i = 1; i<Table.GetLength(0); ++i) {
-				string[] row = Table[i].Split(new char[]{'~'}, StringSplitOptions.RemoveEmptyEntries);
-				if (i == 1) {
-					foreach (string columnName in row) {
-						this.dgItemList.Columns.Add(columnName, columnName);
-					}
-					this.dgCurrentItem.ColumnCount = this.dgItemList.ColumnCount;
-				} else {
-					this.dgItemList.Rows.Add(row);
-				}
-			}
-			
-			this.dgCurrentItem.Rows.Clear();
-			this.dgCurrentItem.Rows.Add(new DataGridViewRow());
-			return this;
-		}*/
-		public Form LoadItems<T>(List<T> items, Commands currentCommand) where T : Table {
+		public Form LoadItems<T>(List<T> items, Commands currentCommand, bool showID) where T : Table {
+            this.showID = showID;
 			this.currentCommand = currentCommand;
 			this.dgItemList.DataSource = items;
-			this.dgItemList.Columns["ID"].Visible = false;
+			this.dgItemList.Columns["ID"].Visible = this.showID;
 			this.tableType = typeof(T);
 			return this;
 		}
@@ -93,8 +72,7 @@ namespace Client_2._0 {
 					break;
 				}
 			}
-			this.dgCurrentItem.Columns["ID"].Visible = false;
-			
+			this.dgCurrentItem.Columns["ID"].Visible = this.showID;
 		}
 
 		private void bEdit_Click(object sender, EventArgs e) {
@@ -113,9 +91,10 @@ namespace Client_2._0 {
 					editCommand = Commands.EDIT_THEME;
 					break;
 			}
-			if(this.itemForm == null || this.itemForm.IsDisposed)
-				this.itemForm = new ItemForm(this.service, editCommand, this.dgCurrentItem.DataSource);
-			this.itemForm.Show();
+			//if(this.itemForm == null || this.itemForm.IsDisposed)
+			this.itemForm = new ItemForm(this.service, editCommand, this.dgCurrentItem.DataSource);
+            this.itemForm.FormClosed += itemForm_FormClosed;
+            this.itemForm.ShowDialog();
 		}
 
 		private void bAdd_Click(object sender, EventArgs e) {
@@ -124,29 +103,29 @@ namespace Client_2._0 {
 			switch (this.currentCommand) {
 				case Commands.SHOW_CONSULTER:
 					addCommand = Commands.ADD_CONSULTER;
-					list = new List<Consulters>(1);
+					list = new List<Consulters>();
 					(list as List<Consulters>).Add(new Consulters());
 					break;
 				case Commands.SHOW_FAQ:
 					addCommand = Commands.ADD_FAQ;
-					list = new List<FAQ>(1);
+					list = new List<FAQ>();
 					(list as List<FAQ>).Add(new FAQ());
 					break;
 				case Commands.SHOW_TARIF:
 					addCommand = Commands.ADD_TARIF;
-					list = new List<Tarif>(1);
+					list = new List<Tarif>();
 					(list as List<Tarif>).Add(new Tarif());
 					break;
 				case Commands.SHOW_THEME:
 					addCommand = Commands.ADD_THEME;
-					list = new List<Themes>(1);
+					list = new List<Themes>();
 					(list as List<Themes>).Add(new Themes());
 					break;
 			}
-			if (this.itemForm == null || this.itemForm.IsDisposed)
-				this.itemForm = new ItemForm(this.service, addCommand, list);
+			//if (this.itemForm == null || this.itemForm.IsDisposed)
+		    this.itemForm = new ItemForm(this.service, addCommand, list);
 			this.itemForm.FormClosed += itemForm_FormClosed;
-			this.itemForm.Show();
+            this.itemForm.ShowDialog();
 		}
 
 		void itemForm_FormClosed(object sender, FormClosedEventArgs e) {

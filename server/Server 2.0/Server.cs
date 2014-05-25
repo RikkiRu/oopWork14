@@ -34,7 +34,7 @@ namespace Server_2._0 {
 			this.host = new ServiceHost(this, new Uri(baseAddress));
 			this.host.AddServiceEndpoint(typeof(ICommandHandler), new BasicHttpBinding(), "");
 			this.host.Open();
-			this.db = new dbBind(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=" + dbPath + ";Integrated Security=True;Connect Timeout=30");
+			this.db = new dbBind(dbPath);
 			this.mailTimer = new System.Timers.Timer(timerInterval * 1000.0);
 			this.analyzer = new Analyzer(this.db, 60, 1, this.log);
 			this.postman = new Postman("Вопрос_", this.db, connectionInfo, this.mailTimer, this.analyzer.HandleNewMessages, this.log);
@@ -206,22 +206,22 @@ namespace Server_2._0 {
 		/* Edit */
 		public void editConsulter(Consulters newConsulter) {
 			var oldConsulter = this.db.tConsulters.Where(old => old.ID == newConsulter.ID).First();
-			oldConsulter = newConsulter;
+            oldConsulter.Set(newConsulter.Login, newConsulter.Password, newConsulter.Firstname, newConsulter.Lastname, newConsulter.Salary, newConsulter.IsBoss, oldConsulter.ID);
 			this.db.SubmitChanges();
 		}
 		public void editFAQ(FAQ newFAQ) {
 			var oldFAQ = this.db.tFAQ.Where(old => old.ID == newFAQ.ID).First();
-			oldFAQ = newFAQ;
+            oldFAQ.Set(newFAQ.Question, newFAQ.Answer, newFAQ.ThemeID, oldFAQ.ID);
 			this.db.SubmitChanges();
 		}
 		public void editTheme(Themes newTheme) {
 			var oldTheme = this.db.tThemes.Where(old => old.ID == newTheme.ID).First();
-			oldTheme = newTheme;
+            oldTheme.Set(newTheme.Theme, newTheme.Difficulty, newTheme.TarifID, newTheme.StandartTime, oldTheme.ID);
 			this.db.SubmitChanges();
 		}
 		public void editTarif(Tarif newTarif) {
 			var oldTarif = this.db.tTarif.Where(old => old.ID == newTarif.ID).First();
-			oldTarif = newTarif;
+            oldTarif.Set(newTarif.Cost, newTarif.Multipiller, oldTarif.ID);
 			this.db.SubmitChanges();
 		}
 	}

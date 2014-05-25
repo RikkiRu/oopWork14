@@ -23,62 +23,64 @@
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent() {
-			this.dgCurrentItem = new System.Windows.Forms.DataGridView();
-			this.bSave = new System.Windows.Forms.Button();
-			this.bCancel = new System.Windows.Forms.Button();
-			((System.ComponentModel.ISupportInitialize)(this.dgCurrentItem)).BeginInit();
-			this.SuspendLayout();
-			// 
-			// dgCurrentItem
-			// 
-			this.dgCurrentItem.AllowUserToAddRows = false;
-			this.dgCurrentItem.AllowUserToDeleteRows = false;
-			this.dgCurrentItem.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-			this.dgCurrentItem.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-			this.dgCurrentItem.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dgCurrentItem.Dock = System.Windows.Forms.DockStyle.Top;
-			this.dgCurrentItem.Location = new System.Drawing.Point(0, 0);
-			this.dgCurrentItem.MultiSelect = false;
-			this.dgCurrentItem.Name = "dgCurrentItem";
-			this.dgCurrentItem.RowHeadersVisible = false;
-			this.dgCurrentItem.Size = new System.Drawing.Size(474, 77);
-			this.dgCurrentItem.TabIndex = 0;
-			// 
-			// bSave
-			// 
-			this.bSave.Dock = System.Windows.Forms.DockStyle.Left;
-			this.bSave.Location = new System.Drawing.Point(0, 77);
-			this.bSave.Name = "bSave";
-			this.bSave.Size = new System.Drawing.Size(236, 31);
-			this.bSave.TabIndex = 1;
-			this.bSave.Text = "Сохранить";
-			this.bSave.UseVisualStyleBackColor = true;
-			this.bSave.Click += new System.EventHandler(this.bSave_Click);
-			// 
-			// bCancel
-			// 
-			this.bCancel.Dock = System.Windows.Forms.DockStyle.Right;
-			this.bCancel.Location = new System.Drawing.Point(242, 77);
-			this.bCancel.Name = "bCancel";
-			this.bCancel.Size = new System.Drawing.Size(232, 31);
-			this.bCancel.TabIndex = 2;
-			this.bCancel.Text = "Отмена";
-			this.bCancel.UseVisualStyleBackColor = true;
-			this.bCancel.Click += new System.EventHandler(this.bCancel_Click);
-			// 
-			// ItemForm
-			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(474, 108);
-			this.Controls.Add(this.bCancel);
-			this.Controls.Add(this.bSave);
-			this.Controls.Add(this.dgCurrentItem);
-			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-			this.Name = "ItemForm";
-			this.Text = "AddItemForm";
-			((System.ComponentModel.ISupportInitialize)(this.dgCurrentItem)).EndInit();
-			this.ResumeLayout(false);
+            this.dgCurrentItem = new System.Windows.Forms.DataGridView();
+            this.bSave = new System.Windows.Forms.Button();
+            this.bCancel = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dgCurrentItem)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // dgCurrentItem
+            // 
+            this.dgCurrentItem.AllowUserToAddRows = false;
+            this.dgCurrentItem.AllowUserToDeleteRows = false;
+            this.dgCurrentItem.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgCurrentItem.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgCurrentItem.BackgroundColor = System.Drawing.Color.White;
+            this.dgCurrentItem.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgCurrentItem.Dock = System.Windows.Forms.DockStyle.Top;
+            this.dgCurrentItem.Location = new System.Drawing.Point(0, 0);
+            this.dgCurrentItem.MultiSelect = false;
+            this.dgCurrentItem.Name = "dgCurrentItem";
+            this.dgCurrentItem.RowHeadersVisible = false;
+            this.dgCurrentItem.Size = new System.Drawing.Size(474, 76);
+            this.dgCurrentItem.TabIndex = 0;
+            // 
+            // bSave
+            // 
+            this.bSave.Dock = System.Windows.Forms.DockStyle.Left;
+            this.bSave.Location = new System.Drawing.Point(0, 76);
+            this.bSave.Name = "bSave";
+            this.bSave.Size = new System.Drawing.Size(236, 32);
+            this.bSave.TabIndex = 1;
+            this.bSave.Text = "Сохранить";
+            this.bSave.UseVisualStyleBackColor = true;
+            this.bSave.Click += new System.EventHandler(this.bSave_Click);
+            // 
+            // bCancel
+            // 
+            this.bCancel.Dock = System.Windows.Forms.DockStyle.Right;
+            this.bCancel.Location = new System.Drawing.Point(242, 76);
+            this.bCancel.Name = "bCancel";
+            this.bCancel.Size = new System.Drawing.Size(232, 32);
+            this.bCancel.TabIndex = 2;
+            this.bCancel.Text = "Отмена";
+            this.bCancel.UseVisualStyleBackColor = true;
+            this.bCancel.Click += new System.EventHandler(this.bCancel_Click);
+            // 
+            // ItemForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(474, 108);
+            this.Controls.Add(this.bCancel);
+            this.Controls.Add(this.bSave);
+            this.Controls.Add(this.dgCurrentItem);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Name = "ItemForm";
+            this.ShowIcon = false;
+            this.Text = "Изменение записи";
+            ((System.ComponentModel.ISupportInitialize)(this.dgCurrentItem)).EndInit();
+            this.ResumeLayout(false);
 
 		}
 

@@ -20,3 +20,14 @@ D:\Users\DenMax\git\oopWork14\server\QuestionHandler\bin\Debug\Helper.pdb
 D:\Users\DenMax\git\oopWork14\server\QuestionHandler\obj\Debug\QuestionHandlerLib.csprojResolveAssemblyReference.cache
 D:\Users\DenMax\git\oopWork14\server\QuestionHandler\obj\Debug\QuestionHandler.dll
 D:\Users\DenMax\git\oopWork14\server\QuestionHandler\obj\Debug\QuestionHandler.pdb
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2013\Projects\oopWork14\server\QuestionHandler\bin\Debug\QuestionHandler.dll
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2013\Projects\oopWork14\server\QuestionHandler\bin\Debug\QuestionHandler.pdb
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2013\Projects\oopWork14\server\QuestionHandler\bin\Debug\analizator.dll
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2013\Projects\oopWork14\server\QuestionHandler\bin\Debug\dbLib.dll
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2013\Projects\oopWork14\server\QuestionHandler\bin\Debug\Helper.dll
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2013\Projects\oopWork14\server\QuestionHandler\bin\Debug\analizator.pdb
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2013\Projects\oopWork14\server\QuestionHandler\bin\Debug\dbLib.pdb
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2013\Projects\oopWork14\server\QuestionHandler\bin\Debug\Helper.pdb
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2013\Projects\oopWork14\server\QuestionHandler\obj\Debug\QuestionHandlerLib.csprojResolveAssemblyReference.cache
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2013\Projects\oopWork14\server\QuestionHandler\obj\Debug\QuestionHandler.dll
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2013\Projects\oopWork14\server\QuestionHandler\obj\Debug\QuestionHandler.pdb

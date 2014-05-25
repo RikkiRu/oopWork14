@@ -61,6 +61,7 @@ namespace Client_2._0 {
 			} catch (Exception exc) {
 				MessageBox.Show(exc.Message);
 			}
+            this.Close();
 		}
 
 		private void bCancel_Click(object sender, EventArgs e) {

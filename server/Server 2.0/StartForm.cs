@@ -51,7 +51,12 @@ namespace Server_2._0
 			try {
 				timerInterval = Convert.ToDouble(tbTimerInterval.Text);
 			} catch { } finally { tbTimerInterval.Text = timerInterval.ToString() + " сек."; }
-			Program.server.Start(tbHostAddress.Text, tbDBPath.Text, new PostmanLib.PostmanConnectionInfo(emailSettingsForm.tbUserName.Text, emailSettingsForm.tbHostName.Text, emailSettingsForm.tbPassword.Text, emailSettingsForm.tbPOPAddress.Text, Convert.ToInt32(emailSettingsForm.tbPOPPort.Text), emailSettingsForm.tbSMTPAddress.Text, Convert.ToInt32(emailSettingsForm.tbSMTPPort.Text)), timerInterval);
+
+            //Data Source=(LocalDB)\v11.0;AttachDbFilename="C:\Projects\oopWork14\server\Server 2.0\bin\Debug\db\oopDB.mdf";Integrated Security=True;Connect Timeout=30
+            string dbPath = (@"Data Source=" + this.textBox1conStr1.Text + ";AttachDbFilename=\""+tbDBPath.Text+"\";Integrated Security=True;Connect Timeout=30;");
+            if (checkBox1userInstance.Checked) dbPath += "User Instance=True";
+
+			Program.server.Start(tbHostAddress.Text, dbPath, new PostmanLib.PostmanConnectionInfo(emailSettingsForm.tbUserName.Text, emailSettingsForm.tbHostName.Text, emailSettingsForm.tbPassword.Text, emailSettingsForm.tbPOPAddress.Text, Convert.ToInt32(emailSettingsForm.tbPOPPort.Text), emailSettingsForm.tbSMTPAddress.Text, Convert.ToInt32(emailSettingsForm.tbSMTPPort.Text)), timerInterval);
 
 			bStartServer.Text = "Сервер запущен";
         }

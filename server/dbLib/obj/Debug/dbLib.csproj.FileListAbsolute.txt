@@ -18,3 +18,8 @@ D:\Users\DenMax\git\oopWork14\server\dbLib\bin\Debug\dbLib.pdb
 D:\Users\DenMax\git\oopWork14\server\dbLib\obj\Debug\dbLib.csprojResolveAssemblyReference.cache
 D:\Users\DenMax\git\oopWork14\server\dbLib\obj\Debug\dbLib.dll
 D:\Users\DenMax\git\oopWork14\server\dbLib\obj\Debug\dbLib.pdb
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2013\Projects\oopWork14\server\dbLib\bin\Debug\dbLib.dll
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2013\Projects\oopWork14\server\dbLib\bin\Debug\dbLib.pdb
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2013\Projects\oopWork14\server\dbLib\obj\Debug\dbLib.csprojResolveAssemblyReference.cache
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2013\Projects\oopWork14\server\dbLib\obj\Debug\dbLib.dll
+C:\Users\www.mobilkom.ru\Documents\Visual Studio 2013\Projects\oopWork14\server\dbLib\obj\Debug\dbLib.pdb
