@@ -240,7 +240,7 @@ namespace dbLib {
 
 		private int Id;
 		private string question;
-		public string answer;
+		private string answer;
 		private int theme_id;
 		private int consulter_id;
 		private DateTime start_time;
@@ -397,6 +397,10 @@ namespace dbLib {
 			this.tarif_id = tarif_id;
 			this.standart_time = standart_time;
 			this.Id = Id;
+		}
+		public DateTime getEndTime(DateTime startTime) {
+			string[] timeArray = this.standart_time.Split('.');
+			return startTime + new TimeSpan(Convert.ToInt32(timeArray[0]), Convert.ToInt32(timeArray[1]), Convert.ToInt32(timeArray[2]));
 		}
 		public override string ToString() {
 			return this.Id.ToString() + concatSymbol + this.theme + concatSymbol + this.difficulty + concatSymbol + this.tarif_id;

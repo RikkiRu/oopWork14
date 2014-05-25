@@ -79,5 +79,7 @@ namespace CommunicationInterface {
         string answerQA(QA question);
 		[OperationContract]
 		Dictionary<string, string> getThemePopularity();
+		[OperationContract]
+		object getReport();
 	}
 }

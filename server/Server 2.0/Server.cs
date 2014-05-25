@@ -307,9 +307,16 @@ namespace Server_2._0 {
 			var questions = from question in db.tFQA select question.ThemeID;
 			var themePopularity = new Dictionary<string, string>();
 			foreach (var theme in themes) {
-				themePopularity.Add(theme.Theme, questions.Count<int>(question => question == theme.ID).ToString());
+				var questionCount = questions.Count<int>(question => question == theme.ID);
+				if(questionCount > 0)
+					themePopularity.Add(theme.Theme, questionCount.ToString());
 			}
 			return themePopularity;
+		}
+
+		public object getReport() {
+
+			return null;
 		}
 	}
 }

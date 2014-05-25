@@ -114,7 +114,7 @@ namespace AnalyzerLib {
 			int kAnsweredQa = 0;
 			foreach(var a in db.tFQA) {
 				if(a.ThemeID == t.ID) {
-					if(a.answer != null && a.answer != "")
+					if(a.Answer != null && a.Answer != "")
 						kAnsweredQa++;
 				}
 			}
@@ -130,7 +130,7 @@ namespace AnalyzerLib {
 			List<int> similarQuestionIds = new List<int>();
 			foreach(var a in db.tFQA) {
 				if(a.ThemeID == x.ThemeID) {
-					if(match(x.answer, a.answer))
+					if(match(x.Answer, a.Answer))
 						similarQuestionIds.Add(a.ID);
 				}
 			}

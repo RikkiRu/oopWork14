@@ -9,12 +9,12 @@ using System.Windows.Forms;
 
 namespace Client_2._0
 {
-    public partial class FormError : Form
+    public partial class ErrorForm : Form
     {
-        public FormError(string errorText)
+        public ErrorForm(string errorText)
         {
             InitializeComponent();
-            label1.Text = errorText;
+            tbErrorText.Text = errorText;
             this.ShowDialog();
         }
 

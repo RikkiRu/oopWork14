@@ -37,7 +37,7 @@ namespace QuestionHandlerLib {
             }
         }
 
-        //выдать вопрос консультанту (вызывается в конекшонконтроле)
+        //выдать вопрос консультанту
         public QA getQA (int ConsId, DateTime start)
         {
             foreach (var ar in db.tFQA)
@@ -58,11 +58,11 @@ namespace QuestionHandlerLib {
         {
             QA x = db.tFQA.Where(c => c.ID == y.ID).FirstOrDefault();
             if (x == null) return;
-            if (x.answer != null)
+            if (x.Answer != null)
             {
                 throw new Exception("Ответ уже задан");
             }
-            x.answer = y.answer;
+            x.Answer = y.Answer;
             x.EndTime = end;
             Themes t = db.tThemes.Where(c=>c.ID==x.ThemeID).FirstOrDefault();
             if(t==null) throw new Exception("не найдена тема (serQAanswer -  control)");

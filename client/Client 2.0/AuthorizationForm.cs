@@ -52,7 +52,7 @@ namespace Client_2._0 {
 					mainForm.Show();
 				}
 			} catch(Exception ex) {
-				new FormError(ex.Message);
+				new ErrorForm(ex.Message);
 			}
 		}
 
@@ -65,7 +65,7 @@ namespace Client_2._0 {
 					tbServerAddress.Text = Crypt.DecryptStringFromBytes(sr.ReadLine(), myTripleDES.Key, myTripleDES.IV);
 				}
 			} catch(Exception ex) {
-				new FormError(ex.Message);
+				new ErrorForm(ex.Message);
 			}
 		}
 	}

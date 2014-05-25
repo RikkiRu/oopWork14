@@ -53,7 +53,7 @@ namespace Server_2._0
             textBox1conStr1.Enabled = false;
             checkBox1userInstance.Enabled = false;
 
-			double timerInterval = 10.0;
+			double timerInterval = 360.0;
 			try {
 				timerInterval = Convert.ToDouble(tbTimerInterval.Text);
 			} catch { } finally { tbTimerInterval.Text = timerInterval.ToString() + " сек."; }

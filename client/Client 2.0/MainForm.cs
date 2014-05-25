@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
+using System.Drawing;
 using System.Windows.Forms;
 using ReportCreatorLib;
 using System.Diagnostics;
@@ -37,6 +34,7 @@ namespace Client_2._0
             this.tempQid = -1;
 			this.dataViewForm = new DataViewForm(this.service);
 			this.themePopularityChartForm = new ThemePopularityChartForm();
+			this.saveFileDialog.Filter = "Excel 2007 | *.xls|Excel 2010 | *.xlsx";
         }
 
 		private void MainForm_FormClosed(object sender, FormClosedEventArgs e) {
@@ -78,9 +76,10 @@ namespace Client_2._0
 			}*/
 			var data = this.service.getThemePopularity();
 			this.themePopularityChartForm.LoadChart(data).Show();
-			ReportCreator.CreateExcelChart("ThemePopularity.xls", "Популярность тем", new string[] { "Тема", "Кол-во вопросов" }, data);
+			saveFileDialog.ShowDialog();
+			/*
 			ProcessStartInfo process = new ProcessStartInfo("EXCEL.EXE", "ThemePopularity.xls");
-			Process.Start(process);
+			Process.Start(process);*/
 		}
 
 
@@ -96,12 +95,21 @@ namespace Client_2._0
                 return;
             }
             rtbQuestion.Text = CurrentQA.Question;
+			DateTime endTime = service.getThemes().Where(theme => theme.ID == CurrentQA.ThemeID).First().getEndTime(CurrentQA.StartTime);
+			lTime.Text = endTime.ToString();
+			if (endTime < DateTime.Now)
+				lTime.ForeColor = Color.Red;
         }
 
         private void bSetAnswer_Click(object sender, EventArgs e)
         {
-            CurrentQA.answer = rtbAnswer.Text;
+            CurrentQA.Answer = rtbAnswer.Text;
             MessageBox.Show(service.answerQA(CurrentQA));
         }
+
+		private void saveFileDialog_FileOk(object sender, System.ComponentModel.CancelEventArgs e) {
+			var data = this.service.getThemePopularity();
+			ReportCreator.CreateExcelChart(saveFileDialog.FileName, "Популярность тем", new string[] { "Тема", "Кол-во вопросов" }, data);
+		}
     }
 }
