@@ -25,34 +25,35 @@ namespace Client_2._0 {
 		}
 
 		private void buttonConnect_Click(object sender, EventArgs e) {
-			//try {
-				if(textBoxLogin.Text == "" || textBoxPassw.Text == "") {
+			try { // Не закоменчивай ТРАЙ КЕТЧ БЛДЖАДЬ!!!
+				if (textBoxLogin.Text == "" || textBoxPassw.Text == "") {
 					throw new Exception("Заполните поля");
 				}
-				if(checkBoxSaveLP.Checked) {
+				if (checkBoxSaveLP.Checked) {
 					FileStream fs = new FileStream(@"Config/lastLogin.cfg", FileMode.Create);
-					using(StreamWriter sw = new StreamWriter(fs)) {
+					using (StreamWriter sw = new StreamWriter(fs)) {
 						sw.WriteLine(Crypt.EncryptStringToBytes(textBoxLogin.Text, myTripleDES.Key, myTripleDES.IV));
 						sw.WriteLine(Crypt.EncryptStringToBytes(textBoxPassw.Text, myTripleDES.Key, myTripleDES.IV));
 						sw.WriteLine(Crypt.EncryptStringToBytes(tbServerAddress.Text, myTripleDES.Key, myTripleDES.IV));
 					}
 				}
 				//тут пойдет подключение
-				if(client == null)
+				if (client == null)
 					client = new Client(tbServerAddress.Text);
-				object res = client.Service.GetCommandString(Commands.LOGIN, textBoxLogin.Text + '~' + textBoxPassw.Text);
-				if(res is int)
+				//object res = client.Service.GetCommandString(Commands.LOGIN, textBoxLogin.Text + '~' + textBoxPassw.Text);
+				var res = client.Service.Login(new dbLib.Consulters(textBoxLogin.Text, textBoxPassw.Text, null, null, 0, 0));
+				if (res == null)
 					throw new Exception("Авторизация не удалась");
 				else {
 					this.Hide();
-					string[] loginInfo = (res as string).Split('~');
-					MessageBox.Show("Добро пожаловать " + loginInfo[3] + ' ' + loginInfo[4]);
-					if(mainForm == null || mainForm.IsDisposed) mainForm = new MainForm(loginInfo, client.Service, this);
-                    mainForm.ShowDialog();
+					//string[] loginInfo = (res as string).Split('~');
+					//MessageBox.Show("Добро пожаловать " + res.Firstname + ' ' + res.Lastname);
+					if (mainForm == null || mainForm.IsDisposed) mainForm = new MainForm(res, client.Service, this);
+					mainForm.ShowDialog();
 				}
-			//} catch(Exception ex) {
-			//	new ErrorForm(ex.Message);
-			//}
+			} catch (Exception ex) {
+				new ErrorForm(ex.Message);
+			}
             this.Show();
 		}
 

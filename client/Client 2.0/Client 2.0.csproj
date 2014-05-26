@@ -51,12 +51,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FormQA.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormQA.Designer.cs">
-      <DependentUpon>FormQA.cs</DependentUpon>
-    </Compile>
     <Compile Include="ItemForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,9 +90,6 @@
     <Compile Include="ThemePopularityChartForm.Designer.cs">
       <DependentUpon>ThemePopularityChartForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="FormQA.resx">
-      <DependentUpon>FormQA.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="ItemForm.resx">
       <DependentUpon>ItemForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -161,15 +152,6 @@
       <VersionMinor>4</VersionMinor>
       <Lcid>0</Lcid>
       <WrapperTool>primary</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
-    <COMReference Include="MSORUNLib">
-      <Guid>{B35FBDE9-7042-11D3-9C0F-00C04F72DD5F}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>tlbimp</WrapperTool>
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>

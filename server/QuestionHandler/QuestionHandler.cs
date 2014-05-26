@@ -38,11 +38,11 @@ namespace QuestionHandlerLib {
         }
 
         //выдать вопрос консультанту
-        public QA getQA (int ConsId, DateTime start)
+        public QA getQA (int ConsId, DateTime start, int startQuestionID)
         {
             foreach (var ar in db.tFQA)
             {
-                if (ar.Answer == null && (ar.CounsulterID==-1 || ar.CounsulterID==ConsId))
+                if (ar.Answer == null && (ar.CounsulterID==-1 || ar.CounsulterID==ConsId) && ar.ID > startQuestionID)
                 {
                     ar.CounsulterID = ConsId;
                     db.SubmitChanges();

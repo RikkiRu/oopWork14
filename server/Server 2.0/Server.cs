@@ -160,6 +160,10 @@ namespace Server_2._0 {
 		 * public List<T> getTable<T>() where T : Table {
 			return this.db.getTable<T>().ToList<T>();
 		}*/
+		public Consulters Login(Consulters consulterLogin) {
+			return db.tConsulters.Where(consulter => consulter.Login == consulterLogin.Login && consulter.Password == consulterLogin.Password).First();
+		}
+		/* Get Tables */
 		public List<Consulters> getConsulters() {
 			return this.db.getTable<Consulters>().ToList<Consulters>();
 		}
@@ -289,8 +293,8 @@ namespace Server_2._0 {
 		}
 
 
-		public QA getNewQA(int YourID) {
-			return questionHandler.getQA(YourID, DateTime.Now);
+		public QA getNewQA(int YourID, int currentQuestionID = 0) {
+			return questionHandler.getQA(YourID, DateTime.Now, currentQuestionID);
 		}
 
 		public string answerQA(QA x) {
@@ -320,7 +324,7 @@ namespace Server_2._0 {
 		}
 
         //похожести
-        public List<QA> getAllQa()
+        public List<QA> getAllQA()
         {
             return this.db.getTable<QA>().ToList<QA>();
         }

@@ -18,18 +18,26 @@ namespace Client_2._0 {
 		private ItemForm itemForm;
 		public Type tableType;
         public bool showID;
+		private object selectedItem;
 
 		public DataViewForm(ICommandHandler service) {
 			InitializeComponent();
 			this.service = service;
 			
 		}
-		public Form LoadItems<T>(List<T> items, Commands currentCommand, bool showID) where T : Table {
-            this.showID = showID;
-			this.currentCommand = currentCommand;
-			this.dgItemList.DataSource = items;
-			this.dgItemList.Columns["ID"].Visible = this.showID;
-			this.tableType = typeof(T);
+		// последний флаг включает/отключает кнопки изменения
+		public Form LoadItems<T>(List<T> items, Commands currentCommand, bool showID, bool editable = true) where T : Table {
+			if (items.Count == 0 || items == null) {
+				this.bReturn_Click(this, null);
+				MessageBox.Show("Пустая таблица");
+			} else {
+				this.showID = showID;
+				this.currentCommand = currentCommand;
+				this.dgItemList.DataSource = items;
+				this.dgItemList.Columns["ID"].Visible = this.showID;
+				this.bAdd.Enabled = this.bEdit.Enabled = this.bDelete.Enabled = editable;
+				this.tableType = typeof(T);
+			}
 			return this;
 		}
 		private void DataViewForm_FormClosing(object sender, FormClosingEventArgs e) {
@@ -45,34 +53,41 @@ namespace Client_2._0 {
 			switch (currentCommand) {
 				case Commands.SHOW_CONSULTER: {
 					var selectedItem = ((List<Consulters>)this.dgItemList.DataSource)[e.RowIndex];
-					List<Consulters> dataSource = new List<Consulters>();
+					/*List<Consulters> dataSource = new List<Consulters>();
 					dataSource.Add(selectedItem);
-					this.dgCurrentItem.DataSource = dataSource;
+					this.dgCurrentItem.DataSource = dataSource;*/
 					break;
 				}
 				case Commands.SHOW_FAQ: {
 					var selectedItem = ((List<FAQ>)this.dgItemList.DataSource)[e.RowIndex];
-					List<FAQ> dataSource = new List<FAQ>();
+					/*List<FAQ> dataSource = new List<FAQ>();
 					dataSource.Add(selectedItem);
-					this.dgCurrentItem.DataSource = dataSource;
+					this.dgCurrentItem.DataSource = dataSource;*/
 					break;
 				}
 				case Commands.SHOW_TARIF: {
 					var selectedItem = ((List<Tarif>)this.dgItemList.DataSource)[e.RowIndex];
-					List<Tarif> dataSource = new List<Tarif>();
+					/*List<Tarif> dataSource = new List<Tarif>();
 					dataSource.Add(selectedItem);
-					this.dgCurrentItem.DataSource = dataSource;
+					this.dgCurrentItem.DataSource = dataSource;*/
 					break;
 				}
 				case Commands.SHOW_THEME: {
 					var selectedItem = ((List<Themes>)this.dgItemList.DataSource)[e.RowIndex];
-					List<Themes> dataSource = new List<Themes>();
+					/*List<Themes> dataSource = new List<Themes>();
 					dataSource.Add(selectedItem);
-					this.dgCurrentItem.DataSource = dataSource;
+					this.dgCurrentItem.DataSource = dataSource;*/
+					break;
+				}
+				case Commands.SHOW_QA: {
+					this.selectedItem = ((List<QA>)this.dgItemList.DataSource)[e.RowIndex];
+					/*List<QA> dataSource = new List<QA>();
+					dataSource.Add(selectedItem);
+					this.dgCurrentItem.DataSource = dataSource;*/
 					break;
 				}
 			}
-			this.dgCurrentItem.Columns["ID"].Visible = this.showID;
+			//this.dgCurrentItem.Columns["ID"].Visible = this.showID;
 		}
 
 		private void bEdit_Click(object sender, EventArgs e) {
@@ -92,7 +107,7 @@ namespace Client_2._0 {
 					break;
 			}
 			//if(this.itemForm == null || this.itemForm.IsDisposed)
-			this.itemForm = new ItemForm(this.service, editCommand, this.dgCurrentItem.DataSource);
+			this.itemForm = new ItemForm(this.service, editCommand, selectedItem);
             this.itemForm.FormClosed += itemForm_FormClosed;
             this.itemForm.ShowDialog();
 		}
@@ -148,23 +163,23 @@ namespace Client_2._0 {
 		private void bDelete_Click(object sender, EventArgs e) {
 			switch (currentCommand) {
 				case Commands.SHOW_CONSULTER: {
-						var selectedItem = ((List<Consulters>)this.dgCurrentItem.DataSource)[0];
-						MessageBox.Show(service.deleteConsulter(selectedItem));
+						//var selectedItem = ((List<Consulters>)this.dgCurrentItem.DataSource)[0];
+						MessageBox.Show(service.deleteConsulter(selectedItem as Consulters));
 						break;
 					}
 				case Commands.SHOW_FAQ: {
-						var selectedItem = ((List<FAQ>)this.dgCurrentItem.DataSource)[0];
-						MessageBox.Show(service.deleteFAQ(selectedItem));
+						//var selectedItem = ((List<FAQ>)this.dgCurrentItem.DataSource)[0];
+						MessageBox.Show(service.deleteFAQ(selectedItem as FAQ));
 						break;
 					}
 				case Commands.SHOW_TARIF: {
-						var selectedItem = ((List<Tarif>)this.dgCurrentItem.DataSource)[0];
-						MessageBox.Show(service.deleteTarif(selectedItem));
+						//var selectedItem = ((List<Tarif>)this.dgCurrentItem.DataSource)[0];
+						MessageBox.Show(service.deleteTarif(selectedItem as Tarif));
 						break;
 					}
 				case Commands.SHOW_THEME: {
-					var selectedItem = ((List<Themes>)this.dgCurrentItem.DataSource)[0];
-					MessageBox.Show(service.deleteTheme(selectedItem));
+					//var selectedItem = ((List<Themes>)this.dgCurrentItem.DataSource)[0];
+					MessageBox.Show(service.deleteTheme(selectedItem as Themes));
 						break;
 					}
 			}

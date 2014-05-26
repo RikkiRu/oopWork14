@@ -20,6 +20,7 @@ namespace CommunicationInterface {
 		ADD_TARIF,
 		EDIT_TARIF,
 		SHOW_TARIF,
+		SHOW_QA,
 		GET_QUESTION,
 		SET_ANSWER,
 		GET_SOME_QUESTIONS,
@@ -31,6 +32,8 @@ namespace CommunicationInterface {
 	public interface ICommandHandler {
 		[OperationContract]
 		object GetCommandString(Commands query, string data = null);
+		[OperationContract]
+		Consulters Login(Consulters consulter);
 		/* Idk how to make this work, but its awesome!
 		 * [OperationContract]
 		List<T> getTable<T>() where T : Table;*/
@@ -72,20 +75,20 @@ namespace CommunicationInterface {
 		string editTarif(Tarif tarif);
 		/*[OperationContract]
 		void addItem(Table item);*/
-        /* Functions */
+		/* Functions */
 		[OperationContract]
-        QA getNewQA(int YourID);
-        [OperationContract]
-        string answerQA(QA question);
+		QA getNewQA(int YourID, int startQuestionID = 0);
+		[OperationContract]
+		string answerQA(QA question);
 		[OperationContract]
 		Dictionary<string, string> getThemePopularity();
 		[OperationContract]
 		object getReport();
 
-        //все вопросы и какие-либо похожие (true -> с похожими вопросами, иначе с похожими ответами) 
-        [OperationContract]
-        List<QA> getAllQa();
-        [OperationContract]
-        List<QA> getSomeQA(QA source, bool IsQuestions);
+		//все вопросы и какие-либо похожие (true -> с похожими вопросами, иначе с похожими ответами) UPD шта?
+		[OperationContract]
+		List<QA> getAllQA();
+		[OperationContract]
+		List<QA> getSomeQA(QA source, bool IsQuestions);
 	}
 }

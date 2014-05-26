@@ -9,33 +9,29 @@ using CommunicationInterface;
 using dbLib;
 //using CommandsLib;
 
-namespace Client_2._0
-{
-    public partial class MainForm : Form{
+namespace Client_2._0 {
+	public partial class MainForm : Form {
 
-		private int consId;
-		private int tempQid;
+		private Consulters currentConsulter;
 		private ICommandHandler service;
 		private Form parent;
 		private DataViewForm dataViewForm;
 		private ThemePopularityChartForm themePopularityChartForm;
-        private QA CurrentQA;
+		private QA CurrentQA;
 
-		public MainForm(string[] loginInfo, ICommandHandler service, Form parent)
-        {
-            InitializeComponent();
-			bool admin = Convert.ToBoolean(Convert.ToInt32(loginInfo[5]));
-			if (!admin)
+		public MainForm(Consulters currentConsulter, ICommandHandler service, Form parent) {
+			InitializeComponent();
+			this.currentConsulter = currentConsulter;
+			if (!Convert.ToBoolean(currentConsulter.IsBoss))
 				tabControl.TabPages.RemoveAt(0);
-			this.consId = Convert.ToInt32(loginInfo[0]);
+			
 			this.service = service;
 			this.parent = parent;
-			this.Text = "Пользователь: " + loginInfo[3] + ' ' + loginInfo[4];
-            this.tempQid = -1;
+			this.Text = "Пользователь: " + currentConsulter.Firstname + ' ' + currentConsulter.Lastname;
 			this.dataViewForm = new DataViewForm(this.service);
 			this.themePopularityChartForm = new ThemePopularityChartForm();
 			this.saveFileDialog.Filter = "Excel 2007 | *.xls|Excel 2010 | *.xlsx";
-        }
+		}
 
 		private void MainForm_FormClosed(object sender, FormClosedEventArgs e) {
 			dataViewForm.Close();
@@ -49,22 +45,22 @@ namespace Client_2._0
 
 		private void bShowTarif_Click(object sender, EventArgs e) {
 			dataViewForm.LoadItems<Tarif>(service.getTarifs(), Commands.SHOW_TARIF, checkBox1showId.Checked).Show();
-            dataViewForm.Focus();
+			dataViewForm.Focus();
 		}
 
 		private void bShowFAQ_Click(object sender, EventArgs e) {
-            dataViewForm.LoadItems<FAQ>(service.getFAQ(), Commands.SHOW_FAQ, checkBox1showId.Checked).Show();
-            dataViewForm.Focus();
+			dataViewForm.LoadItems<FAQ>(service.getFAQ(), Commands.SHOW_FAQ, checkBox1showId.Checked).Show();
+			dataViewForm.Focus();
 		}
 
 		private void bShowTheme_Click(object sender, EventArgs e) {
-            dataViewForm.LoadItems<Themes>(service.getThemes(), Commands.SHOW_THEME, checkBox1showId.Checked).Show();
-            dataViewForm.Focus();
+			dataViewForm.LoadItems<Themes>(service.getThemes(), Commands.SHOW_THEME, checkBox1showId.Checked).Show();
+			dataViewForm.Focus();
 		}
 
 		private void bShowWorkers_Click(object sender, EventArgs e) {
-            dataViewForm.LoadItems<Consulters>(service.getConsulters(), Commands.SHOW_CONSULTER, checkBox1showId.Checked).Show();
-            dataViewForm.Focus();
+			dataViewForm.LoadItems<Consulters>(service.getConsulters(), Commands.SHOW_CONSULTER, checkBox1showId.Checked).Show();
+			dataViewForm.Focus();
 		}
 
 		private void bCreateQuestionChart_Click(object sender, EventArgs e) {
@@ -82,46 +78,53 @@ namespace Client_2._0
 			Process.Start(process);*/
 		}
 
+		//-------------------------------------- КОНСУЛЬТАНТ -------------------------------------
 
+		private void bGetQuestion_Click(object sender, EventArgs e) {
+			this.handleQuestion(service.getNewQA(currentConsulter.ID));
+		}
 
-        //-------------------------------------- КОНСУЛЬТАНТ -------------------------------------
+		private void bGetNextQuestion_Click(object sender, EventArgs e) {
+			if (CurrentQA == null)
+				this.bGetQuestion_Click(sender, e);
+			else
+				this.handleQuestion(service.getNewQA(currentConsulter.ID, CurrentQA.ID));
+		}
 
-        private void bGetQuestion_Click(object sender, EventArgs e)
-        {
-            CurrentQA = service.getNewQA(consId);
-            if(CurrentQA==null)
-            {
-                rtbQuestion.Text = "Вопросов нету";
-                return;
-            }
-            rtbQuestion.Text = CurrentQA.Question;
-			DateTime endTime = service.getThemes().Where(theme => theme.ID == CurrentQA.ThemeID).First().getEndTime(CurrentQA.StartTime);
-			lTime.Text = endTime.ToString();
-			if (endTime < DateTime.Now)
-				lTime.ForeColor = Color.Red;
-        }
+		private void handleQuestion(QA question) {
+			if (question == null) {
+				rtbQuestion.Text = "Вопросов нету или ты дошел до конца списка(попробуй запросить вопрос)";
+			} else {
+				this.CurrentQA = question;
+				rtbQuestion.Text = question.Question;
+				DateTime endTime = service.getThemes().Where(theme => theme.ID == question.ThemeID).First().getEndTime(question.StartTime);
+				lTime.Text = endTime.ToString();
+				if (endTime < DateTime.Now)
+					lTime.ForeColor = Color.Red;
+			}
+		}
 
-        private void bSetAnswer_Click(object sender, EventArgs e)
-        {
-            CurrentQA.Answer = rtbAnswer.Text;
-            MessageBox.Show(service.answerQA(CurrentQA));
-        }
+		private void bSetAnswer_Click(object sender, EventArgs e) {
+			CurrentQA.Answer = rtbAnswer.Text;
+			MessageBox.Show(service.answerQA(CurrentQA));
+		}
 
 		private void saveFileDialog_FileOk(object sender, System.ComponentModel.CancelEventArgs e) {
 			var data = this.service.getThemePopularity();
 			ReportCreator.CreateExcelChart(saveFileDialog.FileName, "Популярность тем", new string[] { "Тема", "Кол-во вопросов" }, data);
 		}
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            List<QA> x = service.getAllQa();
-            if(x==null || x.Count==0)
-            {
-                MessageBox.Show("Список пуст");
-                return;
-            }
-            FormQA fqa = new FormQA(x, this.service, "Все вопросы-ответы", false);
-            fqa.ShowDialog();
-        }
-    }
+		private void bShowAllQuestions_Click(object sender, EventArgs e) {
+			dataViewForm.LoadItems<QA>(service.getAllQA(), Commands.SHOW_QA, checkBox1showId.Checked, false).Show();
+			dataViewForm.Focus(); // Зачем это везде?
+			/*List<QA> x = service.getAllQA();
+			if(x==null || x.Count==0)
+			{
+				MessageBox.Show("Список пуст");
+				return;
+			}
+			FormQA fqa = new FormQA(x, this.service, "Все вопросы-ответы", false);
+			fqa.ShowDialog();*/
+		}
+	}
 }
