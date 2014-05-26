@@ -46,7 +46,7 @@ namespace QuestionHandlerLib {
                 {
                     ar.CounsulterID = ConsId;
                     db.SubmitChanges();
-                    log("Консультанту выслан вопрос " + ar.Question);
+                    log("Консультанту выслан вопрос " + ar.ID.ToString());
                     return ar;
                 }
             }
@@ -56,18 +56,21 @@ namespace QuestionHandlerLib {
 
         public void setQAanswer(QA y, DateTime end)
         {
-            QA x = db.tFQA.Where(c => c.ID == y.ID).FirstOrDefault();
-            if (x == null) return;
-            if (x.Answer != null)
+            try
             {
-                throw new Exception("Ответ уже задан");
+                QA x = db.tFQA.Where(c => c.ID == y.ID).FirstOrDefault();
+                if (x == null) throw new Exception("Не найдена запись БД "+y.ID.ToString());
+                if (x.Answer != null) throw new Exception("Ответ уже задан");
+
+                x.Answer = y.Answer;
+                x.EndTime = end;
+                Themes t = db.tThemes.Where(c => c.ID == x.ThemeID).FirstOrDefault();
+                if (t == null) throw new Exception("Не найдена тема (serQAanswer -  control)");
+                db.SubmitChanges();
+                if (this.SendAnswer != null) this.SendAnswer(x.Email, x.Answer, "Re: " + t.Theme);
             }
-            x.Answer = y.Answer;
-            x.EndTime = end;
-            Themes t = db.tThemes.Where(c=>c.ID==x.ThemeID).FirstOrDefault();
-            if(t==null) throw new Exception("не найдена тема (serQAanswer -  control)");
-            db.SubmitChanges();
-			if(this.SendAnswer != null) this.SendAnswer(x.Email, x.Answer, "Re: " + t.Theme);
+            catch (Exception ex)
+            { log("setQaAnswerEx: " + ex.Message); throw ex; }
         }
 
         public int getDifficulty (QA x)

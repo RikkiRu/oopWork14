@@ -251,7 +251,7 @@ namespace dbLib {
 		[Column(IsPrimaryKey = true, IsDbGenerated = true, DbType = "INT", Name = "Id")]
 		public int ID {
 			set { Id = value; }
-			get { return theme_id; }
+            get { return Id; }
 		}
 		[DataMember]
 		[Column(DbType = "NVARCHAR(MAX)", Name = "question")]

@@ -69,7 +69,9 @@ namespace AnalyzerLib {
 			body = body.Replace("<br>", Environment.NewLine);
 			int tagPos = body.IndexOf('<');
 			while(tagPos >= 0) {
+                if (body.IndexOf('>') < 0) break;
 				body = body.Remove(tagPos, body.IndexOf('>') - tagPos + 1);
+                tagPos = body.IndexOf('<');
 			}
 			return body;
 		}

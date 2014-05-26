@@ -107,7 +107,8 @@ namespace PostmanLib
         }
         public void SendAnswer(string address, string answer, string title)
         {
-			MailMessage answerMail = new MailMessage(this.connectionInfo.hostAddress, address, title, answer);
+
+			MailMessage answerMail = new MailMessage(this.connectionInfo.hostUsername+this.connectionInfo.hostAddress, address, title, answer);
 			SmtpClient mailer = new SmtpClient(this.connectionInfo.smtpAddress, this.connectionInfo.smtpPort);
 			mailer.Credentials = new NetworkCredential(this.connectionInfo.hostUsername, this.connectionInfo.hostPassword);
             mailer.EnableSsl = true;
