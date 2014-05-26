@@ -39,9 +39,8 @@ namespace Server_2._0 {
 			this.analyzer = new Analyzer(this.db, 60, 1, this.log);
 			this.postman = new Postman("Вопрос_", this.db, connectionInfo, this.mailTimer, this.analyzer.HandleNewMessages, this.log);
 			this.questionHandler = new QuestionHandler(this.db, this.analyzer, this.postman.SendAnswer, this.log);
-			this.analyzer.QAGenerated += this.questionHandler.QAaddToDataBase;
+			this.analyzer.QAGenerated += this.questionHandler.InsertNewQA;
 			mailTimer.Start();
-			//db.getStringTable(db.tConsulters);
 			Log("Сервер запущен");
 		}
 		public void Stop() {
@@ -51,111 +50,6 @@ namespace Server_2._0 {
 			} catch { }
 		}
 		/* Service methods */
-		public object GetCommandString(Commands query, string data = null) {
-			string[] processedData = null;
-			if (data != null)
-				processedData = data.Split('~');
-			switch (query) {
-				case Commands.LOGIN:
-					var a = db.tConsulters.Where(c => c.Login == processedData[0]).FirstOrDefault();
-					if (a != null && a.Password == processedData[1]) return a.ToString();
-					return -1;
-				case Commands.ADD_CONSULTER:
-					try {
-						if (db.tConsulters.Where(c => c.ID == Convert.ToInt32(processedData[0])).FirstOrDefault() == null) {
-							db.tConsulters.InsertOnSubmit(new Consulters(processedData[0], processedData[1], processedData[2], processedData[3], Convert.ToInt32(processedData[4]), Convert.ToInt32(processedData[5])));
-							db.SubmitChanges();
-						} else
-							throw new Exception("Такой пользователь уже существует");
-						return "Добавлено";
-					} catch (Exception ex) { return ex.Message; }
-				case Commands.SHOW_CONSULTER:
-					return db.getStringTable(db.tConsulters);
-				case Commands.SHOW_THEME:
-					return db.getStringTable(db.tThemes);
-				case Commands.QUESTION_CHART:
-					var themes = from theme in db.tThemes select theme;
-					var questions = from question in db.tFQA select question.ThemeID;
-					string themePopularity = string.Empty;
-					foreach (var theme in themes) {
-						themePopularity += theme.Theme + '~' + questions.Count<int>(question => question == theme.ID).ToString() + Environment.NewLine;
-					}
-					return themePopularity;
-				case Commands.ADD_FAQ:
-					try {
-						if (db.tThemes.Where(c => c.ID == Convert.ToInt32(processedData[2])).FirstOrDefault() == null)
-							throw new Exception("Нет такой темы");
-						else {
-							db.tFAQ.InsertOnSubmit(new FAQ(processedData[0], processedData[1], Convert.ToInt32(processedData[2])));
-							db.SubmitChanges();
-							return "Добавлено";
-						}
-					} catch (Exception ex) { return ex.Message; }
-				case Commands.EDIT_FAQ:
-					try {
-						var faq = db.tFAQ.Where(c => c.ID == Convert.ToInt32(processedData[0])).FirstOrDefault();
-						if (faq != null) {
-							faq.Set(processedData[0], processedData[1], Convert.ToInt32(processedData[2]));
-							return "Добавлено";
-						} else
-							throw new Exception("Такого стандартного вопроса не существует");
-					} catch (Exception exc) {
-						return exc.Message;
-					}
-				case Commands.SHOW_FAQ:
-					return db.getStringTable(db.tFAQ);
-				case Commands.ADD_TARIF:
-					try {
-						db.tTarif.InsertOnSubmit(new Tarif(Convert.ToInt32(processedData[0]), Convert.ToInt32(processedData[1])));
-						db.SubmitChanges();
-						/*var tarif = new Tarif()
-						con.Id = Convert.ToInt32(s[1]);
-						con.cost = Convert.ToInt32(s[2]);
-						con.multipiller = Convert.ToInt32(s[3]);
-
-						if (add) db.tTarif.InsertOnSubmit(con);*/
-						return "Добавлено";
-					} catch (Exception ex) { return ex.Message; }
-				case Commands.EDIT_TARIF:
-					try {
-						var tarif = db.tTarif.Where(c => c.ID == Convert.ToInt32(processedData[0])).FirstOrDefault();
-						if (tarif != null) {
-							tarif.Set(Convert.ToInt32(processedData[0]), Convert.ToInt32(processedData[1]));
-						} else
-							throw new Exception("Такого тарифа не существует");
-						return "Добавлено";
-					} catch (Exception ex) { return ex.Message; }
-				case Commands.SHOW_TARIF:
-					return db.getStringTable(db.tTarif);
-				/*case Commands.ADD_THEME:
-					try {
-						var theme = db.tThemes.Where(c => c.Id == Convert.ToInt32(s[1])).FirstOrDefault();
-						bool add = false;
-						if (theme == null) {
-							theme = new Themes();
-							add = true;
-						}
-						theme.Id = Convert.ToInt32(s[1]);
-						theme.Theme = s[2];
-						theme.difficulity = Convert.ToInt32(s[3]);
-						if (theme.difficulity < 0) throw new Exception("Сложность должна быть >0");
-						theme.standart_time = s[4];
-						string[] testN = s[4].Split('.');
-						if (testN.GetLength(0) != 3) throw new Exception("Формат срока не верен");
-						theme.tarif_id = Convert.ToInt32(s[5]);
-						var test = db.tThemes.Where(c => c.Id == theme.tarif_id).FirstOrDefault();
-						if (test == null) throw new Exception("Нет такого тарифа");
-						if (add) db.tThemes.InsertOnSubmit(theme);
-						db.SubmitChanges();
-						return "Добавлено";
-					} catch (Exception ex) { return ex.Message; }
-				case Commands.GET_QUESTION:
-				case Commands.GET_SOME_QUESTIONS:
-				case Commands.SET_ANSWER:*/
-				default:
-					return "No such command";
-			}
-		}
 		/*Idk how to make this work, but its awesome!
 		 * public List<T> getTable<T>() where T : Table {
 			return this.db.getTable<T>().ToList<T>();
@@ -312,26 +206,23 @@ namespace Server_2._0 {
 			var themePopularity = new Dictionary<string, string>();
 			foreach (var theme in themes) {
 				var questionCount = questions.Count<int>(question => question == theme.ID);
-				if(questionCount > 0)
+				if (questionCount > 0)
 					themePopularity.Add(theme.Theme, questionCount.ToString());
 			}
 			return themePopularity;
 		}
 
 		public object getReport() {
-
 			return null;
 		}
 
-        //похожести
-        public List<QA> getAllQA()
-        {
-            return this.db.getTable<QA>().ToList<QA>();
-        }
+		//похожести
+		public List<QA> getAllQA() {
+			return this.db.getTable<QA>().ToList<QA>();
+		}
 
-        public List<QA> getSomeQA(QA source, bool IsQuestions)
-        {
-            return questionHandler.getSomeQA(source, !IsQuestions);
-        }
+		public List<QA> getSimilarQA(QA source, bool IsQuestions) {
+			return questionHandler.getSimularQA(source, !IsQuestions);
+		}
 	}
 }

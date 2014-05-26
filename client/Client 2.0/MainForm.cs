@@ -115,16 +115,17 @@ namespace Client_2._0 {
 		}
 
 		private void bShowAllQuestions_Click(object sender, EventArgs e) {
-			dataViewForm.LoadItems<QA>(service.getAllQA(), Commands.SHOW_QA, checkBox1showId.Checked, false).Show();
-			dataViewForm.Focus(); // Зачем это везде?
-			/*List<QA> x = service.getAllQA();
+			/* Раскомментировать в случае необходимости
+			 * dataViewForm.LoadItems<QA>(service.getAllQA(), Commands.SHOW_QA, checkBox1showId.Checked, false).Show();
+			dataViewForm.Focus(); // Зачем это везде?*/
+			List<QA> x = service.getAllQA();
 			if(x==null || x.Count==0)
 			{
 				MessageBox.Show("Список пуст");
 				return;
 			}
-			FormQA fqa = new FormQA(x, this.service, "Все вопросы-ответы", false);
-			fqa.ShowDialog();*/
+			QAForm fqa = new QAForm(x, this.service, "Все вопросы-ответы", false);
+			fqa.ShowDialog();
 		}
 	}
 }

@@ -8,34 +8,31 @@ using System.Timers;
 using dbLib;
 using HelpersLib;
 
-namespace PostmanLib
-{
+namespace PostmanLib {
 	public delegate void MessageHandler(List<MailMessage> newMessages);
 
-    //класс почтовик. Бывший класс Франкенштейн.
+	//класс почтовик. Бывший класс Франкенштейн.
 
-    public class Postman : Helper
-    {
+	public class Postman : Helper {
 		private PostmanConnectionInfo connectionInfo;
 		private Pop3Client client;
-        public event MessageHandler MessageRecievedEvent;
+		public event MessageHandler MessageRecievedEvent;
 		string questionTag;
 
-        List<string> readed;
+		List<string> readed;
 
-        public Postman(string questionTag, dbBind db, PostmanConnectionInfo connectionInfo, Timer mailTimer, MessageHandler messagesHandler, StringHandler log = null) : base(db, log)
-        {
+		public Postman(string questionTag, dbBind db, PostmanConnectionInfo connectionInfo, Timer mailTimer, MessageHandler messagesHandler, StringHandler log = null)
+			: base(db, log) {
 			this.questionTag = questionTag;
-            this.readed = new List<string>();
-            this.MessageRecievedEvent = messagesHandler;
-            this.db = db;
+			this.readed = new List<string>();
+			this.MessageRecievedEvent = messagesHandler;
+			this.db = db;
 			this.connectionInfo = connectionInfo;
-            client = new Pop3Client();
+			client = new Pop3Client();
 			mailTimer.Elapsed += new ElapsedEventHandler(CheckMailBox);
-        }
+		}
 
-        public void Connect()
-        {
+		public void Connect() {
 			try {
 				client.Connect(this.connectionInfo.popAddress, this.connectionInfo.popPort, true);
 				client.Authenticate(this.connectionInfo.hostUsername, this.connectionInfo.hostPassword);
@@ -44,10 +41,9 @@ namespace PostmanLib
 			} catch (Exception exc) {
 				Log(exc.Message);
 			}
-        }
+		}
 
-        public void Disconnect()
-        {
+		public void Disconnect() {
 			try {
 				client.Disconnect();
 				if (!client.Connected)
@@ -55,15 +51,14 @@ namespace PostmanLib
 			} catch (Exception exc) {
 				Log(exc.Message);
 			}
-        }
+		}
 
-        public void CheckMailBox(object sender, ElapsedEventArgs e)
-        {
-            try {
-                //client.Reset();
-                Connect();
-                //Log("connected");
-                List<string> UIDs = client.GetMessageUids();
+		public void CheckMailBox(object sender, ElapsedEventArgs e) {
+			try {
+				//client.Reset();
+				Connect();
+				//Log("connected");
+				List<string> UIDs = client.GetMessageUids();
 				if (UIDs.Count != 0) {
 					Log(DateTime.Now.ToString() + ") новых писем - " + UIDs.Count);
 					List<MailMessage> newMessages = new List<MailMessage>();
@@ -74,70 +69,60 @@ namespace PostmanLib
 							readed.Add(UIDs[i]);
 							MailMessage message;
 							message = client.GetMessage(i + 1).ToMailMessage();
-							
+
 							int questionTagPos = message.Subject.IndexOf(questionTag);
-							if (questionTagPos >= 0) 
-                            {
+							if (questionTagPos >= 0) {
 								message.Subject = message.Subject.Remove(questionTagPos, questionTag.Length);
-                                newMessages.Add(message);
+								newMessages.Add(message);
+							} else {
+								Log("Письмо является спамом(dat spam alert!!!)");
 							}
 
-                            else
-                            {
-                                Log("Письмо является спамом(dat spam alert!!!)");
-                            }
 
-							
-							Log("Тема: "+message.Subject);
+							Log("Тема: " + message.Subject);
 						}
 					}
-					if (newMessages.Count != 0 && MessageRecievedEvent != null) 
-                    {
+					if (newMessages.Count != 0 && MessageRecievedEvent != null) {
 						Log("Посылаем письма на обработку...");
 						// Если обработка идет дольше, чем следущее исключение, то клиент не закроется, добавить в отдельный поток (сделано)
 						new System.Threading.Thread(() => MessageRecievedEvent(newMessages)).Start();
-                        //MessageRecievedEvent(newMessages);
+						//MessageRecievedEvent(newMessages);
 					}
 				}
-            } catch (Exception exc) {
+			} catch (Exception exc) {
 				Log(exc.Message);
 			} finally {
 				Disconnect();
 			}
-        }
-        public void SendAnswer(string address, string answer, string title)
-        {
+		}
+		public void SendAnswer(string address, string answer, string title) {
 
-			MailMessage answerMail = new MailMessage(this.connectionInfo.hostUsername+this.connectionInfo.hostAddress, address, title, answer);
+			MailMessage answerMail = new MailMessage(this.connectionInfo.hostUsername + this.connectionInfo.hostAddress, address, title, answer);
 			SmtpClient mailer = new SmtpClient(this.connectionInfo.smtpAddress, this.connectionInfo.smtpPort);
 			mailer.Credentials = new NetworkCredential(this.connectionInfo.hostUsername, this.connectionInfo.hostPassword);
-            mailer.EnableSsl = true;
-            mailer.Send(answerMail);
-        }
+			mailer.EnableSsl = true;
+			mailer.Send(answerMail);
+		}
 
-        public class RecivedEventArgs : EventArgs
-        {
-            private int count;
-            private List<MailMessage> newMessages;
+		public class RecivedEventArgs : EventArgs {
+			private int count;
+			private List<MailMessage> newMessages;
 
-            public int Count
-            {
-                get { return count; }
-            }
-            public List<MailMessage> NewMessages
-            {
-                get { return newMessages; }
-            }
+			public int Count {
+				get { return count; }
+			}
+			public List<MailMessage> NewMessages {
+				get { return newMessages; }
+			}
 
-            public RecivedEventArgs(List<MailMessage> newMessages)
-            {
-                this.newMessages = newMessages;
-                this.count = newMessages.Count;
-            }
-        }
+			public RecivedEventArgs(List<MailMessage> newMessages) {
+				this.newMessages = newMessages;
+				this.count = newMessages.Count;
+			}
+		}
 
 
-    }
+	}
 	public class PostmanConnectionInfo {
 		public string hostUsername;
 		public string hostAddress;

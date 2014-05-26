@@ -31,8 +31,6 @@ namespace CommunicationInterface {
 	[ServiceContract]
 	public interface ICommandHandler {
 		[OperationContract]
-		object GetCommandString(Commands query, string data = null);
-		[OperationContract]
 		Consulters Login(Consulters consulter);
 		/* Idk how to make this work, but its awesome!
 		 * [OperationContract]
@@ -84,11 +82,10 @@ namespace CommunicationInterface {
 		Dictionary<string, string> getThemePopularity();
 		[OperationContract]
 		object getReport();
-
 		//все вопросы и какие-либо похожие (true -> с похожими вопросами, иначе с похожими ответами) UPD шта?
 		[OperationContract]
 		List<QA> getAllQA();
 		[OperationContract]
-		List<QA> getSomeQA(QA source, bool IsQuestions);
+		List<QA> getSimilarQA(QA source, bool IsQuestions);
 	}
 }
