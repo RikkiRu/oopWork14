@@ -51,6 +51,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormQA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormQA.Designer.cs">
+      <DependentUpon>FormQA.cs</DependentUpon>
+    </Compile>
     <Compile Include="ItemForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,6 +96,9 @@
     <Compile Include="ThemePopularityChartForm.Designer.cs">
       <DependentUpon>ThemePopularityChartForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="FormQA.resx">
+      <DependentUpon>FormQA.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ItemForm.resx">
       <DependentUpon>ItemForm.cs</DependentUpon>
     </EmbeddedResource>

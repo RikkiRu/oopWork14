@@ -31,12 +31,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPgAdmin = new System.Windows.Forms.TabPage();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.bCreateODFReport = new System.Windows.Forms.Button();
             this.bCreateQuestionChart = new System.Windows.Forms.Button();
             this.bCreateEfficiencyChart = new System.Windows.Forms.Button();
             this.bShowWorkers = new System.Windows.Forms.Button();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.bShowSalary = new System.Windows.Forms.Button();
             this.bShowTheme = new System.Windows.Forms.Button();
             this.bShowFAQ = new System.Windows.Forms.Button();
@@ -57,16 +55,18 @@
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.panel9 = new System.Windows.Forms.Panel();
             this.tabControl.SuspendLayout();
             this.tabPgAdmin.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tabPgUser.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel7.SuspendLayout();
+            this.panel8.SuspendLayout();
+            this.panel9.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl
@@ -84,8 +84,7 @@
             // tabPgAdmin
             // 
             this.tabPgAdmin.BackColor = System.Drawing.SystemColors.Highlight;
-            this.tabPgAdmin.Controls.Add(this.panel1);
-            this.tabPgAdmin.Controls.Add(this.panel3);
+            this.tabPgAdmin.Controls.Add(this.panel9);
             this.tabPgAdmin.Controls.Add(this.panel2);
             this.tabPgAdmin.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tabPgAdmin.Location = new System.Drawing.Point(4, 22);
@@ -95,23 +94,10 @@
             this.tabPgAdmin.TabIndex = 0;
             this.tabPgAdmin.Text = "Администратор";
             // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.panel1.Controls.Add(this.bCreateODFReport);
-            this.panel1.Controls.Add(this.bCreateQuestionChart);
-            this.panel1.Controls.Add(this.bCreateEfficiencyChart);
-            this.panel1.Controls.Add(this.bShowWorkers);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(307, 10);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(284, 277);
-            this.panel1.TabIndex = 15;
-            // 
             // bCreateODFReport
             // 
-            this.bCreateODFReport.Dock = System.Windows.Forms.DockStyle.Top;
-            this.bCreateODFReport.Location = new System.Drawing.Point(0, 159);
+            this.bCreateODFReport.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.bCreateODFReport.Location = new System.Drawing.Point(293, 170);
             this.bCreateODFReport.Name = "bCreateODFReport";
             this.bCreateODFReport.Size = new System.Drawing.Size(284, 53);
             this.bCreateODFReport.TabIndex = 8;
@@ -120,9 +106,9 @@
             // 
             // bCreateQuestionChart
             // 
-            this.bCreateQuestionChart.Dock = System.Windows.Forms.DockStyle.Top;
+            this.bCreateQuestionChart.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.bCreateQuestionChart.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.bCreateQuestionChart.Location = new System.Drawing.Point(0, 106);
+            this.bCreateQuestionChart.Location = new System.Drawing.Point(293, 117);
             this.bCreateQuestionChart.Name = "bCreateQuestionChart";
             this.bCreateQuestionChart.Size = new System.Drawing.Size(284, 53);
             this.bCreateQuestionChart.TabIndex = 9;
@@ -132,8 +118,8 @@
             // 
             // bCreateEfficiencyChart
             // 
-            this.bCreateEfficiencyChart.Dock = System.Windows.Forms.DockStyle.Top;
-            this.bCreateEfficiencyChart.Location = new System.Drawing.Point(0, 53);
+            this.bCreateEfficiencyChart.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.bCreateEfficiencyChart.Location = new System.Drawing.Point(293, 64);
             this.bCreateEfficiencyChart.Name = "bCreateEfficiencyChart";
             this.bCreateEfficiencyChart.Size = new System.Drawing.Size(284, 53);
             this.bCreateEfficiencyChart.TabIndex = 1;
@@ -143,8 +129,8 @@
             // 
             // bShowWorkers
             // 
-            this.bShowWorkers.Dock = System.Windows.Forms.DockStyle.Top;
-            this.bShowWorkers.Location = new System.Drawing.Point(0, 0);
+            this.bShowWorkers.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.bShowWorkers.Location = new System.Drawing.Point(293, 11);
             this.bShowWorkers.Name = "bShowWorkers";
             this.bShowWorkers.Size = new System.Drawing.Size(284, 53);
             this.bShowWorkers.TabIndex = 6;
@@ -152,35 +138,22 @@
             this.bShowWorkers.UseVisualStyleBackColor = true;
             this.bShowWorkers.Click += new System.EventHandler(this.bShowWorkers_Click);
             // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.panel3.Controls.Add(this.bShowSalary);
-            this.panel3.Controls.Add(this.bShowTheme);
-            this.panel3.Controls.Add(this.bShowFAQ);
-            this.panel3.Controls.Add(this.bShowTarif);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel3.Location = new System.Drawing.Point(10, 10);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(291, 277);
-            this.panel3.TabIndex = 14;
-            // 
             // bShowSalary
             // 
-            this.bShowSalary.Dock = System.Windows.Forms.DockStyle.Top;
-            this.bShowSalary.Location = new System.Drawing.Point(0, 159);
+            this.bShowSalary.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.bShowSalary.Location = new System.Drawing.Point(3, 170);
             this.bShowSalary.Name = "bShowSalary";
-            this.bShowSalary.Size = new System.Drawing.Size(291, 53);
+            this.bShowSalary.Size = new System.Drawing.Size(284, 53);
             this.bShowSalary.TabIndex = 7;
             this.bShowSalary.Text = "Зарплата";
             this.bShowSalary.UseVisualStyleBackColor = true;
             // 
             // bShowTheme
             // 
-            this.bShowTheme.Dock = System.Windows.Forms.DockStyle.Top;
-            this.bShowTheme.Location = new System.Drawing.Point(0, 106);
+            this.bShowTheme.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.bShowTheme.Location = new System.Drawing.Point(3, 117);
             this.bShowTheme.Name = "bShowTheme";
-            this.bShowTheme.Size = new System.Drawing.Size(291, 53);
+            this.bShowTheme.Size = new System.Drawing.Size(284, 53);
             this.bShowTheme.TabIndex = 5;
             this.bShowTheme.Text = "Темы";
             this.bShowTheme.UseVisualStyleBackColor = true;
@@ -188,10 +161,10 @@
             // 
             // bShowFAQ
             // 
-            this.bShowFAQ.Dock = System.Windows.Forms.DockStyle.Top;
-            this.bShowFAQ.Location = new System.Drawing.Point(0, 53);
+            this.bShowFAQ.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.bShowFAQ.Location = new System.Drawing.Point(3, 64);
             this.bShowFAQ.Name = "bShowFAQ";
-            this.bShowFAQ.Size = new System.Drawing.Size(291, 53);
+            this.bShowFAQ.Size = new System.Drawing.Size(284, 53);
             this.bShowFAQ.TabIndex = 2;
             this.bShowFAQ.Text = "FAQ";
             this.bShowFAQ.UseVisualStyleBackColor = true;
@@ -199,10 +172,10 @@
             // 
             // bShowTarif
             // 
-            this.bShowTarif.Dock = System.Windows.Forms.DockStyle.Top;
-            this.bShowTarif.Location = new System.Drawing.Point(0, 0);
+            this.bShowTarif.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.bShowTarif.Location = new System.Drawing.Point(3, 11);
             this.bShowTarif.Name = "bShowTarif";
-            this.bShowTarif.Size = new System.Drawing.Size(291, 53);
+            this.bShowTarif.Size = new System.Drawing.Size(284, 53);
             this.bShowTarif.TabIndex = 4;
             this.bShowTarif.Text = "Тарифы";
             this.bShowTarif.UseVisualStyleBackColor = true;
@@ -220,19 +193,19 @@
             // 
             // checkBox1showId
             // 
-            this.checkBox1showId.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBox1showId.AutoSize = true;
+            this.checkBox1showId.Dock = System.Windows.Forms.DockStyle.Right;
             this.checkBox1showId.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.checkBox1showId.Location = new System.Drawing.Point(460, 7);
+            this.checkBox1showId.Location = new System.Drawing.Point(464, 0);
             this.checkBox1showId.Name = "checkBox1showId";
-            this.checkBox1showId.Size = new System.Drawing.Size(117, 22);
+            this.checkBox1showId.Size = new System.Drawing.Size(117, 44);
             this.checkBox1showId.TabIndex = 10;
             this.checkBox1showId.Text = "Показывать ID";
             this.checkBox1showId.UseVisualStyleBackColor = true;
             // 
             // tabPgUser
             // 
-            this.tabPgUser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(205)))), ((int)(((byte)(31)))));
+            this.tabPgUser.BackColor = System.Drawing.Color.SteelBlue;
             this.tabPgUser.Controls.Add(this.panel7);
             this.tabPgUser.Controls.Add(this.panel5);
             this.tabPgUser.Controls.Add(this.panel4);
@@ -246,86 +219,88 @@
             // 
             // panel5
             // 
-            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.panel5.Controls.Add(this.panel6);
-            this.panel5.Controls.Add(this.lQuestion);
-            this.panel5.Controls.Add(this.rtbQuestion);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel5.Location = new System.Drawing.Point(10, 10);
+            this.panel5.BackColor = System.Drawing.Color.LightGray;
+            this.panel5.Controls.Add(this.bGetQuestion);
+            this.panel5.Controls.Add(this.button1);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel5.Location = new System.Drawing.Point(432, 10);
             this.panel5.Name = "panel5";
             this.panel5.Padding = new System.Windows.Forms.Padding(3);
-            this.panel5.Size = new System.Drawing.Size(328, 242);
+            this.panel5.Size = new System.Drawing.Size(159, 242);
             this.panel5.TabIndex = 12;
             // 
             // lQuestion
             // 
-            this.lQuestion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lQuestion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.lQuestion.Dock = System.Windows.Forms.DockStyle.Top;
             this.lQuestion.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.lQuestion.Location = new System.Drawing.Point(3, 3);
             this.lQuestion.Name = "lQuestion";
-            this.lQuestion.Size = new System.Drawing.Size(322, 21);
+            this.lQuestion.Size = new System.Drawing.Size(416, 21);
             this.lQuestion.TabIndex = 2;
             this.lQuestion.Text = "Текущий вопрос";
             this.lQuestion.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // rtbQuestion
             // 
-            this.rtbQuestion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.rtbQuestion.Location = new System.Drawing.Point(6, 45);
+            this.rtbQuestion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.rtbQuestion.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rtbQuestion.Location = new System.Drawing.Point(3, 3);
             this.rtbQuestion.Name = "rtbQuestion";
             this.rtbQuestion.ReadOnly = true;
-            this.rtbQuestion.Size = new System.Drawing.Size(316, 136);
+            this.rtbQuestion.Size = new System.Drawing.Size(410, 182);
             this.rtbQuestion.TabIndex = 1;
             this.rtbQuestion.Text = "Запросите вопрос";
             // 
             // lTimeLabel
             // 
-            this.lTimeLabel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.lTimeLabel.Location = new System.Drawing.Point(0, 0);
+            this.lTimeLabel.Dock = System.Windows.Forms.DockStyle.Right;
+            this.lTimeLabel.Location = new System.Drawing.Point(130, 3);
             this.lTimeLabel.Name = "lTimeLabel";
-            this.lTimeLabel.Size = new System.Drawing.Size(134, 27);
+            this.lTimeLabel.Size = new System.Drawing.Size(134, 21);
             this.lTimeLabel.TabIndex = 8;
             this.lTimeLabel.Text = "Время завершения:";
-            this.lTimeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lTimeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lTime
             // 
             this.lTime.Dock = System.Windows.Forms.DockStyle.Right;
             this.lTime.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lTime.Location = new System.Drawing.Point(134, 0);
+            this.lTime.Location = new System.Drawing.Point(264, 3);
             this.lTime.Name = "lTime";
-            this.lTime.Size = new System.Drawing.Size(188, 27);
+            this.lTime.Size = new System.Drawing.Size(149, 21);
             this.lTime.TabIndex = 9;
             this.lTime.Text = "--";
             this.lTime.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // panel4
             // 
-            this.panel4.BackColor = System.Drawing.Color.SpringGreen;
+            this.panel4.BackColor = System.Drawing.SystemColors.HotTrack;
             this.panel4.Controls.Add(this.rtbAnswer);
             this.panel4.Controls.Add(this.bSetAnswer);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel4.Location = new System.Drawing.Point(10, 252);
             this.panel4.Name = "panel4";
+            this.panel4.Padding = new System.Windows.Forms.Padding(3);
+            this.panel4.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.panel4.Size = new System.Drawing.Size(581, 79);
             this.panel4.TabIndex = 11;
             // 
             // rtbAnswer
             // 
             this.rtbAnswer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rtbAnswer.Location = new System.Drawing.Point(0, 0);
+            this.rtbAnswer.Location = new System.Drawing.Point(3, 3);
             this.rtbAnswer.Name = "rtbAnswer";
-            this.rtbAnswer.Size = new System.Drawing.Size(581, 52);
+            this.rtbAnswer.Size = new System.Drawing.Size(575, 46);
             this.rtbAnswer.TabIndex = 4;
             this.rtbAnswer.Text = "";
             // 
             // bSetAnswer
             // 
             this.bSetAnswer.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.bSetAnswer.Location = new System.Drawing.Point(0, 52);
+            this.bSetAnswer.Location = new System.Drawing.Point(3, 49);
             this.bSetAnswer.Name = "bSetAnswer";
-            this.bSetAnswer.Size = new System.Drawing.Size(581, 27);
+            this.bSetAnswer.Size = new System.Drawing.Size(575, 27);
             this.bSetAnswer.TabIndex = 5;
             this.bSetAnswer.Text = "Ответить";
             this.bSetAnswer.UseVisualStyleBackColor = true;
@@ -334,19 +309,20 @@
             // button1
             // 
             this.button1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button1.Location = new System.Drawing.Point(0, 36);
+            this.button1.Location = new System.Drawing.Point(3, 3);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(247, 33);
+            this.button1.Size = new System.Drawing.Size(153, 33);
             this.button1.TabIndex = 10;
             this.button1.Text = "Все вопросы";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // bGetQuestion
             // 
             this.bGetQuestion.Dock = System.Windows.Forms.DockStyle.Top;
-            this.bGetQuestion.Location = new System.Drawing.Point(0, 3);
+            this.bGetQuestion.Location = new System.Drawing.Point(3, 36);
             this.bGetQuestion.Name = "bGetQuestion";
-            this.bGetQuestion.Size = new System.Drawing.Size(247, 33);
+            this.bGetQuestion.Size = new System.Drawing.Size(153, 33);
             this.bGetQuestion.TabIndex = 0;
             this.bGetQuestion.Text = "Запросить вопрос";
             this.bGetQuestion.UseVisualStyleBackColor = true;
@@ -365,20 +341,49 @@
             this.panel6.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel6.Location = new System.Drawing.Point(3, 212);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(322, 27);
+            this.panel6.Padding = new System.Windows.Forms.Padding(3);
+            this.panel6.Size = new System.Drawing.Size(416, 27);
             this.panel6.TabIndex = 10;
             // 
             // panel7
             // 
             this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.panel7.Controls.Add(this.button1);
-            this.panel7.Controls.Add(this.bGetQuestion);
-            this.panel7.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel7.Location = new System.Drawing.Point(344, 10);
+            this.panel7.Controls.Add(this.panel8);
+            this.panel7.Controls.Add(this.panel6);
+            this.panel7.Controls.Add(this.lQuestion);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel7.Location = new System.Drawing.Point(10, 10);
             this.panel7.Name = "panel7";
-            this.panel7.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.panel7.Size = new System.Drawing.Size(247, 242);
+            this.panel7.Padding = new System.Windows.Forms.Padding(3);
+            this.panel7.Size = new System.Drawing.Size(422, 242);
             this.panel7.TabIndex = 13;
+            // 
+            // panel8
+            // 
+            this.panel8.Controls.Add(this.rtbQuestion);
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel8.Location = new System.Drawing.Point(3, 24);
+            this.panel8.Name = "panel8";
+            this.panel8.Padding = new System.Windows.Forms.Padding(3);
+            this.panel8.Size = new System.Drawing.Size(416, 188);
+            this.panel8.TabIndex = 11;
+            // 
+            // panel9
+            // 
+            this.panel9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.panel9.Controls.Add(this.bCreateODFReport);
+            this.panel9.Controls.Add(this.bCreateQuestionChart);
+            this.panel9.Controls.Add(this.bShowSalary);
+            this.panel9.Controls.Add(this.bCreateEfficiencyChart);
+            this.panel9.Controls.Add(this.bShowWorkers);
+            this.panel9.Controls.Add(this.bShowTheme);
+            this.panel9.Controls.Add(this.bShowFAQ);
+            this.panel9.Controls.Add(this.bShowTarif);
+            this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel9.Location = new System.Drawing.Point(10, 10);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(581, 277);
+            this.panel9.TabIndex = 16;
             // 
             // MainForm
             // 
@@ -395,8 +400,6 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.tabControl.ResumeLayout(false);
             this.tabPgAdmin.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.tabPgUser.ResumeLayout(false);
@@ -404,6 +407,8 @@
             this.panel4.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
+            this.panel8.ResumeLayout(false);
+            this.panel9.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -431,13 +436,13 @@
         private System.Windows.Forms.CheckBox checkBox1showId;
 		private System.Windows.Forms.SaveFileDialog saveFileDialog;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.Panel panel9;
 
     }
 }

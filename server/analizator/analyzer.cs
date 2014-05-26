@@ -78,6 +78,8 @@ namespace AnalyzerLib {
 
 		bool match(string source, string temp) //метод определения совпадения вопроса
 		{
+            if (source == null || temp == null) return false;
+
 			string[] sourceS = source.Split(' ');
 			string[] tempS = temp.Split(' ');
 

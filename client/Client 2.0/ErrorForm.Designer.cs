@@ -34,12 +34,12 @@
             // 
             // button1
             // 
-            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.button1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.button1.Font = new System.Drawing.Font("Calibri", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(377, 169);
+            this.button1.Location = new System.Drawing.Point(0, 192);
             this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(69, 27);
+            this.button1.Size = new System.Drawing.Size(352, 27);
             this.button1.TabIndex = 2;
             this.button1.Text = "Назад";
             this.button1.UseVisualStyleBackColor = true;
@@ -47,13 +47,13 @@
             // 
             // tbErrorText
             // 
-            this.tbErrorText.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tbErrorText.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tbErrorText.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbErrorText.Location = new System.Drawing.Point(0, 0);
             this.tbErrorText.Multiline = true;
             this.tbErrorText.Name = "tbErrorText";
             this.tbErrorText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbErrorText.Size = new System.Drawing.Size(457, 164);
+            this.tbErrorText.Size = new System.Drawing.Size(352, 192);
             this.tbErrorText.TabIndex = 3;
             this.tbErrorText.Text = "ErrorMessageHere";
             // 
@@ -63,13 +63,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(457, 207);
+            this.ClientSize = new System.Drawing.Size(352, 219);
             this.ControlBox = false;
             this.Controls.Add(this.tbErrorText);
             this.Controls.Add(this.button1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.MinimumSize = new System.Drawing.Size(473, 245);
+            this.MinimumSize = new System.Drawing.Size(368, 257);
             this.Name = "ErrorForm";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

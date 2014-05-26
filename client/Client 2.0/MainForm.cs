@@ -111,5 +111,17 @@ namespace Client_2._0
 			var data = this.service.getThemePopularity();
 			ReportCreator.CreateExcelChart(saveFileDialog.FileName, "Популярность тем", new string[] { "Тема", "Кол-во вопросов" }, data);
 		}
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            List<QA> x = service.getAllQa();
+            if(x==null || x.Count==0)
+            {
+                MessageBox.Show("Список пуст");
+                return;
+            }
+            FormQA fqa = new FormQA(x, this.service, "Все вопросы-ответы", false);
+            fqa.ShowDialog();
+        }
     }
 }
