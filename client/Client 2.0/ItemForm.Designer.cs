@@ -76,6 +76,7 @@
             this.Controls.Add(this.bSave);
             this.Controls.Add(this.dgCurrentItem);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MinimumSize = new System.Drawing.Size(490, 146);
             this.Name = "ItemForm";
             this.ShowIcon = false;
             this.Text = "Изменение записи";

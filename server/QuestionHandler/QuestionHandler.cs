@@ -54,6 +54,7 @@ namespace QuestionHandlerLib {
             return null;
         }
 
+        //записать ответ в бд и выслать его по мылу
         public void setQAanswer(QA y, DateTime end)
         {
             try
@@ -78,10 +79,10 @@ namespace QuestionHandlerLib {
             return analyzer.DifficulityQ(x);
         }
         
-        public string getSomeQA (QA x, bool isNeedAnswer)
+        public List<QA> getSomeQA (QA x, bool isNeedAnswer)
         {
-            string res="";
             List<int> lq;
+            List<QA> res = new List<QA>();
 
             if (!isNeedAnswer) lq = analyzer.someQ(x);
             else lq = analyzer.someAnswers(x);
@@ -90,22 +91,18 @@ namespace QuestionHandlerLib {
 
             foreach (var a in db.tFQA)
             {
-                if (!lq.Contains(a.ID)) continue;
-                res += a.ID.ToString() + "|";
-                res += a.Question + "|";
-                Themes t = db.tThemes.Where(c => c.ID == a.ThemeID).FirstOrDefault();
-                if (t == null) throw new Exception("Не найдена тема getSomeQ control");
-                res += t.Theme + "|";
-                res += a.Answer;
-                res += "~";
+                if (!lq.Contains(a.ID)) continue; //если нету в листе ID то летим дальше
+                res.Add(a);
             }
             return res;
         }
-		public void InsertNewQA(List<QA> newQA) {
-			foreach (QA question in newQA) {
-				db.tFQA.InsertOnSubmit(question);
-			}
-			db.SubmitChanges();
-		}
+
+        //а это что такое???
+        //public void InsertNewQA(List<QA> newQA) {
+        //    foreach (QA question in newQA) {
+        //        db.tFQA.InsertOnSubmit(question);
+        //    }
+        //    db.SubmitChanges();
+        //}
 	}
 }

@@ -318,5 +318,16 @@ namespace Server_2._0 {
 
 			return null;
 		}
+
+        //похожести
+        public List<QA> getAllQa()
+        {
+            return this.db.getTable<QA>().ToList<QA>();
+        }
+
+        public List<QA> getSomeQA(QA source, bool IsQuestions)
+        {
+            return questionHandler.getSomeQA(source, !IsQuestions);
+        }
 	}
 }

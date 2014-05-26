@@ -81,5 +81,11 @@ namespace CommunicationInterface {
 		Dictionary<string, string> getThemePopularity();
 		[OperationContract]
 		object getReport();
+
+        //все вопросы и какие-либо похожие (true -> с похожими вопросами, иначе с похожими ответами) 
+        [OperationContract]
+        List<QA> getAllQa();
+        [OperationContract]
+        List<QA> getSomeQA(QA source, bool IsQuestions);
 	}
 }
