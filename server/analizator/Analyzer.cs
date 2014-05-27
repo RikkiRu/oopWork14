@@ -33,7 +33,7 @@ namespace AnalyzerLib {
 
 			foreach(MailMessage message in newMessages) 
             {
-				QA qa = new QA(getBody(message.Body), null, getTheme(message.Subject), -1, DateTime.Now, null, message.From.Address);
+				QA qa = new QA(getBody(message.Body), null, getTheme(message.Subject), -1, DateTime.Now, DateTime.Now, message.From.Address);
 				qa.ThemeID = getTheme(message.Subject);
 				newQuestions.Add(qa);
 			}

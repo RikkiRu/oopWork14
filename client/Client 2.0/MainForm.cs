@@ -63,7 +63,7 @@ namespace Client_2._0 {
 			dataViewForm.Focus();
 		}
 		private void bShowSalary_Click(object sender, EventArgs e) {
-			dataViewForm.LoadItems<consulter_salary>(service.getSalary(), Commands.SHOW_CONSULTER, checkBox1showId.Checked, false).Show();
+			dataViewForm.LoadItems<consulter_salary>(service.getSalary(), Commands.SHOW_SALARY, checkBox1showId.Checked, false).Show();
 			dataViewForm.Focus();
 		}
 		private void bCreateQuestionChart_Click(object sender, EventArgs e) {
@@ -112,8 +112,11 @@ namespace Client_2._0 {
 		}
 
 		private void bSetAnswer_Click(object sender, EventArgs e) {
-			CurrentQA.Answer = rtbAnswer.Text;
-			MessageBox.Show(service.answerQA(CurrentQA));
+            if (CurrentQA != null)
+            {
+                CurrentQA.Answer = rtbAnswer.Text;
+                MessageBox.Show(service.answerQA(CurrentQA));
+            }
 		}
 
 		private void saveFileDialog_FileOk(object sender, System.ComponentModel.CancelEventArgs e) {
@@ -136,7 +139,7 @@ namespace Client_2._0 {
 		}
 
 		private void bBindQuestion_Click(object sender, EventArgs e) {
-			if(CurrentQA != null && CurrentQA.ID != currentConsulter.ID)
+			if(CurrentQA != null)
 				MessageBox.Show(this.service.bindQuestion(CurrentQA, currentConsulter.ID));
 		}
 

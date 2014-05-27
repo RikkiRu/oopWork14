@@ -48,7 +48,7 @@ namespace Client_2._0 {
 					this.Hide();
 					//string[] loginInfo = (res as string).Split('~');
 					//MessageBox.Show("Добро пожаловать " + res.Firstname + ' ' + res.Lastname);
-					if (mainForm == null || mainForm.IsDisposed) mainForm = new MainForm(res, client.Service, this);
+					mainForm = new MainForm(res, client.Service, this);
 					mainForm.ShowDialog();
 				}
 			} catch (Exception ex) {

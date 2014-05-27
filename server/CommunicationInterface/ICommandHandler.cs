@@ -26,7 +26,8 @@ namespace CommunicationInterface {
 		GET_SOME_QUESTIONS,
 		QUESTION_CHART,
 		EFFICIENCY_CHART,
-		REPORT
+		REPORT,
+        SHOW_SALARY
 	}
 	[ServiceContract]
 	public interface ICommandHandler {

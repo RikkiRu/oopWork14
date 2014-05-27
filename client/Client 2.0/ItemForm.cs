@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,8 +19,8 @@ namespace Client_2._0 {
 		public ItemForm(ICommandHandler service, Commands command, object dataSource) {
 			InitializeComponent();
 			this.service = service;
-			this.currentCommand = command;
-			this.dgCurrentItem.DataSource = dataSource;
+			this.currentCommand = command; 
+			this.dgCurrentItem.DataSource =  dataSource;
 			this.dgCurrentItem.Columns["ID"].Visible = false;
 		}
 

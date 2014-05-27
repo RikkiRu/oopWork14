@@ -82,9 +82,13 @@ namespace ReportCreatorLib
 
 			Excel.Axis yAxis = (Excel.Axis)chartPage.Axes(Excel.XlAxisType.xlValue, Excel.XlAxisGroup.xlPrimary);			
 			series1.ApplyDataLabels(Excel.XlDataLabelsType.xlDataLabelsShowPercent, true, true, false, false, false, true, true, true);
-
-			xlWorkBook.SaveAs(filepath, Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
-			xlWorkBook.Close(true, misValue, misValue);
+            //xlWorkBook.SaveAs()
+            try
+            {
+                xlWorkBook.SaveAs(filepath, Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
+            }
+            catch (Exception) { }
+                xlWorkBook.Close(true, misValue, misValue);
 			xlApp.Quit();
 		}
     }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -23,7 +24,6 @@ namespace Client_2._0 {
 		public DataViewForm(ICommandHandler service) {
 			InitializeComponent();
 			this.service = service;
-			
 		}
 		// последний флаг включает/отключает кнопки изменения
 		public Form LoadItems<T>(List<T> items, Commands currentCommand, bool showID, bool editable = true) where T : Table {
@@ -34,7 +34,8 @@ namespace Client_2._0 {
 				this.showID = showID;
 				this.currentCommand = currentCommand;
 				this.dgItemList.DataSource = items;
-				this.dgItemList.Columns["ID"].Visible = this.showID;
+                if(this.dgItemList.Columns.Contains("ID"))
+				    this.dgItemList.Columns["ID"].Visible = this.showID;
 				this.bAdd.Enabled = this.bEdit.Enabled = this.bDelete.Enabled = editable;
 				this.tableType = typeof(T);
 			}
@@ -50,30 +51,31 @@ namespace Client_2._0 {
 		}
 
 		private void dgItemList_RowClick(object sender, DataGridViewCellEventArgs e) {
+            
 			switch (currentCommand) {
 				case Commands.SHOW_CONSULTER: {
-					var selectedItem = ((List<Consulters>)this.dgItemList.DataSource)[e.RowIndex];
+					this.selectedItem = ((List<Consulters>)this.dgItemList.DataSource)[e.RowIndex];
 					/*List<Consulters> dataSource = new List<Consulters>();
 					dataSource.Add(selectedItem);
 					this.dgCurrentItem.DataSource = dataSource;*/
 					break;
 				}
 				case Commands.SHOW_FAQ: {
-					var selectedItem = ((List<FAQ>)this.dgItemList.DataSource)[e.RowIndex];
+					this.selectedItem = ((List<FAQ>)this.dgItemList.DataSource)[e.RowIndex];
 					/*List<FAQ> dataSource = new List<FAQ>();
 					dataSource.Add(selectedItem);
 					this.dgCurrentItem.DataSource = dataSource;*/
 					break;
 				}
 				case Commands.SHOW_TARIF: {
-					var selectedItem = ((List<Tarif>)this.dgItemList.DataSource)[e.RowIndex];
+					this.selectedItem = ((List<Tarif>)this.dgItemList.DataSource)[e.RowIndex];
 					/*List<Tarif> dataSource = new List<Tarif>();
 					dataSource.Add(selectedItem);
 					this.dgCurrentItem.DataSource = dataSource;*/
 					break;
 				}
 				case Commands.SHOW_THEME: {
-					var selectedItem = ((List<Themes>)this.dgItemList.DataSource)[e.RowIndex];
+                    this.selectedItem = ((List<Themes>)this.dgItemList.DataSource)[e.RowIndex];
 					/*List<Themes> dataSource = new List<Themes>();
 					dataSource.Add(selectedItem);
 					this.dgCurrentItem.DataSource = dataSource;*/
@@ -91,7 +93,9 @@ namespace Client_2._0 {
 		}
 
 		private void bEdit_Click(object sender, EventArgs e) {
-			Commands editCommand = 0;
+            Commands editCommand = 0;
+            List<object> list = new List<object>();
+            list.Add(selectedItem);
 			switch (this.currentCommand) {
 				case Commands.SHOW_CONSULTER:
 					editCommand = Commands.EDIT_CONSULTER;
@@ -107,7 +111,7 @@ namespace Client_2._0 {
 					break;
 			}
 			//if(this.itemForm == null || this.itemForm.IsDisposed)
-			this.itemForm = new ItemForm(this.service, editCommand, selectedItem);
+			this.itemForm = new ItemForm(this.service, editCommand, list);
             this.itemForm.FormClosed += itemForm_FormClosed;
             this.itemForm.ShowDialog();
 		}

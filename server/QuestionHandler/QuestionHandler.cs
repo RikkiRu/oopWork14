@@ -23,31 +23,28 @@ namespace QuestionHandlerLib {
 		// вот эта функция была написана внизу ёпт!
 		public void QAaddToDataBase(List<QA> newQA) {
 			foreach (var a in newQA) {
-				try {
-					db.tFQA.InsertOnSubmit(a);
-					Log("Добавляем в бд " + a.Question);
-					db.SubmitChanges();
-				} catch (Exception ex) {
-					Log("В QAaddToDataBase исключение: " + ex.Message);
-				}
+                try
+                {
+                    db.tFQA.InsertOnSubmit(a);
+                    Log("Добавляем в бд " + a.Question);
+                    db.SubmitChanges();
+                }
+                catch (Exception ex)
+                {
+                    Log("В QAaddToDataBase исключение: " + ex.Message);
+                }
 			}
 		}
 
 		//выдать вопрос консультанту
 		public QA getQA(int ConsId, int startQuestionID, bool isBinded) {
-			return this.db.tFQA.Where(question => question.Answer == null && question.CounsulterID == (isBinded ? ConsId : -1) && question.ID > startQuestionID).FirstOrDefault();
-			foreach (var ar in db.tFQA) {
-				if (ar.Answer == null && ar.CounsulterID != -1 && ar.ID > startQuestionID) {
-					return ar;
-				}
-			}
-			Log("Запрос консультанта на вопрос не выполнен (нет вопросов)");
-			return null;
-		}
+            return this.db.tFQA.Where(question => question.Answer == null && question.CounsulterID == (isBinded ? ConsId : -1) && question.ID > startQuestionID).FirstOrDefault();
+        }
 
 		public string bindQuestion(QA question, int consulterID) {
-			question.CounsulterID = consulterID;
-			question.StartTime = DateTime.Now;
+            var x = db.tFQA.Where(q => q.ID == question.ID).FirstOrDefault();
+			x.CounsulterID = consulterID;
+			x.StartTime = DateTime.Now;
 			db.SubmitChanges();
 			Log("За консультантом " + consulterID + " забинден вопрос" + question.ID.ToString());
 			return "Вопрос получен";
@@ -59,16 +56,24 @@ namespace QuestionHandlerLib {
 				QA x = db.tFQA.Where(c => c.ID == y.ID).FirstOrDefault();
 				if (x == null) throw new Exception("Не найдена запись БД " + y.ID.ToString());
 				if (x.Answer != null) throw new Exception("Ответ уже задан");
-
+                if (x.CounsulterID == -1) throw new Exception("Сначала нужно закрепить вопрос за консультантом");
 				x.Answer = y.Answer;
 				x.EndTime = DateTime.Now;
-				Themes t = db.tThemes.Where(c => c.ID == x.ThemeID).FirstOrDefault();
-				if (t == null) throw new Exception("Не найдена тема (serQAanswer -  control)");
-				db.SubmitChanges();
-				if (this.SendAnswer != null) this.SendAnswer(x.Email, x.Answer, "Re: " + t.Theme);
+
+				this.db.SubmitChanges();
+				if (this.SendAnswer != null) this.SendAnswer(x.Email, x.Answer, "Re: " + db.tThemes.Where(c => c.ID == x.ThemeID).FirstOrDefault().Theme);
+                this.addSalary(x);
 			} catch (Exception ex) { Log("setQaAnswerEx: " + ex.Message); throw ex; }
 		}
-
+        private void addSalary(QA question)
+        {
+            Themes theme = db.tThemes.Where(t => t.ID == question.ThemeID).FirstOrDefault();
+            Tarif tarif = db.tTarif.Where(t => t.ID == theme.TarifID).FirstOrDefault();
+            int difficulty = analyzer.DifficulityQ(question);
+            int salary = tarif.Cost * (theme.getEndTime(question.StartTime) > DateTime.Now ? tarif.Multipiller : 1) + difficulty;
+            db.tConsultersSalary.InsertOnSubmit(new consulter_salary(question.CounsulterID, DateTime.Now, salary));
+            db.SubmitChanges();
+        }
 		public int getDifficulty(QA question) {
 			return analyzer.DifficulityQ(question);
 		}

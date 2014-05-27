@@ -86,7 +86,14 @@ namespace dbLib {
 		private int consulter_Id;
 		private DateTime date;
 		private int overal_salary;
+        private int Id;
 
+		[DataMember]
+		[Column(IsPrimaryKey = true, IsDbGenerated = true, DbType = "INT", Name = "Id")]
+		public int ID {
+			set { Id = value; }
+			get { return Id; }
+		}
 		[DataMember]
 		[Column(DbType = "INT", Name = "consulter_id")]
 		public int ConsulterID {
