@@ -41,6 +41,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1conStr1 = new System.Windows.Forms.TextBox();
             this.checkBox1userInstance = new System.Windows.Forms.CheckBox();
+            this.tbFirmInfo = new System.Windows.Forms.TextBox();
+            this.lFirmInfo = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // bStartServer
@@ -161,11 +163,31 @@
             this.checkBox1userInstance.Text = "UserInstance";
             this.checkBox1userInstance.UseVisualStyleBackColor = true;
             // 
+            // tbFirmInfo
+            // 
+            this.tbFirmInfo.Location = new System.Drawing.Point(359, 263);
+            this.tbFirmInfo.Name = "tbFirmInfo";
+            this.tbFirmInfo.Size = new System.Drawing.Size(306, 20);
+            this.tbFirmInfo.TabIndex = 12;
+            this.tbFirmInfo.Text = "\"Рога и копыта\" Адрес: Сельскохозяйственная д. 5";
+            // 
+            // lFirmInfo
+            // 
+            this.lFirmInfo.AutoSize = true;
+            this.lFirmInfo.Location = new System.Drawing.Point(244, 266);
+            this.lFirmInfo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lFirmInfo.Name = "lFirmInfo";
+            this.lFirmInfo.Size = new System.Drawing.Size(81, 13);
+            this.lFirmInfo.TabIndex = 13;
+            this.lFirmInfo.Text = "Инфо о фирме";
+            // 
             // StartForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(677, 369);
+            this.Controls.Add(this.lFirmInfo);
+            this.Controls.Add(this.tbFirmInfo);
             this.Controls.Add(this.checkBox1userInstance);
             this.Controls.Add(this.textBox1conStr1);
             this.Controls.Add(this.label1);
@@ -202,6 +224,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox1conStr1;
         private System.Windows.Forms.CheckBox checkBox1userInstance;
+        private System.Windows.Forms.TextBox tbFirmInfo;
+        private System.Windows.Forms.Label lFirmInfo;
     }
 }
 

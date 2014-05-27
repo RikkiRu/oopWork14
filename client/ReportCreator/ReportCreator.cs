@@ -1,5 +1,10 @@
-﻿using System;
+﻿using dbLib;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using Excel = Microsoft.Office.Interop.Excel;
 
@@ -91,5 +96,40 @@ namespace ReportCreatorLib
                 xlWorkBook.Close(true, misValue, misValue);
 			xlApp.Quit();
 		}
+        public static void CreateQuestionReport(string firmInfo, string fio, QA question)
+        {
+            var doc = new Document();
+            PdfWriter.GetInstance(doc, new FileStream(@"reports\QuestionReport"+question.EndTime.Value.Date.ToShortDateString()+".pdf", FileMode.Create));
+            doc.Open();
+            BaseFont BaseFONT = BaseFont.CreateFont(@"Config\arial.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
+
+            //--------
+            Paragraph p1 = new Paragraph(new Phrase(firmInfo, new iTextSharp.text.Font(BaseFONT, 14)));
+            p1.Alignment = Element.ALIGN_CENTER;
+            p1.SpacingAfter = 10;
+            doc.Add(p1);
+
+            Paragraph p2 = new Paragraph(new Phrase(fio, new iTextSharp.text.Font(BaseFONT, 11, iTextSharp.text.Font.BOLDITALIC, new BaseColor(Color.Red))));
+            doc.Add(p2);
+
+            string s = "Спроектировать класс Пациент, создать список объектов класса и осуществить его загрузку-выгрузку из и в XML-файл. Сделать возможность добавления объекта в список.";
+            Paragraph p3 = new Paragraph(new Phrase(s, new iTextSharp.text.Font(BaseFONT, 10)));
+            p3.SpacingAfter = 10;
+            doc.Add(p3);
+
+            PdfPTable table = new PdfPTable(4);
+            PdfPCell c1 = new PdfPCell(new Phrase("Список объектов", new iTextSharp.text.Font(BaseFONT, 13, iTextSharp.text.Font.BOLD)));
+            c1.HorizontalAlignment = Element.ALIGN_CENTER;
+            c1.Padding = 5;
+            c1.Colspan = 4;
+            table.AddCell(c1);
+
+            iTextSharp.text.Font f = new iTextSharp.text.Font(BaseFONT, 11);
+
+
+            //--------
+
+            doc.Close();
+        }
     }
 }

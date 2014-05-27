@@ -62,7 +62,7 @@ namespace Server_2._0
             string dbPath = (@"Data Source=" + this.textBox1conStr1.Text + ";AttachDbFilename=\""+tbDBPath.Text+"\";Integrated Security=True;Connect Timeout=30;");
             if (checkBox1userInstance.Checked) dbPath += "User Instance=True";
 
-			Program.server.Start(tbHostAddress.Text, dbPath, new PostmanLib.PostmanConnectionInfo(emailSettingsForm.tbUserName.Text, emailSettingsForm.tbHostName.Text, emailSettingsForm.tbPassword.Text, emailSettingsForm.tbPOPAddress.Text, Convert.ToInt32(emailSettingsForm.tbPOPPort.Text), emailSettingsForm.tbSMTPAddress.Text, Convert.ToInt32(emailSettingsForm.tbSMTPPort.Text)), timerInterval);
+			Program.server.Start(tbHostAddress.Text, dbPath, new PostmanLib.PostmanConnectionInfo(emailSettingsForm.tbUserName.Text, emailSettingsForm.tbHostName.Text, emailSettingsForm.tbPassword.Text, emailSettingsForm.tbPOPAddress.Text, Convert.ToInt32(emailSettingsForm.tbPOPPort.Text), emailSettingsForm.tbSMTPAddress.Text, Convert.ToInt32(emailSettingsForm.tbSMTPPort.Text)), tbFirmInfo.Text, timerInterval);
 
 			bStartServer.Text = "Сервер запущен";
         }

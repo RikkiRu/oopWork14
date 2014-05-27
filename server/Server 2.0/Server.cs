@@ -27,11 +27,13 @@ namespace Server_2._0 {
 		private Analyzer analyzer;
 		private Postman postman;
 		private QuestionHandler questionHandler;
+        private string firmInfo;
 
 		public Server(StringHandler log = null) : base(null, log) { }
 
-		public void Start(string baseAddress, string dbPath, PostmanConnectionInfo connectionInfo, double timerInterval = 360.0) {
-			this.host = new ServiceHost(this, new Uri(baseAddress));
+		public void Start(string baseAddress, string dbPath, PostmanConnectionInfo connectionInfo, string firmInfo, double timerInterval = 360.0) {
+            this.firmInfo = firmInfo;
+            this.host = new ServiceHost(this, new Uri(baseAddress));
 			this.host.AddServiceEndpoint(typeof(ICommandHandler), new BasicHttpBinding(), "");
 			this.host.Open();
 			this.db = new dbBind(dbPath);
@@ -57,6 +59,10 @@ namespace Server_2._0 {
 		public Consulters Login(Consulters consulterLogin) {
 			return db.tConsulters.Where(consulter => consulter.Login == consulterLogin.Login && consulter.Password == consulterLogin.Password).First();
 		}
+        public string getFirmInfo()
+        {
+            return firmInfo;
+        }
 		/* Get Tables */
 		public List<Consulters> getConsulters() {
 			return this.db.getTable<Consulters>().ToList<Consulters>();

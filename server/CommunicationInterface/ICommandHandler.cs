@@ -33,6 +33,8 @@ namespace CommunicationInterface {
 	public interface ICommandHandler {
 		[OperationContract]
 		Consulters Login(Consulters consulter);
+        [OperationContract]
+        string getFirmInfo();
 		/* Idk how to make this work, but its awesome!
 		 * [OperationContract]
 		List<T> getTable<T>() where T : Table;*/
