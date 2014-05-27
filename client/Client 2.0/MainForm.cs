@@ -62,7 +62,10 @@ namespace Client_2._0 {
 			dataViewForm.LoadItems<Consulters>(service.getConsulters(), Commands.SHOW_CONSULTER, checkBox1showId.Checked).Show();
 			dataViewForm.Focus();
 		}
-
+		private void bShowSalary_Click(object sender, EventArgs e) {
+			dataViewForm.LoadItems<consulter_salary>(service.getSalary(), Commands.SHOW_CONSULTER, checkBox1showId.Checked, false).Show();
+			dataViewForm.Focus();
+		}
 		private void bCreateQuestionChart_Click(object sender, EventArgs e) {
 			/*string[] unformattedData = (service.GetCommandString(Commands.QUESTION_CHART) as string).Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
 			Dictionary<string, string> pairs = new Dictionary<string,string>();
@@ -81,26 +84,30 @@ namespace Client_2._0 {
 		//-------------------------------------- КОНСУЛЬТАНТ -------------------------------------
 
 		private void bGetQuestion_Click(object sender, EventArgs e) {
-			this.handleQuestion(service.getNewQA(currentConsulter.ID));
-		}
-
-		private void bGetNextQuestion_Click(object sender, EventArgs e) {
 			if (CurrentQA == null)
-				this.bGetQuestion_Click(sender, e);
+				this.handleQuestion(service.getNewQA(currentConsulter.ID, 0, false));
 			else
-				this.handleQuestion(service.getNewQA(currentConsulter.ID, CurrentQA.ID));
+				this.handleQuestion(service.getNewQA(currentConsulter.ID, CurrentQA.ID, false));
 		}
 
 		private void handleQuestion(QA question) {
 			if (question == null) {
-				rtbQuestion.Text = "Вопросов нету или ты дошел до конца списка(попробуй запросить вопрос)";
+				this.CurrentQA = null;
+				rtbQuestion.Text = "Вопросов нету или ты дошел до конца списка(попробуй запросить вопрос снова)";
+				lTimeLabel.Text = lTime.Text = string.Empty;
 			} else {
 				this.CurrentQA = question;
 				rtbQuestion.Text = question.Question;
-				DateTime endTime = service.getThemes().Where(theme => theme.ID == question.ThemeID).First().getEndTime(question.StartTime);
-				lTime.Text = endTime.ToString();
-				if (endTime < DateTime.Now)
-					lTime.ForeColor = Color.Red;
+				if (question.EndTime == null) {
+					lTime.Text = question.StartTime.ToShortTimeString();
+					lTimeLabel.Text = "Время записи в бд: ";
+				} else {
+					DateTime endTime = service.getThemes().Where(theme => theme.ID == question.ThemeID).First().getEndTime(question.StartTime);
+					lTime.Text = endTime.ToString();
+					lTimeLabel.Text = "Время завершения: ";
+					if (endTime < DateTime.Now)
+						lTime.ForeColor = Color.Red;
+				}
 			}
 		}
 
@@ -126,6 +133,18 @@ namespace Client_2._0 {
 			}
 			QAForm fqa = new QAForm(x, this.service, "Все вопросы-ответы", false);
 			fqa.ShowDialog();
+		}
+
+		private void bBindQuestion_Click(object sender, EventArgs e) {
+			if(CurrentQA != null && CurrentQA.ID != currentConsulter.ID)
+				MessageBox.Show(this.service.bindQuestion(CurrentQA, currentConsulter.ID));
+		}
+
+		private void bGetBindedQuestion_Click(object sender, EventArgs e) {
+			if (CurrentQA == null)
+				this.handleQuestion(service.getNewQA(currentConsulter.ID, 0, true));
+			else
+				this.handleQuestion(service.getNewQA(currentConsulter.ID, CurrentQA.ID, true));
 		}
 	}
 }

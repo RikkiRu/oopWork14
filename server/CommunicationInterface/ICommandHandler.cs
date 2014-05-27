@@ -44,6 +44,8 @@ namespace CommunicationInterface {
 		List<Themes> getThemes();
 		[OperationContract]
 		List<Tarif> getTarifs();
+		[OperationContract]
+		List<consulter_salary> getSalary();
 		/* Add */
 		[OperationContract]
 		string addConsulter(Consulters consulter);
@@ -75,7 +77,7 @@ namespace CommunicationInterface {
 		void addItem(Table item);*/
 		/* Functions */
 		[OperationContract]
-		QA getNewQA(int YourID, int startQuestionID = 0);
+		QA getNewQA(int YourID, int startQuestionID = 0, bool isBinded = false);
 		[OperationContract]
 		string answerQA(QA question);
 		[OperationContract]
@@ -87,5 +89,7 @@ namespace CommunicationInterface {
 		List<QA> getAllQA();
 		[OperationContract]
 		List<QA> getSimilarQA(QA source, bool IsQuestions);
+		[OperationContract]
+		string bindQuestion(QA question, int consulterID);
 	}
 }

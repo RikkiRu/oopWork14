@@ -51,13 +51,14 @@
 			this.lTime = new System.Windows.Forms.Label();
 			this.lQuestion = new System.Windows.Forms.Label();
 			this.panel5 = new System.Windows.Forms.Panel();
-			this.bGetNextQuestion = new System.Windows.Forms.Button();
+			this.bBindQuestion = new System.Windows.Forms.Button();
 			this.bGetQuestion = new System.Windows.Forms.Button();
 			this.bShowAllQuestions = new System.Windows.Forms.Button();
 			this.panel4 = new System.Windows.Forms.Panel();
 			this.rtbAnswer = new System.Windows.Forms.RichTextBox();
 			this.bSetAnswer = new System.Windows.Forms.Button();
 			this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+			this.bGetBindedQuestion = new System.Windows.Forms.Button();
 			this.tabControl.SuspendLayout();
 			this.tabPgAdmin.SuspendLayout();
 			this.panel9.SuspendLayout();
@@ -143,6 +144,7 @@
 			this.bShowSalary.TabIndex = 7;
 			this.bShowSalary.Text = "Зарплата";
 			this.bShowSalary.UseVisualStyleBackColor = true;
+			this.bShowSalary.Click += new System.EventHandler(this.bShowSalary_Click);
 			// 
 			// bCreateEfficiencyChart
 			// 
@@ -288,7 +290,6 @@
 			this.lTimeLabel.Name = "lTimeLabel";
 			this.lTimeLabel.Size = new System.Drawing.Size(134, 21);
 			this.lTimeLabel.TabIndex = 8;
-			this.lTimeLabel.Text = "Время завершения:";
 			this.lTimeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// lTime
@@ -299,7 +300,6 @@
 			this.lTime.Name = "lTime";
 			this.lTime.Size = new System.Drawing.Size(149, 21);
 			this.lTime.TabIndex = 9;
-			this.lTime.Text = "--";
 			this.lTime.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// lQuestion
@@ -317,7 +317,8 @@
 			// panel5
 			// 
 			this.panel5.BackColor = System.Drawing.Color.LightGray;
-			this.panel5.Controls.Add(this.bGetNextQuestion);
+			this.panel5.Controls.Add(this.bGetBindedQuestion);
+			this.panel5.Controls.Add(this.bBindQuestion);
 			this.panel5.Controls.Add(this.bGetQuestion);
 			this.panel5.Controls.Add(this.bShowAllQuestions);
 			this.panel5.Dock = System.Windows.Forms.DockStyle.Right;
@@ -327,15 +328,15 @@
 			this.panel5.Size = new System.Drawing.Size(159, 242);
 			this.panel5.TabIndex = 12;
 			// 
-			// bGetNextQuestion
+			// bBindQuestion
 			// 
-			this.bGetNextQuestion.Location = new System.Drawing.Point(3, 75);
-			this.bGetNextQuestion.Name = "bGetNextQuestion";
-			this.bGetNextQuestion.Size = new System.Drawing.Size(153, 29);
-			this.bGetNextQuestion.TabIndex = 11;
-			this.bGetNextQuestion.Text = "Следующий вопрос";
-			this.bGetNextQuestion.UseVisualStyleBackColor = true;
-			this.bGetNextQuestion.Click += new System.EventHandler(this.bGetNextQuestion_Click);
+			this.bBindQuestion.Location = new System.Drawing.Point(3, 101);
+			this.bBindQuestion.Name = "bBindQuestion";
+			this.bBindQuestion.Size = new System.Drawing.Size(153, 36);
+			this.bBindQuestion.TabIndex = 11;
+			this.bBindQuestion.Text = "Забить этот вопрос";
+			this.bBindQuestion.UseVisualStyleBackColor = true;
+			this.bBindQuestion.Click += new System.EventHandler(this.bBindQuestion_Click);
 			// 
 			// bGetQuestion
 			// 
@@ -397,6 +398,17 @@
 			this.saveFileDialog.OverwritePrompt = false;
 			this.saveFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog_FileOk);
 			// 
+			// bGetBindedQuestion
+			// 
+			this.bGetBindedQuestion.Dock = System.Windows.Forms.DockStyle.Top;
+			this.bGetBindedQuestion.Location = new System.Drawing.Point(3, 69);
+			this.bGetBindedQuestion.Name = "bGetBindedQuestion";
+			this.bGetBindedQuestion.Size = new System.Drawing.Size(153, 33);
+			this.bGetBindedQuestion.TabIndex = 12;
+			this.bGetBindedQuestion.Text = "Мои вопросы";
+			this.bGetBindedQuestion.UseVisualStyleBackColor = true;
+			this.bGetBindedQuestion.Click += new System.EventHandler(this.bGetBindedQuestion_Click);
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -455,7 +467,8 @@
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel8;
 		private System.Windows.Forms.Panel panel9;
-		private System.Windows.Forms.Button bGetNextQuestion;
+		private System.Windows.Forms.Button bBindQuestion;
+		private System.Windows.Forms.Button bGetBindedQuestion;
 
     }
 }

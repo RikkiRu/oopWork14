@@ -25,42 +25,48 @@ namespace QuestionHandlerLib {
 			foreach (var a in newQA) {
 				try {
 					db.tFQA.InsertOnSubmit(a);
-					log("Добавляем в бд " + a.Question);
+					Log("Добавляем в бд " + a.Question);
 					db.SubmitChanges();
 				} catch (Exception ex) {
-					log("В QAaddToDataBase исключение: " + ex.Message);
+					Log("В QAaddToDataBase исключение: " + ex.Message);
 				}
 			}
 		}
 
 		//выдать вопрос консультанту
-		public QA getQA(int ConsId, DateTime start, int startQuestionID) {
+		public QA getQA(int ConsId, int startQuestionID, bool isBinded) {
+			return this.db.tFQA.Where(question => question.Answer == null && question.CounsulterID == (isBinded ? ConsId : -1) && question.ID > startQuestionID).FirstOrDefault();
 			foreach (var ar in db.tFQA) {
-				if (ar.Answer == null && (ar.CounsulterID == -1 || ar.CounsulterID == ConsId) && ar.ID > startQuestionID) {
-					ar.CounsulterID = ConsId;
-					db.SubmitChanges();
-					log("Консультанту выслан вопрос " + ar.ID.ToString());
+				if (ar.Answer == null && ar.CounsulterID != -1 && ar.ID > startQuestionID) {
 					return ar;
 				}
 			}
-			log("Запрос консультанта на вопрос не выполнен (нет вопросов)");
+			Log("Запрос консультанта на вопрос не выполнен (нет вопросов)");
 			return null;
 		}
 
+		public string bindQuestion(QA question, int consulterID) {
+			question.CounsulterID = consulterID;
+			question.StartTime = DateTime.Now;
+			db.SubmitChanges();
+			Log("За консультантом " + consulterID + " забинден вопрос" + question.ID.ToString());
+			return "Вопрос получен";
+		}
+
 		//записать ответ в бд и выслать его по мылу
-		public void setQAanswer(QA y, DateTime end) {
+		public void setQAanswer(QA y) {
 			try {
 				QA x = db.tFQA.Where(c => c.ID == y.ID).FirstOrDefault();
 				if (x == null) throw new Exception("Не найдена запись БД " + y.ID.ToString());
 				if (x.Answer != null) throw new Exception("Ответ уже задан");
 
 				x.Answer = y.Answer;
-				x.EndTime = end;
+				x.EndTime = DateTime.Now;
 				Themes t = db.tThemes.Where(c => c.ID == x.ThemeID).FirstOrDefault();
 				if (t == null) throw new Exception("Не найдена тема (serQAanswer -  control)");
 				db.SubmitChanges();
 				if (this.SendAnswer != null) this.SendAnswer(x.Email, x.Answer, "Re: " + t.Theme);
-			} catch (Exception ex) { log("setQaAnswerEx: " + ex.Message); throw ex; }
+			} catch (Exception ex) { Log("setQaAnswerEx: " + ex.Message); throw ex; }
 		}
 
 		public int getDifficulty(QA question) {

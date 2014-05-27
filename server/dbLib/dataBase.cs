@@ -244,7 +244,7 @@ namespace dbLib {
 		private int theme_id;
 		private int consulter_id;
 		private DateTime start_time;
-		private DateTime end_time;
+		private DateTime? end_time;
 		private string email;
 
 		[DataMember]
@@ -285,7 +285,7 @@ namespace dbLib {
 		}
 		[DataMember]
 		[Column(DbType = "DATETIME", CanBeNull = true, Name = "end_time")]
-		public DateTime EndTime {
+		public DateTime? EndTime {
 			set { end_time = value; }
 			get { return end_time; }
 		}
@@ -297,7 +297,7 @@ namespace dbLib {
 		}
 
 		public QA() { }
-		public QA(string question, string answer, int theme_id, int consulter_id, DateTime start_time, DateTime end_time, string email, int Id = -1) {
+		public QA(string question, string answer, int theme_id, int consulter_id, DateTime start_time, DateTime? end_time, string email, int Id = -1) {
             this.question = question;
 			this.answer = answer;
 			this.theme_id = theme_id;
@@ -400,7 +400,7 @@ namespace dbLib {
 		}
 		public DateTime getEndTime(DateTime startTime) {
 			string[] timeArray = this.standart_time.Split('.');
-			return startTime + new TimeSpan(Convert.ToInt32(timeArray[0]), Convert.ToInt32(timeArray[1]), Convert.ToInt32(timeArray[2]));
+			return startTime + new TimeSpan(Convert.ToInt32(timeArray[0]), Convert.ToInt32(timeArray[1]), Convert.ToInt32(timeArray[2]), 0, 0);
 		}
 		public override string ToString() {
 			return this.Id.ToString() + concatSymbol + this.theme + concatSymbol + this.difficulty + concatSymbol + this.tarif_id;

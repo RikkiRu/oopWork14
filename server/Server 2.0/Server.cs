@@ -70,6 +70,9 @@ namespace Server_2._0 {
 		public List<Tarif> getTarifs() {
 			return this.db.getTable<Tarif>().ToList<Tarif>();
 		}
+		public List<consulter_salary> getSalary() {
+			return this.db.getTable<consulter_salary>().ToList<consulter_salary>();
+		}
 		/* Add */
 		public string addConsulter(Consulters consulter) {
 			try {
@@ -187,13 +190,13 @@ namespace Server_2._0 {
 		}
 
 
-		public QA getNewQA(int YourID, int currentQuestionID = 0) {
-			return questionHandler.getQA(YourID, DateTime.Now, currentQuestionID);
+		public QA getNewQA(int YourID, int currentQuestionID = 0, bool isBinded = false) {
+			return questionHandler.getQA(YourID, currentQuestionID, isBinded);
 		}
 
-		public string answerQA(QA x) {
+		public string answerQA(QA question) {
 			try {
-				questionHandler.setQAanswer(x, DateTime.Now);
+				questionHandler.setQAanswer(question);
 				return "Отправлено";
 			} catch (Exception ex) {
 				return ex.Message;
@@ -222,7 +225,11 @@ namespace Server_2._0 {
 		}
 
 		public List<QA> getSimilarQA(QA source, bool IsQuestions) {
-			return questionHandler.getSimularQA(source, !IsQuestions);
+			return this.questionHandler.getSimularQA(source, !IsQuestions);
+		}
+
+		public string bindQuestion(QA question, int consulterID) {
+			return this.questionHandler.bindQuestion(question, consulterID);
 		}
 	}
 }
