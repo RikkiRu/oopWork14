@@ -228,10 +228,6 @@ namespace Server_2._0 {
 			return themePopularity;
 		}
 
-		public object getReport() {
-			return null;
-		}
-
 		//похожести
 		public List<QA> getAllQA() {
 			return this.db.getTable<QA>().ToList<QA>();
@@ -246,8 +242,13 @@ namespace Server_2._0 {
 		}
 		public Dictionary<string, string> getEfficiencyChart() {
 			Dictionary<string, string> efficiency = new Dictionary<string,string>();
-			//var ds = from int c
-			return efficiency;
+            DateTime currentYear = new DateTime(DateTime.Now.Year, 1, 1);
+            while (currentYear <= DateTime.Now.Date)
+            {
+                efficiency.Add(currentYear.Month.ToString(), this.db.tFQA.Where(qa => qa.StartTime.Month == currentYear.Month).Count().ToString());
+                currentYear = currentYear.AddMonths(1);
+            }
+            return efficiency;
 		}
 	}
 }

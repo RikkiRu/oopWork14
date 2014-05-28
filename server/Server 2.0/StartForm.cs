@@ -55,6 +55,7 @@ namespace Server_2._0
 			tbTimerInterval.Enabled = server.IsStarted;
 			textBox1conStr1.Enabled = server.IsStarted;
 			checkBox1userInstance.Enabled = server.IsStarted;
+            
 
             //Data Source=(LocalDB)\v11.0;AttachDbFilename="C:\Projects\oopWork14\server\Server 2.0\bin\Debug\db\oopDB.mdf";Integrated Security=True;Connect Timeout=30
 			if (server.IsStarted) {

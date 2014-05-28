@@ -39,9 +39,10 @@ namespace Client_2._0 {
 				}
 				//тут пойдет подключение
 				if (client == null)
-					client = new Client(tbServerAddress.Text);
+					client = new Client();
 				//object res = client.Service.GetCommandString(Commands.LOGIN, textBoxLogin.Text + '~' + textBoxPassw.Text);
-				var res = client.Service.Login(new dbLib.Consulters(textBoxLogin.Text, textBoxPassw.Text, null, null, 0, 0));
+                this.client.Connect(tbServerAddress.Text);
+                var res = client.Service.Login(new dbLib.Consulters(textBoxLogin.Text, textBoxPassw.Text, null, null, 0, 0));
 				if (res == null)
 					throw new Exception("Авторизация не удалась");
 				else {

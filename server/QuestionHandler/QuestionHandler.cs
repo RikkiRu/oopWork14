@@ -65,12 +65,23 @@ namespace QuestionHandlerLib {
                 this.addSalary(x);
 			} catch (Exception ex) { Log("setQaAnswerEx: " + ex.Message); throw ex; }
 		}
+
+        //зарплата
         private void addSalary(QA question)
         {
             Themes theme = db.tThemes.Where(t => t.ID == question.ThemeID).FirstOrDefault();
             Tarif tarif = db.tTarif.Where(t => t.ID == theme.TarifID).FirstOrDefault();
             int difficulty = analyzer.DifficulityQ(question);
+
+            log("Расчет зарплаты");
+            log("Стоимость тарифа = " + tarif.Cost.ToString());
+            if (theme.getEndTime(question.StartTime) > DateTime.Now) log("Не просрочео, множитель = "+tarif.Multipiller.ToString());
+            else log("Просрочено");
+            log("+ за сложность = " + difficulty.ToString());
+
             int salary = tarif.Cost * (theme.getEndTime(question.StartTime) > DateTime.Now ? tarif.Multipiller : 1) + difficulty;
+            log("Начислено " + salary.ToString());
+
             db.tConsultersSalary.InsertOnSubmit(new consulter_salary(question.CounsulterID, DateTime.Now, salary));
             db.SubmitChanges();
         }

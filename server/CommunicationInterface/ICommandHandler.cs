@@ -86,8 +86,6 @@ namespace CommunicationInterface {
 		[OperationContract]
 		Dictionary<string, string> getThemePopularity();
 		[OperationContract]
-		object getReport();
-		[OperationContract]
 		Dictionary<string, string> getEfficiencyChart();
 		//все вопросы и какие-либо похожие (true -> с похожими вопросами, иначе с похожими ответами) UPD шта?
 		[OperationContract]

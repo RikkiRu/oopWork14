@@ -152,5 +152,10 @@ namespace Client_2._0 {
 			else
 				this.handleQuestion(service.getNewQA(currentConsulter.ID, CurrentQA.ID, true));
 		}
+
+        private void bCreateODFReport_Click(object sender, EventArgs e)
+        {
+            ReportCreator.CreateConsulterReport("ConsulterReport.xls", this.service.getConsulters(), this.service.getSalary());   
+        }
 	}
 }

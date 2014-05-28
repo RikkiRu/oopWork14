@@ -10,9 +10,9 @@ namespace Client_2._0 {
 			get {return service;}
 		}
 
-		public Client(string remoteAddress) {
-			ChannelFactory<ICommandHandler> factory = new ChannelFactory<ICommandHandler>(new BasicHttpBinding(), new EndpointAddress(remoteAddress));
-			service = factory.CreateChannel();
-		}
+        public void Connect(string remoteAddress){
+            ChannelFactory<ICommandHandler> factory = new ChannelFactory<ICommandHandler>(new BasicHttpBinding(), new EndpointAddress(remoteAddress));
+            service = factory.CreateChannel();
+        }
 	}
 }

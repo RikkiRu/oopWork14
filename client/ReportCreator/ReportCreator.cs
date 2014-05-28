@@ -58,6 +58,45 @@ namespace ReportCreatorLib
 			xlWorkBook.Close(true, misValue, misValue);
 			xlApp.Quit();
 		}
+        public static void CreateConsulterReport(string filepath, List<Consulters> consulters, List<consulter_salary> salaries)
+        {
+            object misValue = System.Reflection.Missing.Value;
+            Excel.Application xlApp = new Excel.Application();
+            Excel.Workbook xlWorkBook = xlApp.Workbooks.Add(misValue);
+            Excel.Worksheet xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
+            xlWorkSheet.Cells[1, 1] = "Отчет работы консультантов за " + DateTime.Now.Year.ToString();
+            Excel.Range chartRange = xlWorkSheet.get_Range("A1", "A1");
+            chartRange.Font.Bold = true;
+            for (int i = 0, k = 2; i < consulters.Count(); ++i, k+=3)
+            {
+                xlWorkSheet.Cells[k, 1] = "ID";
+                xlWorkSheet.Cells[k, 2] = "Ф.И.О.";
+
+                xlWorkSheet.Cells[k + 1, 1] = consulters[i].ID;
+                xlWorkSheet.Cells[k + 1, 2] = consulters[i].Firstname + ' ' + consulters[i].Lastname;
+
+                xlWorkSheet.Cells[k, 3] = "Дата";
+                xlWorkSheet.Cells[k + 1, 3] = "Премия";
+
+                int salary = 0;
+                for (int j = 0; j < salaries.Count(); ++j)
+                {
+                    xlWorkSheet.Cells[k, 5 + j] = salaries[j].Date.ToString("MM.dd hh:mm");
+                    xlWorkSheet.Cells[k + 1, 5 + j] = salaries[j].OveralSalary.ToString();
+                    salary += salaries[j].OveralSalary;
+                }
+                xlWorkSheet.Cells[k + 1, salaries.Count() + 5] = "Итого :";
+                xlWorkSheet.Cells[k + 1, salaries.Count() + 6] = salary;
+            }
+            try
+            {
+                xlWorkBook.SaveAs(filepath, Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
+            }
+            catch (Exception) { }
+            xlWorkBook.Close(true, misValue, misValue);
+            xlApp.Quit();
+        }
+        //------------ график популярности тем
 		public static void CreateExcelChart(string filepath , string title, string[] headers, Dictionary<string, string> data) {
 			object misValue = System.Reflection.Missing.Value;
 			Excel.Application xlApp = new Excel.Application();
@@ -96,6 +135,8 @@ namespace ReportCreatorLib
                 xlWorkBook.Close(true, misValue, misValue);
 			xlApp.Quit();
 		}
+
+        //-------- эффективность фирмы
 		public static void CreateExcelChart2(string filepath, string title, string[] headers, Dictionary<string, string> data) {
 			object misValue = System.Reflection.Missing.Value;
 			Excel.Application xlApp = new Excel.Application();
@@ -133,6 +174,8 @@ namespace ReportCreatorLib
 			xlWorkBook.Close(true, misValue, misValue);
 			xlApp.Quit();
 		}
+
+        // отчет при ответе
         public static void CreateQuestionReport(string firmInfo, string fio, QA question, string theme)
         {
             var doc = new Document();
