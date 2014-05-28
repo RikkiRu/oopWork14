@@ -28,6 +28,10 @@ namespace Server_2._0 {
 		private Postman postman;
 		private QuestionHandler questionHandler;
         private string firmInfo;
+		private bool isStarted = false;
+		public bool IsStarted {
+			get { return isStarted; }
+		}
 
 		public Server(StringHandler log = null) : base(null, log) { }
 
@@ -42,13 +46,16 @@ namespace Server_2._0 {
 			this.postman = new Postman("Вопрос_", this.db, connectionInfo, this.mailTimer, this.analyzer.HandleNewMessages, this.log);
 			this.questionHandler = new QuestionHandler(this.db, this.analyzer, this.postman.SendAnswer, this.log);
 			this.analyzer.QAGenerated += this.questionHandler.InsertNewQA;
-			mailTimer.Start();
+			this.mailTimer.Start();
+			this.isStarted = true;
 			Log("Сервер запущен");
 		}
 		public void Stop() {
 			try {
 				host.Close();
 				mailTimer.Stop();
+				this.isStarted = false;
+				Log("Сервер остановлен");
 			} catch { }
 		}
 		/* Service methods */
@@ -236,6 +243,11 @@ namespace Server_2._0 {
 
 		public string bindQuestion(QA question, int consulterID) {
 			return this.questionHandler.bindQuestion(question, consulterID);
+		}
+		public Dictionary<string, string> getEfficiencyChart() {
+			Dictionary<string, string> efficiency = new Dictionary<string,string>();
+			//var ds = from int c
+			return efficiency;
 		}
 	}
 }

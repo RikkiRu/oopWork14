@@ -155,7 +155,7 @@
 			this.bCreateEfficiencyChart.TabIndex = 1;
 			this.bCreateEfficiencyChart.Text = "График эффективности";
 			this.bCreateEfficiencyChart.UseVisualStyleBackColor = true;
-			this.bCreateEfficiencyChart.Click += new System.EventHandler(this.bCreateExcel_Click);
+			this.bCreateEfficiencyChart.Click += new System.EventHandler(this.bCreateEfficiencyChart_Click);
 			// 
 			// bShowWorkers
 			// 

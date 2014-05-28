@@ -117,28 +117,24 @@ namespace Client_2._0 {
 		}
 
 		private void bAdd_Click(object sender, EventArgs e) {
-			object list = null;
+			List<object> list = new List<object>();
 			Commands addCommand = 0;
 			switch (this.currentCommand) {
 				case Commands.SHOW_CONSULTER:
 					addCommand = Commands.ADD_CONSULTER;
-					list = new List<Consulters>();
-					(list as List<Consulters>).Add(new Consulters());
+					list.Add(new Consulters());
 					break;
 				case Commands.SHOW_FAQ:
 					addCommand = Commands.ADD_FAQ;
-					list = new List<FAQ>();
-					(list as List<FAQ>).Add(new FAQ());
+					list.Add(new FAQ());
 					break;
 				case Commands.SHOW_TARIF:
 					addCommand = Commands.ADD_TARIF;
-					list = new List<Tarif>();
-					(list as List<Tarif>).Add(new Tarif());
+					list.Add(new Tarif());
 					break;
 				case Commands.SHOW_THEME:
 					addCommand = Commands.ADD_THEME;
-					list = new List<Themes>();
-					(list as List<Themes>).Add(new Themes());
+					list.Add(new Themes());
 					break;
 			}
 			//if (this.itemForm == null || this.itemForm.IsDisposed)

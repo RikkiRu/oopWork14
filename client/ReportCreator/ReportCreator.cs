@@ -96,38 +96,79 @@ namespace ReportCreatorLib
                 xlWorkBook.Close(true, misValue, misValue);
 			xlApp.Quit();
 		}
-        public static void CreateQuestionReport(string firmInfo, string fio, QA question)
+		public static void CreateExcelChart2(string filepath, string title, string[] headers, Dictionary<string, string> data) {
+			object misValue = System.Reflection.Missing.Value;
+			Excel.Application xlApp = new Excel.Application();
+			Excel.Workbook xlWorkBook = xlApp.Workbooks.Add(misValue);
+			Excel.Worksheet xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
+			xlWorkSheet.Cells[1, 1] = headers[0];
+			xlWorkSheet.Cells[1, 2] = headers[1];
+			for (int i = 0; i < data.Count; ++i) {
+				xlWorkSheet.Cells[2 + i, 1] = data.Keys.ElementAt(i);
+				xlWorkSheet.Cells[2 + i, 2] = data.Values.ElementAt(i);
+			}
+
+			Excel.ChartObjects xlCharts = (Excel.ChartObjects)xlWorkSheet.ChartObjects(Type.Missing);
+			Excel.ChartObject myChart = (Excel.ChartObject)xlCharts.Add(10, 80, 300, 250);
+			Excel.Chart chartPage = myChart.Chart;
+			chartPage.HasTitle = true;
+			chartPage.ChartTitle.Text = title;
+			chartPage.HasLegend = true;
+
+			Excel.SeriesCollection seriesCollection = chartPage.SeriesCollection();
+			Excel.Series series1 = seriesCollection.NewSeries();
+			series1.XValues = xlWorkSheet.Range["A2", "A" + (data.Count + 1)];
+			series1.Values = xlWorkSheet.Range["B2", "B" + (data.Count + 1)];
+			series1.Name = title;
+
+			chartPage.ChartType = Excel.XlChartType.xl3DLine;
+
+			Excel.Axis yAxis = (Excel.Axis)chartPage.Axes(Excel.XlAxisType.xlValue, Excel.XlAxisGroup.xlPrimary);
+			yAxis.HasTitle = true;
+			yAxis.AxisTitle.Text = headers[1];
+			//xlWorkBook.SaveAs()
+			try {
+				xlWorkBook.SaveAs(filepath, Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
+			} catch (Exception) { }
+			xlWorkBook.Close(true, misValue, misValue);
+			xlApp.Quit();
+		}
+        public static void CreateQuestionReport(string firmInfo, string fio, QA question, string theme)
         {
             var doc = new Document();
-            PdfWriter.GetInstance(doc, new FileStream(@"reports\QuestionReport"+question.EndTime.Value.Date.ToShortDateString()+".pdf", FileMode.Create));
+			PdfWriter.GetInstance(doc, new FileStream(@"reports\QuestionReport_" + question.CounsulterID.ToString() + '_' + question.EndTime.Value.ToString("dd.MM.yyyy_HH.mm") + ".pdf", FileMode.Create));
             doc.Open();
             BaseFont BaseFONT = BaseFont.CreateFont(@"Config\arial.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
 
-            //--------
-            Paragraph p1 = new Paragraph(new Phrase(firmInfo, new iTextSharp.text.Font(BaseFONT, 14)));
-            p1.Alignment = Element.ALIGN_CENTER;
-            p1.SpacingAfter = 10;
-            doc.Add(p1);
+            Paragraph pFirmInfo = new Paragraph(new Phrase(firmInfo, new iTextSharp.text.Font(BaseFONT, 16)));
+            pFirmInfo.Alignment = Element.ALIGN_RIGHT;
+            doc.Add(pFirmInfo);
 
-            Paragraph p2 = new Paragraph(new Phrase(fio, new iTextSharp.text.Font(BaseFONT, 11, iTextSharp.text.Font.BOLDITALIC, new BaseColor(Color.Red))));
-            doc.Add(p2);
+            Paragraph pFIO = new Paragraph(new Phrase(fio, new iTextSharp.text.Font(BaseFONT, 16, iTextSharp.text.Font.ITALIC, new BaseColor(Color.Black))));
+			pFIO.Alignment = Element.ALIGN_RIGHT;
+            doc.Add(pFIO);
 
-            string s = "Спроектировать класс Пациент, создать список объектов класса и осуществить его загрузку-выгрузку из и в XML-файл. Сделать возможность добавления объекта в список.";
-            Paragraph p3 = new Paragraph(new Phrase(s, new iTextSharp.text.Font(BaseFONT, 10)));
-            p3.SpacingAfter = 10;
-            doc.Add(p3);
+			Paragraph pDate = new Paragraph(new Phrase(question.EndTime.ToString(), new iTextSharp.text.Font(BaseFONT, 16, iTextSharp.text.Font.NORMAL, new BaseColor(Color.Black))));
+			pDate.Alignment = Element.ALIGN_RIGHT;
+			pDate.SpacingAfter = 14;
+			doc.Add(pDate);
 
-            PdfPTable table = new PdfPTable(4);
-            PdfPCell c1 = new PdfPCell(new Phrase("Список объектов", new iTextSharp.text.Font(BaseFONT, 13, iTextSharp.text.Font.BOLD)));
-            c1.HorizontalAlignment = Element.ALIGN_CENTER;
-            c1.Padding = 5;
-            c1.Colspan = 4;
-            table.AddCell(c1);
+			Paragraph pThemeTitle = new Paragraph(new Phrase("Тема: " + theme, new iTextSharp.text.Font(BaseFONT, 14)));
+			doc.Add(pThemeTitle);
 
-            iTextSharp.text.Font f = new iTextSharp.text.Font(BaseFONT, 11);
+            Paragraph pQuestionTitle = new Paragraph(new Phrase("Вопрос:", new iTextSharp.text.Font(BaseFONT, 14)));
+            doc.Add(pQuestionTitle);
 
+			Paragraph pQuestion = new Paragraph(new Phrase(question.Question, new iTextSharp.text.Font(BaseFONT, 14)));
+			pQuestionTitle.SpacingAfter = 14;
+			doc.Add(pQuestion);
 
-            //--------
+			Paragraph pAnswerTitle = new Paragraph(new Phrase("Ответ:", new iTextSharp.text.Font(BaseFONT, 14)));
+			doc.Add(pAnswerTitle);
+
+			Paragraph pAnswer = new Paragraph(new Phrase(question.Answer, new iTextSharp.text.Font(BaseFONT, 14)));
+			pQuestionTitle.SpacingAfter = 14;
+			doc.Add(pAnswer);
 
             doc.Close();
         }

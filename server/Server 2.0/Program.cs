@@ -11,7 +11,7 @@ namespace Server_2._0 {
 		static void Main() {
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new StartForm());
+			Application.Run(new StartForm(server));
 		}
 	}
 }

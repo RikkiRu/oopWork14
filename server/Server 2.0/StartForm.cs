@@ -14,11 +14,12 @@ namespace Server_2._0
     {
 		private EmailSettingsForm emailSettingsForm;
 		delegate void SetTextCallback(string text);
+		private Server server;
 
-
-        public StartForm()
+        public StartForm(Server server)
         {
             InitializeComponent();
+			this.server = server;
         }
 
         public void log(string logMessage)
@@ -43,28 +44,33 @@ namespace Server_2._0
 
         private void bStartServer_Click(object sender, EventArgs e)
         {
+			bStartServer.Enabled = false;
             bStartServer.Text = "Загрузка...";
-            bStartServer.Enabled = false;
-            bEmailSettings.Enabled = false;
-			bChooseDBPath.Enabled = false;
-            tbDBPath.Enabled = false;
-            tbHostAddress.Enabled = false;
-            tbTimerInterval.Enabled = false;
-            textBox1conStr1.Enabled = false;
-            checkBox1userInstance.Enabled = false;
-
-			double timerInterval = 360.0;
-			try {
-				timerInterval = Convert.ToDouble(tbTimerInterval.Text);
-			} catch { } finally { tbTimerInterval.Text = timerInterval.ToString() + " сек."; }
+			tbFirmInfo.Enabled = server.IsStarted;
+			bStartServer.Enabled = server.IsStarted;
+			bEmailSettings.Enabled = server.IsStarted;
+			bChooseDBPath.Enabled = server.IsStarted;
+			tbDBPath.Enabled = server.IsStarted;
+			tbHostAddress.Enabled = server.IsStarted;
+			tbTimerInterval.Enabled = server.IsStarted;
+			textBox1conStr1.Enabled = server.IsStarted;
+			checkBox1userInstance.Enabled = server.IsStarted;
 
             //Data Source=(LocalDB)\v11.0;AttachDbFilename="C:\Projects\oopWork14\server\Server 2.0\bin\Debug\db\oopDB.mdf";Integrated Security=True;Connect Timeout=30
-            string dbPath = (@"Data Source=" + this.textBox1conStr1.Text + ";AttachDbFilename=\""+tbDBPath.Text+"\";Integrated Security=True;Connect Timeout=30;");
-            if (checkBox1userInstance.Checked) dbPath += "User Instance=True";
-
-			Program.server.Start(tbHostAddress.Text, dbPath, new PostmanLib.PostmanConnectionInfo(emailSettingsForm.tbUserName.Text, emailSettingsForm.tbHostName.Text, emailSettingsForm.tbPassword.Text, emailSettingsForm.tbPOPAddress.Text, Convert.ToInt32(emailSettingsForm.tbPOPPort.Text), emailSettingsForm.tbSMTPAddress.Text, Convert.ToInt32(emailSettingsForm.tbSMTPPort.Text)), tbFirmInfo.Text, timerInterval);
-
-			bStartServer.Text = "Сервер запущен";
+			if (server.IsStarted) {
+				this.server.Stop();
+				bStartServer.Text = "Запустить сервер";
+			} else {
+				double timerInterval = 360.0;
+				try {
+					timerInterval = Convert.ToDouble(tbTimerInterval.Text);
+				} catch { } finally { tbTimerInterval.Text = timerInterval.ToString() + " сек."; }
+				string dbPath = (@"Data Source=" + this.textBox1conStr1.Text + ";AttachDbFilename=\"" + tbDBPath.Text + "\";Integrated Security=True;Connect Timeout=30;");
+				if (checkBox1userInstance.Checked) dbPath += "User Instance=True";
+				this.server.Start(tbHostAddress.Text, dbPath, new PostmanLib.PostmanConnectionInfo(emailSettingsForm.tbUserName.Text, emailSettingsForm.tbHostName.Text, emailSettingsForm.tbPassword.Text, emailSettingsForm.tbPOPAddress.Text, Convert.ToInt32(emailSettingsForm.tbPOPPort.Text), emailSettingsForm.tbSMTPAddress.Text, Convert.ToInt32(emailSettingsForm.tbSMTPPort.Text)), tbFirmInfo.Text, timerInterval);
+				bStartServer.Text = "Остановить сервер";
+			}
+			bStartServer.Enabled = true;
         }
 
 		private void bEmailSettings_Click(object sender, EventArgs e)
