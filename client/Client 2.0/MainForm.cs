@@ -40,7 +40,7 @@ namespace Client_2._0 {
 		}
 
 		private void bCreateEfficiencyChart_Click(object sender, EventArgs e) {
-			ReportCreatorLib.ReportCreator.CreateExcelChart2("EfficiencyChart.xls", "Эффективность работы компании за "+DateTime.Now.Year, new string[]{"Месяц", "Количество вопросов"}, this.service.getEfficiencyChart());
+			ReportCreatorLib.ReportCreator.CreateEfficiencyChart("EfficiencyChart.xls", "Эффективность работы компании за "+DateTime.Now.Year, new string[]{"Месяц", "Количество вопросов"}, this.service.getEfficiencyChart());
 		}
 
 		private void bShowTarif_Click(object sender, EventArgs e) {
@@ -99,7 +99,7 @@ namespace Client_2._0 {
 				this.CurrentQA = question;
 				rtbQuestion.Text = question.Question;
 				lTime.ForeColor = Color.Black;
-				if (question.CounsulterID != currentConsulter.ID) {
+				if (question.ConsulterID != currentConsulter.ID) {
 					lTime.Text = question.StartTime.ToShortTimeString();
 					lTimeLabel.Text = "Время записи в бд: ";
 				} else {

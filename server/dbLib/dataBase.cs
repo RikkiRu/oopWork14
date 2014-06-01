@@ -251,7 +251,7 @@ namespace dbLib {
 		private int theme_id;
 		private int consulter_id;
 		private DateTime start_time;
-		private DateTime? end_time;
+		private DateTime end_time;
 		private string email;
 
 		[DataMember]
@@ -280,7 +280,7 @@ namespace dbLib {
 		}
 		[DataMember]
 		[Column(DbType = "INT", Name = "consulter_id")]
-		public int CounsulterID {
+		public int ConsulterID {
 			set { consulter_id = value; }
 			get { return consulter_id; }
 		}
@@ -292,7 +292,7 @@ namespace dbLib {
 		}
 		[DataMember]
 		[Column(DbType = "DATETIME", CanBeNull = true, Name = "end_time")]
-		public DateTime? EndTime {
+		public DateTime EndTime {
 			set { end_time = value; }
 			get { return end_time; }
 		}
@@ -304,7 +304,7 @@ namespace dbLib {
 		}
 
 		public QA() { }
-		public QA(string question, string answer, int theme_id, int consulter_id, DateTime start_time, DateTime? end_time, string email, int Id = -1) {
+		public QA(string question, string answer, int theme_id, int consulter_id, DateTime start_time, DateTime end_time, string email, int Id = -1) {
             this.question = question;
 			this.answer = answer;
 			this.theme_id = theme_id;
@@ -376,7 +376,7 @@ namespace dbLib {
 			get { return theme; }
 		}
 		[DataMember]
-		[Column(DbType = "INT", Name = "difficulity")]
+		[Column(DbType = "INT", Name = "difficulty")]
 		public int Difficulty {
 			set { difficulty = value; }
 			get { return difficulty; }

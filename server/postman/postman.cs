@@ -5,6 +5,7 @@ using System.Net.Mail;
 using OpenPop.Pop3;
 using OpenPop.Mime.Header;
 using System.Timers;
+using System.Linq;
 using dbLib;
 using HelpersLib;
 
@@ -75,7 +76,11 @@ namespace PostmanLib {
 								message.Subject = message.Subject.Remove(questionTagPos, questionTag.Length);
 								newMessages.Add(message);
 							} else {
-								Log("Письмо является спамом(dat spam alert!!!)");
+								questionTagPos = message.Subject.IndexOf("Re: ");
+								if(questionTagPos >= 0 && db.tThemes.Where(theme => theme.Theme == message.Subject.Substring(3)) != null)
+									newMessages.Add(message);
+								else
+									Log("Письмо является спамом(dat spam alert!!!)");
 							}
 
 

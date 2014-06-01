@@ -38,12 +38,12 @@ namespace QuestionHandlerLib {
 
 		//выдать вопрос консультанту
 		public QA getQA(int ConsId, int startQuestionID, bool isBinded) {
-            return this.db.tFQA.Where(question => question.Answer == null && question.CounsulterID == (isBinded ? ConsId : -1) && question.ID > startQuestionID).FirstOrDefault();
+            return this.db.tFQA.Where(question => question.Answer == null && question.ConsulterID == (isBinded ? ConsId : -1) && question.ID > startQuestionID).FirstOrDefault();
         }
 
 		public string bindQuestion(QA question, int consulterID) {
             var x = db.tFQA.Where(q => q.ID == question.ID).FirstOrDefault();
-			x.CounsulterID = consulterID;
+			x.ConsulterID = consulterID;
 			x.StartTime = DateTime.Now;
 			db.SubmitChanges();
 			Log("За консультантом " + consulterID + " забинден вопрос" + question.ID.ToString());
@@ -56,7 +56,7 @@ namespace QuestionHandlerLib {
 				QA x = db.tFQA.Where(c => c.ID == y.ID).FirstOrDefault();
 				if (x == null) throw new Exception("Не найдена запись БД " + y.ID.ToString());
 				if (x.Answer != null) throw new Exception("Ответ уже задан");
-                if (x.CounsulterID == -1) throw new Exception("Сначала нужно закрепить вопрос за консультантом");
+                if (x.ConsulterID == -1) throw new Exception("Сначала нужно закрепить вопрос за консультантом");
 				x.Answer = y.Answer;
 				x.EndTime = DateTime.Now;
 
@@ -82,7 +82,7 @@ namespace QuestionHandlerLib {
             int salary = tarif.Cost * (theme.getEndTime(question.StartTime) > DateTime.Now ? tarif.Multipiller : 1) + difficulty;
             log("Начислено " + salary.ToString());
 
-            db.tConsultersSalary.InsertOnSubmit(new consulter_salary(question.CounsulterID, DateTime.Now, salary));
+            db.tConsultersSalary.InsertOnSubmit(new consulter_salary(question.ConsulterID, DateTime.Now, salary));
             db.SubmitChanges();
         }
 		public int getDifficulty(QA question) {

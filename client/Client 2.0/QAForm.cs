@@ -50,7 +50,7 @@ namespace Client_2._0
 
                 dataGridView1[3, i].Value = inList[i].Email;
 
-                Consulters findCOns = consult.Where(c => c.ID == inList[i].CounsulterID).FirstOrDefault();
+                Consulters findCOns = consult.Where(c => c.ID == inList[i].ConsulterID).FirstOrDefault();
                 if(findCOns!=null) dataGridView1[4, i].Value = findCOns.ID.ToString() + ") " + findCOns.Firstname + " " + findCOns.Lastname;
                 else dataGridView1[4, i].Value = "-";
 
