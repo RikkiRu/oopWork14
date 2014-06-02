@@ -31,6 +31,7 @@ namespace Client_2._0 {
 			this.dataViewForm = new DataViewForm(this.service);
 			this.themePopularityChartForm = new ThemePopularityChartForm();
 			this.saveFileDialog.Filter = "Excel 2007 | *.xls|Excel 2010 | *.xlsx";
+			this.datePicker.CustomFormat = "yyyy";
 		}
 
 		private void MainForm_FormClosed(object sender, FormClosedEventArgs e) {
@@ -40,7 +41,7 @@ namespace Client_2._0 {
 		}
 
 		private void bCreateEfficiencyChart_Click(object sender, EventArgs e) {
-			ReportCreatorLib.ReportCreator.CreateEfficiencyChart("EfficiencyChart.xls", "Эффективность работы компании за "+DateTime.Now.Year, new string[]{"Месяц", "Количество вопросов"}, this.service.getEfficiencyChart());
+			ReportCreatorLib.ReportCreator.CreateEfficiencyChart("EfficiencyChart.xls", "Эффективность работы компании за " + DateTime.Now.Year, new string[] { "Месяц", "Количество вопросов" }, this.service.getEfficiencyChart());
 		}
 
 		private void bShowTarif_Click(object sender, EventArgs e) {
@@ -153,9 +154,15 @@ namespace Client_2._0 {
 				this.handleQuestion(service.getNewQA(currentConsulter.ID, CurrentQA.ID, true));
 		}
 
-        private void bCreateODFReport_Click(object sender, EventArgs e)
-        {
-            ReportCreator.CreateConsulterReport("ConsulterReport.xls", this.service.getConsulters(), this.service.getSalary());   
-        }
+		private void bCreateODFReport_Click(object sender, EventArgs e) {
+			this.datePicker.Visible = this.bCreateConsultersReport.Visible = true;
+			this.bCreateODFReport.Visible = false;
+		}
+
+		private void bCreateConsultersReport_Click(object sender, EventArgs e) {
+			ReportCreator.CreateConsulterReport("ConsulterReport", this.service.getConsulters(), this.service.getSalary().Where(salary => salary.Date.Year == this.datePicker.Value.Year).ToList(), this.datePicker.Value.Year);
+			this.datePicker.Visible = this.bCreateConsultersReport.Visible = false;
+			this.bCreateODFReport.Visible = true;
+		}
 	}
 }

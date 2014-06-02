@@ -56,12 +56,12 @@ namespace ReportCreatorLib {
 			xlWorkBook.Close(true, misValue, misValue);
 			xlApp.Quit();
 		}
-		public static void CreateConsulterReport(string filepath, List<Consulters> consulters, List<consulter_salary> salaries) {
+		public static void CreateConsulterReport(string filepath,  List<Consulters> consulters, List<consulter_salary> salaries, int year) {
 			object misValue = System.Reflection.Missing.Value;
 			Excel.Application xlApp = new Excel.Application();
 			Excel.Workbook xlWorkBook = xlApp.Workbooks.Add(misValue);
 			Excel.Worksheet xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
-			xlWorkSheet.Cells[1, 1] = "Отчет работы консультантов за " + DateTime.Now.Year.ToString();
+			xlWorkSheet.Cells[1, 1] = "Отчет работы консультантов за " + year + " год.";
 			Excel.Range chartRange = xlWorkSheet.get_Range("A1", "A1");
 			chartRange.Font.Bold = true;
 			for (int i = 0, k = 2; i < consulters.Count(); ++i, k += 3) {
@@ -85,7 +85,7 @@ namespace ReportCreatorLib {
 				xlWorkSheet.Cells[k + 1, salaries.Count() + 6] = salary;
 			}
 			try {
-				xlWorkBook.SaveAs(filepath, Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
+				xlWorkBook.SaveAs(filepath + year + ".xls", Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
 			} catch (Exception) { }
 			xlWorkBook.Close(true, misValue, misValue);
 			xlApp.Quit();
