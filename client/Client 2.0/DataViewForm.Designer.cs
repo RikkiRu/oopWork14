@@ -63,7 +63,7 @@
             this.bAdd.TabIndex = 2;
             this.bAdd.Text = "Добавить";
             this.bAdd.UseVisualStyleBackColor = true;
-            this.bAdd.Click += new System.EventHandler(this.bAdd_Click);
+            this.bAdd.Click += new System.EventHandler(this.bAddEdit_Click);
             // 
             // bEdit
             // 
@@ -74,7 +74,7 @@
             this.bEdit.TabIndex = 4;
             this.bEdit.Text = "Изменить";
             this.bEdit.UseVisualStyleBackColor = true;
-            this.bEdit.Click += new System.EventHandler(this.bEdit_Click);
+            this.bEdit.Click += new System.EventHandler(this.bAddEdit_Click);
             // 
             // bReturn
             // 
