@@ -34,10 +34,30 @@ namespace Client_2._0 {
 				this.showID = showID;
 				this.currentCommand = currentCommand;
 				this.dgItemList.DataSource = items;
-                if(this.dgItemList.Columns.Contains("ID"))
-				    this.dgItemList.Columns["ID"].Visible = this.showID;
+				if (this.dgItemList.Columns.Contains("ID"))
+					this.dgItemList.Columns["ID"].Visible = this.showID;
 				this.bAdd.Enabled = this.bEdit.Enabled = this.bDelete.Enabled = editable;
 				this.tableType = typeof(T);
+				switch (currentCommand) {
+					case Commands.SHOW_CONSULTER:
+						this.Text = "Консультанты";
+						break;
+					case Commands.SHOW_FAQ:
+						this.Text = "FAQ";
+						break;
+					case Commands.SHOW_TARIF:
+						this.Text = "Тарифы";
+						break;
+					case Commands.SHOW_THEME:
+						this.Text = "Темы";
+						break;
+					case Commands.SHOW_QA:
+						this.Text = "Вопросы";
+						break;
+					case Commands.SHOW_SALARY:
+						this.Text = "Зарплата";
+						break;
+				}
 			}
 			return this;
 		}

@@ -15,12 +15,7 @@ using System.Collections.Generic;
 
 namespace Server_2._0 {
 	[ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, ConcurrencyMode = ConcurrencyMode.Multiple)]
-	//[ServiceKnownType("GetKnownTypes")]
 	public class Server : Helper, ICommandHandler {
-
-		/*static IEnumerable<Type> GetKnownTypes(ICustomAttributeProvider provider) {
-			return new Type[] { typeof(Type), typeof(List<consulter_salary>), typeof(List<Consulters>), typeof(List<FAQ>), typeof(List<QA>), typeof(List<Tarif>), typeof(List<Themes>), typeof(List<Table>) };
-		}*/
 
 		private ServiceHost host;
 		private System.Timers.Timer mailTimer;
@@ -64,7 +59,7 @@ namespace Server_2._0 {
 			return this.db.getTable<T>().ToList<T>();
 		}*/
 		public Consulters Login(Consulters consulterLogin) {
-			return db.tConsulters.Where(consulter => consulter.Login == consulterLogin.Login && consulter.Password == consulterLogin.Password).First();
+			return db.tConsulters.Where(consulter => consulter.Login == consulterLogin.Login && consulter.Password == consulterLogin.Password).FirstOrDefault();
 		}
         public string getFirmInfo()
         {

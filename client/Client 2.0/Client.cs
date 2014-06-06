@@ -7,12 +7,12 @@ namespace Client_2._0 {
 		public ICommandHandler service;
 
 		public ICommandHandler Service {
-			get {return service;}
+			get { return service; }
 		}
 
-        public void Connect(string remoteAddress){
-            ChannelFactory<ICommandHandler> factory = new ChannelFactory<ICommandHandler>(new BasicHttpBinding(), new EndpointAddress(remoteAddress));
-            service = factory.CreateChannel();
-        }
+		public void Connect(string remoteAddress) {
+			ChannelFactory<ICommandHandler> factory = new ChannelFactory<ICommandHandler>(new BasicHttpBinding(), new EndpointAddress(remoteAddress));
+			service = factory.CreateChannel();
+		}
 	}
 }

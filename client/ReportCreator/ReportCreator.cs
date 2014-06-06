@@ -43,7 +43,7 @@ namespace ReportCreatorLib {
 				xlWorkSheet.Cells[k + 1, salaries.Count() + 6] = salary;
 			}
 			try {
-				xlWorkBook.SaveAs(filepath + year + ".xls", Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
+				xlWorkBook.SaveAs(filepath + year + ".ods" , Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
 			} catch (Exception) { }
 			xlWorkBook.Close(true, misValue, misValue);
 			xlApp.Quit();
@@ -78,7 +78,6 @@ namespace ReportCreatorLib {
 
 			Excel.Axis yAxis = (Excel.Axis)chartPage.Axes(Excel.XlAxisType.xlValue, Excel.XlAxisGroup.xlPrimary);
 			series1.ApplyDataLabels(Excel.XlDataLabelsType.xlDataLabelsShowPercent, true, true, false, false, false, true, true, true);
-			//xlWorkBook.SaveAs()
 			try {
 				xlWorkBook.SaveAs(filepath, Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
 			} catch (Exception) { }
@@ -117,7 +116,6 @@ namespace ReportCreatorLib {
 			Excel.Axis yAxis = (Excel.Axis)chartPage.Axes(Excel.XlAxisType.xlValue, Excel.XlAxisGroup.xlPrimary);
 			yAxis.HasTitle = true;
 			yAxis.AxisTitle.Text = headers[1];
-			//xlWorkBook.SaveAs()
 			try {
 				xlWorkBook.SaveAs(filepath, Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
 			} catch (Exception) { }
